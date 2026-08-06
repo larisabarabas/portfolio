@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #f8efe6;
+  --color-paper: #ffffff;
+  --color-ink: #2a2430;
+  --color-primary: #a8447a;
+  --color-primary-hover: #d97dae;
+  --color-secondary: #5c9682;
+  --color-tertiary: #5a4a73;
+  --color-soft: #f0c9db;
+  --color-line: #2a243024;
+
+  --font-serif: var(--font-instrument-serif), serif;
+  --font-sans: var(--font-space-grotesk), sans-serif;
+
+  --radius-pill: 100px;
+
+  --animate-float1: float1 9s ease-in-out infinite;
+  --animate-float2: float2 11s ease-in-out infinite;
+  --animate-hero-in: heroIn 0.9s ease both;
+  --animate-bg-reveal: bgReveal 1.6s ease both;
+  --animate-fade-up: fadeUp 0.7s ease both;
+  --animate-icon-pop: iconPop 0.6s ease both;
+}
+
+@keyframes float1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -40px) scale(1.06);
+  }
+}
+
+@keyframes float2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-24px, 30px) scale(1.08);
+  }
+}
+
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bgReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes iconPop {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+a {
+  color: var(--color-primary);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}

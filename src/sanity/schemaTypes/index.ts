@@ -4,6 +4,7 @@ import { decisionCard } from "./objects/decisionCard";
 import { metaLink } from "./objects/metaLink";
 import { summaryPoint } from "./objects/summaryPoint";
 import { uxFlowStep } from "./objects/uxFlowStep";
+import { openSourceProject } from "./openSourceProject";
 import { project } from "./project";
 import { siteSettings } from "./siteSettings";
 
@@ -13,6 +14,7 @@ export const schemaTypes = [
   experienceEntry,
   articleLink,
   siteSettings,
+  openSourceProject,
   // objects
   summaryPoint,
   metaLink,

@@ -6,6 +6,7 @@ type ImagePlaceholderProps = {
   placeholder: string;
   radius?: number;
   aspectRatio?: string;
+  sizes?: string;
   className?: string;
 };
 
@@ -15,6 +16,7 @@ export function ImagePlaceholder({
   placeholder,
   radius = 20,
   aspectRatio = "1/1",
+  sizes = "100vw",
   className,
 }: ImagePlaceholderProps) {
   const style = { aspectRatio, borderRadius: `${radius}px` };
@@ -25,7 +27,13 @@ export function ImagePlaceholder({
         className={`relative overflow-hidden border border-line shadow-[0_30px_60px_-30px_rgba(34,20,16,0.35)] ${className ?? ""}`}
         style={style}
       >
-        <Image src={src} alt={alt} fill className="object-cover" />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={sizes}
+          className="object-cover"
+        />
       </div>
     );
   }

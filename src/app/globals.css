@@ -15,32 +15,36 @@
   --font-sans: var(--font-space-grotesk), sans-serif;
 
   --radius-pill: 100px;
+  --radius-card: 20px;
+  --radius-card-lg: 24px;
 
-  --animate-float1: float1 9s ease-in-out infinite;
-  --animate-float2: float2 11s ease-in-out infinite;
   --animate-hero-in: heroIn 0.9s ease both;
   --animate-bg-reveal: bgReveal 1.6s ease both;
   --animate-fade-up: fadeUp 0.7s ease both;
   --animate-icon-pop: iconPop 0.6s ease both;
 }
 
-@keyframes float1 {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
+@keyframes petalBloom {
+  0% {
+    opacity: 0;
+    transform: scale(0.15) rotate(-40deg);
   }
-  50% {
-    transform: translate(30px, -40px) scale(1.06);
+  60% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: var(--pop, 0.7);
+    transform: scale(1) rotate(0deg);
   }
 }
 
-@keyframes float2 {
+@keyframes petalMorph1 {
   0%,
   100% {
-    transform: translate(0, 0) scale(1);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   }
   50% {
-    transform: translate(-24px, 30px) scale(1.08);
+    border-radius: 40% 60% 70% 30% / 50% 60% 30% 60%;
   }
 }
 

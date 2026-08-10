@@ -16,7 +16,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Stefania Barabas — Engineering and Product, with a touch of Design",
+  title: "stefania. Engineering and Product, with a touch of Design",
   description:
     "Senior frontend engineer building at the intersection of product, design, and AI.",
 };

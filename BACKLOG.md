@@ -12,7 +12,6 @@ Decisions locked in before build:
 - **Linting/formatting**: Biome, replacing ESLint + Prettier.
 - **Sanity project**: `eegzn6d8`, dataset `production` (already created).
 
-Full original plan (superseded by this file as the living tracker): `/Users/stefania.barabas/.claude/plans/recursive-sleeping-mccarthy.md`.
 
 ## Source-fidelity notes (from reading the design handoff directly — not obvious from the README prose alone)
 
@@ -49,7 +48,7 @@ Full original plan (superseded by this file as the living tracker): `/Users/stef
 - [x] `sanity.config.ts` + embedded Studio route at `src/app/studio/[[...tool]]/page.tsx`
 - [x] `sanity.cli.ts` (loads `.env.local` via `@next/env` for CLI/typegen commands)
 - [x] `next.config.ts` `images.remotePatterns` for `cdn.sanity.io`
-- [x] `src/lib/sanity/{client,image,fetch,queries}.ts` + `src/lib/types.ts`
+- [x] `src/lib/sanity/{client,image,fetch,queries}.ts`
 - [x] `.env.local` wired to the real Sanity project (`eegzn6d8` / `production`); `.env.local.example` committed as the template (fixed `.gitignore`'s `.env*` pattern to allow `.env*.example` through)
 - [x] Verified: `tsc --noEmit` clean, `npm run lint` (Biome) clean, `/studio` returns 200 with no server errors on `next dev`
 - [x] Committed: "Project basic setup - Next.js, Tailwindcss, Biome and Sanity as CMS" (`c1d63c2`)

@@ -24,6 +24,13 @@ export const openSourceProject = defineType({
       type: "url",
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: "order",
+      title: "Order",
+      description: "Lower numbers appear first.",
+      type: "number",
+      validation: (rule) => rule.required(),
+    }),
   ],
   preview: {
     select: { title: "title", subtitle: "description" },

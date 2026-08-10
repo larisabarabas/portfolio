@@ -24,10 +24,11 @@ export function DevNotes({ articleLinks }: DevNotesProps) {
         <div className="mb-14 flex flex-wrap items-center gap-10 rounded-card-lg border border-line bg-paper p-10">
           <div className="flex-[0_1_200px]">
             <ImagePlaceholder
+              src="/sdn-logo.png"
               alt={DEV_NOTES.logoAlt}
               placeholder={DEV_NOTES.logoPlaceholder}
               aspectRatio="1/1"
-              radius={16}
+              fit="contain"
               sizes="(min-width: 768px) 200px, 100vw"
             />
           </div>

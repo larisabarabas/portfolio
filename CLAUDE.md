@@ -8,3 +8,11 @@ Before implementing or changing any UI component (colors, type, spacing, radii, 
 - File to read: `Design System.dc.html`
 
 Check the component being built or touched against the tokens and patterns in that file before writing styles.
+
+# Command approval
+
+Whenever a command needs my approval to run, explain in plain language what it does — what it will actually do and any side effects — before or alongside the approval prompt, so I understand it rather than approving blind.
+
+# React best practices
+
+Whenever writing, editing, or reviewing React components or logic (hooks, state, effects, rendering), run the `react-best-practices` skill and apply its findings — not just when explicitly asked.

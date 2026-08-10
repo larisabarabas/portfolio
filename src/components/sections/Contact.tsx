@@ -7,7 +7,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative px-[8vw] pt-[140px] pb-[90px] text-center"
+      className="relative overflow-hidden px-[8vw] pt-[140px] pb-[90px] text-center"
     >
       <div className="pointer-events-none absolute top-0 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-[40%] rounded-full bg-[radial-gradient(circle,var(--color-primary),transparent_70%)] opacity-25 blur-[20px]" />
       <Reveal className="relative">

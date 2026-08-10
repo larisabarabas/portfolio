@@ -1,5 +1,3 @@
-export const HERO_ANIMATION: "float" | "still" = "float";
-
 export const LOGO_TEXT = "stefania";
 
 export const NAV_LINKS = [

@@ -13,6 +13,14 @@ export const siteSettings = defineType({
       type: "boolean",
       initialValue: true,
     }),
+    defineField({
+      name: "showOpenSourceProjects",
+      title: "Show Open Source Projects section",
+      description:
+        "Toggles whether the still-evolving Open Source Projects section renders on the homepage.",
+      type: "boolean",
+      initialValue: true,
+    }),
   ],
   preview: {
     prepare: () => ({ title: "Site Settings" }),

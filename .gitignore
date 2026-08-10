@@ -40,3 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# sanity typegen (generated, run `npm run typegen`)
+/schema.json
+src/lib/sanity/sanity.types.ts

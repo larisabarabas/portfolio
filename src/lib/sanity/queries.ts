@@ -20,4 +20,8 @@ export const articleLinksQuery = defineQuery(
   `*[_type == "articleLink"] | order(order asc)`,
 );
 
+export const openSourceProjectQuery = defineQuery(
+  `*[_type == "openSourceProject"] | order(order asc)`,
+);
+
 export const siteSettingsQuery = defineQuery(`*[_type == "siteSettings"][0]`);

@@ -1,18 +1,15 @@
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { Pill } from "@/components/ui/Pill";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { EXPERIMENTS } from "@/lib/constants";
 
 export function Experiments() {
   return (
-    <section
-      id="experiments"
-      className="mx-auto max-w-[1240px] px-[8vw] py-[100px]"
-    >
+    <section id="experiments" className="mx-auto max-w-310 px-[8vw] py-25">
       <Reveal>
-        <SectionEyebrow>{EXPERIMENTS.eyebrow}</SectionEyebrow>
-        <h2 className="mb-[50px] max-w-[700px] font-serif text-[clamp(32px,4vw,52px)] font-normal">
+        <SectionLabel>{EXPERIMENTS.eyebrow}</SectionLabel>
+        <h2 className="mb-12.5 max-w-175 font-serif text-[clamp(32px,4vw,52px)] font-normal">
           {EXPERIMENTS.heading}
         </h2>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] items-center gap-14 rounded-card-lg border border-line bg-paper p-10">

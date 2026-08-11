@@ -14,12 +14,12 @@ export function HowIWork() {
       id="howiwork"
       ref={ref}
       style={style}
-      className="mx-auto max-w-[1240px] px-[8vw] py-[100px]"
+      className="mx-auto max-w-310 px-[8vw] py-25"
     >
-      <p className="mb-[18px] flex items-center gap-[9px] text-[13px] font-semibold uppercase tracking-[0.16em] text-primary">
+      <p className="mb-4.5 flex items-center gap-2.25 text-[13px] font-semibold uppercase tracking-[0.16em] text-primary">
         {HOW_I_WORK.eyebrow}
       </p>
-      <h2 className="mb-[60px] max-w-[760px] font-serif text-[clamp(32px,4vw,52px)] font-normal">
+      <h2 className="mb-15 max-w-190 font-serif text-[clamp(32px,4vw,52px)] font-normal">
         {HOW_I_WORK.heading}
       </h2>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6">

@@ -13,8 +13,10 @@ export const NAV_LINKS = [
 export const HERO = {
   eyebrow: "Engineering and Product, with a touch of Design",
   headingLine1: "Hi, I'm Stefania —",
-  headingLine2: "curious by default.",
-  body: "Senior frontend engineer building at the intersection of product, design, and AI. Based in Madrid, working remote, currently untangling frontend architecture in various side projects.",
+  headingLine2: "always building with a smile.",
+  body: "Senior frontend engineer building at the intersection of product, design, and AI.",
+  status:
+    "Currently untangling building from scratch in various side projects. Looking for my next role!",
   primaryCtaLabel: "See my work ↓",
   resumeHref: "/stefania-barabas-resume.pdf",
   resumeCtaLabel: "Download résumé",
@@ -22,14 +24,14 @@ export const HERO = {
 
 export const ABOUT = {
   eyebrow: "About",
-  heading: "Eight years in, still curious",
+  heading: "Eight years in. Still curious, still learning.",
   bodyParagraph1:
-    "I've spent the last eight years building scalable, high-performance web applications — usually somewhere between product, design, and, increasingly, AI. I like the parts of engineering that don't show up on a roadmap: reading a pull request twice before trusting it, mentoring the person who just joined, asking why before how.",
+    "I've spent the last eight years building scalable, high-performance web applications — usually somewhere between product, design, and, increasingly, AI. I like the parts of engineering that don't always show up on a roadmap: developer experience, technical documentation, technical debt, reading a pull request twice before trusting it, mentoring the person who just joined, asking why before how.",
   bodyParagraph2Pre:
-    "Outside of sprint cycles, I write about frontend architecture and performance at ",
-  devNotesLinkLabel: "Stef's Dev Notes",
+    "Outside of sprint cycles, I write about frontend engineering — and engineering in general — the wins and the lessons, at ",
+  devNotesLinkLabel: "Stef's Dev Notes. ",
   bodyParagraph2Post:
-    ', and build small, slightly strange side projects — an app that turns "thank you" into cake, a retrospective tool with opinions, a terrarium that grows with your habits.',
+    "I also build small side projects: an app that turns appreciation into a slice of cake, a retrospective tool that captures notes continuously through a sprint, and a digital terrarium that grows with your habits and emotions.",
   devNotesUrl: "https://stefsdevnotes.substack.com",
   statChips: ["📍 Madrid, Spain · Remote", "8+ years frontend"],
   portraitAlt: "Portrait",
@@ -100,7 +102,7 @@ export const SKILLS = {
       label: "AI-assisted development",
       tone: "solid" as const,
       color: "secondary" as const,
-      items: ["Claude Code", "Claude", "OpenCode", "Cursor"],
+      items: ["Claude Code", "Claude", "Claude Design", "OpenCode", "Cursor"],
     },
     {
       label: "Architecture",
@@ -126,6 +128,12 @@ export const SKILLS = {
       color: "primary" as const,
       items: ["Jest", "Vitest", "Datadog", "Sentry"],
     },
+    {
+      label: "UX/UI",
+      tone: "outline" as const,
+      color: "primary" as const,
+      items: ["Figma"],
+    },
   ],
 };
 
@@ -142,7 +150,8 @@ export const EXPERIMENTS = {
 export const DEV_NOTES = {
   eyebrow: "Writing",
   heading: "Stef's Dev Notes",
-  featureHeading: "A newsletter on frontend architecture & performance",
+  featureHeading:
+    "A newsletter about engineering judgment in an industry obsessed with speed",
   featureBody:
     "Notes from the field on building fast, maintainable web apps — written between sprints, for people who care about the parts that don't show up on a roadmap.",
   featureCtaLabel: "Read Stef's Dev Notes →",
@@ -155,7 +164,7 @@ export const DEV_NOTES = {
 export const CONTACT = {
   eyebrow: "Get in touch",
   heading: "Let's talk.",
-  body: "Open to product engineering and design engineering roles, and always up for talking shop about frontend architecture.",
+  body: "Open to engineering roles at the intersection of frontend, product and design.",
   email: "stefaniabarabas@gmail.com",
   linkedinUrl: "https://linkedin.com/in/stefania-barabas",
   githubUrl: "https://github.com/larisabarabas",

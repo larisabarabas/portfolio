@@ -84,7 +84,7 @@ export function WorkCard({ project, index }: WorkCardProps) {
 
   return (
     <Reveal delay={index * 0.12}>
-      <div className="grid items-center gap-14 [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))]">
+      <div className="grid items-center gap-14 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
         {imageFirst ? image : null}
         {copy}
         {imageFirst ? null : image}

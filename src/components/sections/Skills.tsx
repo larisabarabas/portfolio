@@ -1,14 +1,14 @@
 import { Pill } from "@/components/ui/Pill";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SKILLS } from "@/lib/constants";
 
 export function Skills() {
   return (
-    <section id="skills" className="mx-auto max-w-[1240px] px-[8vw] py-[100px]">
+    <section id="skills" className="mx-auto max-w-310 px-[8vw] py-25">
       <Reveal>
-        <SectionEyebrow>{SKILLS.eyebrow}</SectionEyebrow>
-        <h2 className="mb-[50px] font-serif text-[clamp(32px,4vw,52px)] font-normal">
+        <SectionLabel>{SKILLS.eyebrow}</SectionLabel>
+        <h2 className="mb-12.5 font-serif text-[clamp(32px,4vw,52px)] font-normal">
           {SKILLS.heading}
         </h2>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-9">
@@ -17,7 +17,7 @@ export function Skills() {
               <p className="mb-3.5 text-sm font-semibold text-tertiary">
                 {group.label}
               </p>
-              <div className="flex flex-wrap gap-[9px]">
+              <div className="flex flex-wrap gap-2.25">
                 {group.items.map((item) => (
                   <Pill key={item} tone={group.tone} color={group.color}>
                     {item}

@@ -18,7 +18,7 @@ export function ExperienceItem({ entry }: ExperienceItemProps) {
   return (
     <div className="relative">
       <div
-        className={`absolute top-1 left-[-42px] h-3 w-3 rounded-full ${DOT_CLASSES[entry.dotColor]}`}
+        className={`absolute top-1 -left-10.5 h-3 w-3 rounded-full ${DOT_CLASSES[entry.dotColor]}`}
       />
       <p className="mb-1.5 text-[13px] opacity-60">
         {entry.dateRange}
@@ -34,7 +34,7 @@ export function ExperienceItem({ entry }: ExperienceItemProps) {
         {entry.role}
       </h3>
       <p
-        className={`max-w-[620px] text-[15.5px] leading-[1.7] ${
+        className={`max-w-155 text-[15.5px] leading-[1.7] ${
           entry.compact ? "opacity-75" : "opacity-85"
         }`}
       >

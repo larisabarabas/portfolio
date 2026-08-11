@@ -1,6 +1,6 @@
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { TextLink } from "@/components/ui/TextLink";
 import { DEV_NOTES } from "@/lib/constants";
 import type { ArticleLinksQueryResult } from "@/lib/sanity/sanity.types";
@@ -11,13 +11,10 @@ type DevNotesProps = {
 
 export function DevNotes({ articleLinks }: DevNotesProps) {
   return (
-    <section
-      id="devnotes"
-      className="mx-auto max-w-[1240px] px-[8vw] py-[100px]"
-    >
+    <section id="devnotes" className="mx-auto max-w-310 px-[8vw] py-25">
       <Reveal>
-        <SectionEyebrow>{DEV_NOTES.eyebrow}</SectionEyebrow>
-        <h2 className="mb-[50px] max-w-[700px] font-serif text-[clamp(32px,4vw,52px)] font-normal">
+        <SectionLabel>{DEV_NOTES.eyebrow}</SectionLabel>
+        <h2 className="mb-12.5 max-w-175 font-serif text-[clamp(32px,4vw,52px)] font-normal">
           {DEV_NOTES.heading}
         </h2>
 
@@ -32,11 +29,11 @@ export function DevNotes({ articleLinks }: DevNotesProps) {
               sizes="(min-width: 768px) 200px, 100vw"
             />
           </div>
-          <div className="min-w-[280px] flex-[1_1_340px]">
+          <div className="min-w-70 flex-[1_1_340px]">
             <h3 className="mb-3.5 font-serif text-[28px] font-normal">
               {DEV_NOTES.featureHeading}
             </h3>
-            <p className="mb-[22px] text-base leading-[1.7] opacity-85">
+            <p className="mb-5.5 text-base leading-[1.7] opacity-85">
               {DEV_NOTES.featureBody}
             </p>
             <TextLink href={DEV_NOTES.featureUrl} color="tertiary" external>
@@ -45,7 +42,7 @@ export function DevNotes({ articleLinks }: DevNotesProps) {
           </div>
         </div>
 
-        <p className="mb-[22px] text-sm font-semibold text-tertiary">
+        <p className="mb-5.5 text-sm font-semibold text-tertiary">
           {DEV_NOTES.collaborationsLabel}
         </p>
         <div className="flex flex-col gap-px overflow-hidden rounded-2xl border border-line bg-line">

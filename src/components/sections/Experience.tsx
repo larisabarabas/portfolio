@@ -1,6 +1,6 @@
 import { ExperienceItem } from "@/components/sections/ExperienceItem";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { EXPERIENCE } from "@/lib/constants";
 import type { ExperienceEntriesQueryResult } from "@/lib/sanity/sanity.types";
 
@@ -10,12 +10,9 @@ type ExperienceProps = {
 
 export function Experience({ entries }: ExperienceProps) {
   return (
-    <section
-      id="experience"
-      className="mx-auto max-w-[1000px] px-[8vw] py-[100px]"
-    >
+    <section id="experience" className="mx-auto max-w-250 px-[8vw] py-25">
       <Reveal>
-        <SectionEyebrow>{EXPERIENCE.eyebrow}</SectionEyebrow>
+        <SectionLabel>{EXPERIENCE.eyebrow}</SectionLabel>
         <h2 className="mb-14 font-serif text-[clamp(32px,4vw,52px)] font-normal">
           {EXPERIENCE.heading}
         </h2>

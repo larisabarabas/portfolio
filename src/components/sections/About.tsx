@@ -1,13 +1,13 @@
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { Pill } from "@/components/ui/Pill";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ABOUT } from "@/lib/constants";
 
 export function About() {
   return (
-    <section id="about" className="mx-auto max-w-[1240px] px-[8vw] py-[140px]">
-      <Reveal className="flex flex-wrap items-start gap-[70px]">
+    <section id="about" className="mx-auto max-w-310 px-[8vw] py-35">
+      <Reveal className="flex flex-wrap items-start gap-17.5">
         <div className="flex-[0_1_280px]">
           <ImagePlaceholder
             src="/about-img.jpeg"
@@ -18,15 +18,15 @@ export function About() {
             sizes="(min-width: 768px) 280px, 100vw"
           />
         </div>
-        <div className="min-w-[280px] flex-[1_1_380px]">
-          <SectionEyebrow>{ABOUT.eyebrow}</SectionEyebrow>
-          <h2 className="mb-[26px] font-serif text-[clamp(32px,4vw,52px)] font-normal">
+        <div className="min-w-70 flex-[1_1_380px]">
+          <SectionLabel>{ABOUT.eyebrow}</SectionLabel>
+          <h2 className="mb-6.5 font-serif text-[clamp(32px,4vw,52px)] font-normal">
             {ABOUT.heading}
           </h2>
-          <p className="mb-5 max-w-[640px] text-[17px] leading-[1.75] opacity-88">
+          <p className="mb-5 max-w-160 text-[17px] leading-[1.75] opacity-88">
             {ABOUT.bodyParagraph1}
           </p>
-          <p className="mb-[34px] max-w-[640px] text-[17px] leading-[1.75] opacity-88">
+          <p className="mb-8.5 max-w-160 text-[17px] leading-[1.75] opacity-88">
             {ABOUT.bodyParagraph2Pre}
             <a
               href={ABOUT.devNotesUrl}

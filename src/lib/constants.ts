@@ -16,7 +16,7 @@ export const HERO = {
   headingLine2: "always building with a smile.",
   body: "Senior frontend engineer building at the intersection of product, design, and AI.",
   status:
-    "Currently untangling building from scratch in various side projects. Looking for my next role!",
+    "Currently untangling building from scratch in various side projects.",
   primaryCtaLabel: "See my work ↓",
   resumeHref: "/stefania-barabas-resume.pdf",
   resumeCtaLabel: "Download résumé",

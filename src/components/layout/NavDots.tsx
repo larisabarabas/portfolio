@@ -9,7 +9,7 @@ export function NavDots() {
   const activeId = useActiveSection(NAV_IDS);
 
   return (
-    <div className="fixed top-1/2 right-[22px] z-50 flex -translate-y-1/2 flex-col gap-3.5">
+    <div className="fixed top-1/2 right-5.5 z-50 flex -translate-y-1/2 flex-col gap-3.5">
       {NAV_LINKS.map(({ id, label }) => (
         <a
           key={id}

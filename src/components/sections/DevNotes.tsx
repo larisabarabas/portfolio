@@ -42,28 +42,32 @@ export function DevNotes({ articleLinks }: DevNotesProps) {
           </div>
         </div>
 
-        <p className="mb-5.5 text-sm font-semibold text-tertiary">
-          {DEV_NOTES.collaborationsLabel}
-        </p>
-        <div className="flex flex-col gap-px overflow-hidden rounded-2xl border border-line bg-line">
-          {articleLinks.map((link) => (
-            <a
-              key={link._id}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-between gap-6 bg-paper px-7 py-6 text-ink hover:bg-soft"
-            >
-              <div>
-                <p className="mb-1.5 text-xs font-semibold tracking-[0.06em] text-primary uppercase">
-                  {link.publicationAndRole}
-                </p>
-                <p className="text-lg font-semibold">{link.title}</p>
-              </div>
-              <span className="shrink-0 text-xl">→</span>
-            </a>
-          ))}
-        </div>
+        {articleLinks.length > 0 ? (
+          <>
+            <p className="mb-5.5 text-sm font-semibold text-tertiary">
+              {DEV_NOTES.collaborationsLabel}
+            </p>
+            <div className="flex flex-col gap-px overflow-hidden rounded-2xl border border-line bg-line">
+              {articleLinks.map((link) => (
+                <a
+                  key={link._id}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between gap-6 bg-paper px-7 py-6 text-ink hover:bg-soft"
+                >
+                  <div>
+                    <p className="mb-1.5 text-xs font-semibold tracking-[0.06em] text-primary uppercase">
+                      {link.publicationAndRole}
+                    </p>
+                    <p className="text-lg font-semibold">{link.title}</p>
+                  </div>
+                  <span className="shrink-0 text-xl">→</span>
+                </a>
+              ))}
+            </div>
+          </>
+        ) : null}
       </Reveal>
     </section>
   );

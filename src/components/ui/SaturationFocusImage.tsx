@@ -117,8 +117,17 @@ export function SaturationFocusImage({
     const canvas = canvasRef.current;
     if (!container || !canvas) return;
 
+    const applyFallbackBackground = () => {
+      container.style.backgroundImage = `url(${src})`;
+      container.style.backgroundSize = "cover";
+      container.style.backgroundPosition = "center";
+    };
+
     const gl = canvas.getContext("webgl");
-    if (!gl) return;
+    if (!gl) {
+      applyFallbackBackground();
+      return;
+    }
 
     const vertexShader = compileShader(
       gl,
@@ -130,10 +139,18 @@ export function SaturationFocusImage({
       gl.FRAGMENT_SHADER,
       FRAGMENT_SHADER_SOURCE,
     );
-    if (!vertexShader || !fragmentShader) return;
+    if (!vertexShader || !fragmentShader) {
+      if (vertexShader) gl.deleteShader(vertexShader);
+      if (fragmentShader) gl.deleteShader(fragmentShader);
+      return;
+    }
 
     const program = gl.createProgram();
-    if (!program) return;
+    if (!program) {
+      gl.deleteShader(vertexShader);
+      gl.deleteShader(fragmentShader);
+      return;
+    }
     gl.attachShader(program, vertexShader);
     gl.attachShader(program, fragmentShader);
     gl.linkProgram(program);
@@ -142,6 +159,9 @@ export function SaturationFocusImage({
         "[SaturationFocusImage] program link error:",
         gl.getProgramInfoLog(program),
       );
+      gl.deleteProgram(program);
+      gl.deleteShader(vertexShader);
+      gl.deleteShader(fragmentShader);
       return;
     }
     // biome-ignore lint/correctness/useHookAtTopLevel: gl.useProgram is the WebGL API method, not a React hook
@@ -181,6 +201,14 @@ export function SaturationFocusImage({
     let imageAspect = 0;
     let textureReady = false;
     let cancelled = false;
+    let contextLost = false;
+
+    const onContextLost = (e: Event) => {
+      e.preventDefault();
+      contextLost = true;
+      applyFallbackBackground();
+    };
+    canvas.addEventListener("webglcontextlost", onContextLost, false);
 
     const image = new Image();
     image.crossOrigin = "anonymous";
@@ -206,6 +234,7 @@ export function SaturationFocusImage({
     image.onerror = () => {
       if (cancelled) return;
       console.error("[SaturationFocusImage] failed to load texture:", src);
+      applyFallbackBackground();
     };
     image.src = src;
 
@@ -246,6 +275,8 @@ export function SaturationFocusImage({
 
     let rafId: number;
     const render = () => {
+      if (contextLost) return;
+
       mouse.current.x += (targetMouse.current.x - mouse.current.x) * 0.08;
       mouse.current.y += (targetMouse.current.y - mouse.current.y) * 0.08;
       hover.current += (targetHover.current - hover.current) * 0.07;
@@ -273,6 +304,7 @@ export function SaturationFocusImage({
       container.removeEventListener("pointermove", onPointerMove);
       container.removeEventListener("pointerenter", onPointerEnter);
       container.removeEventListener("pointerleave", onPointerLeave);
+      canvas.removeEventListener("webglcontextlost", onContextLost);
       gl.deleteProgram(program);
       gl.deleteShader(vertexShader);
       gl.deleteShader(fragmentShader);

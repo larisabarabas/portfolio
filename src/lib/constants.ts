@@ -153,7 +153,7 @@ export const DEV_NOTES = {
   featureHeading:
     "A newsletter about engineering judgment in an industry obsessed with speed",
   featureBody:
-    "Notes from the field on building fast, maintainable web apps — written between sprints, for people who care about the parts that don't show up on a roadmap.",
+    "This is where I think out loud about frontend engineering and engineering in general. The code I'm writing, the career lessons I'm learning, and all the invisible work that actually matters, shared one small note at a time.",
   featureCtaLabel: "Read Stef's Dev Notes →",
   featureUrl: "https://stefsdevnotes.substack.com",
   collaborationsLabel: "Article collaborations",
@@ -164,7 +164,7 @@ export const DEV_NOTES = {
 export const CONTACT = {
   eyebrow: "Get in touch",
   heading: "Let's talk.",
-  body: "Open to engineering roles at the intersection of frontend, product and design.",
+  body: "Open to engineering opportunities at the intersection of frontend, product and design.",
   email: "stefaniabarabas@gmail.com",
   linkedinUrl: "https://linkedin.com/in/stefania-barabas",
   githubUrl: "https://github.com/larisabarabas",
@@ -175,5 +175,5 @@ export const CONTACT = {
 };
 
 export const FOOTER = {
-  copyright: "© 2026 Stefania Larisa Barabas · Madrid, Spain",
+  copyright: "Made with ❤️ by Stefania Larisa Barabas · 2026 · Madrid, Spain",
 };

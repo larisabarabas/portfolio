@@ -27,6 +27,7 @@ export function useScrollReveal({
         { threshold },
       );
       observer.observe(el);
+      return () => observer.disconnect();
     },
     [threshold],
   );
@@ -37,5 +38,5 @@ export function useScrollReveal({
     transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
   };
 
-  return { ref, style };
+  return { ref, style, visible };
 }

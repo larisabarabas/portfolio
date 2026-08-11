@@ -57,7 +57,7 @@ Decisions locked in before build:
 
 ## Next up
 
-- [ ] **Shared UI + hooks** — `Pill`, `Button`, `SectionEyebrow`, `Reveal`, `ImagePlaceholder` components; `useScrollReveal`, `useActiveSection`, `useHeroParallax` hooks (`src/components/ui/`, `src/hooks/`)
+- [ ] **Shared UI + hooks** — `Pill`, `Button`, `SectionLabel`, `Reveal`, `ImagePlaceholder` components; `useScrollReveal`, `useActiveSection`, `useHeroParallax` hooks (`src/components/ui/`, `src/hooks/`)
 - [ ] **Home page sections** — `Logo`, `NavDots`, `Hero` (parallax + blob morph), `WorkSection`/`WorkCard`, `About`, `HowIWork`/`HowIWorkCard`, `Skills`, `Experience`/`ExperienceItem`, `Experiments`, `DevNotes`, `Contact`, composed in `src/app/page.tsx`
 - [ ] **Case study route** — `src/app/work/[slug]/page.tsx` (`generateStaticParams` + `notFound()` for `hasCaseStudy: false`) + `CaseStudyHeader`, `MetaRow`, `UXFlowSteps`, `DecisionCard`, `CaseStudyOutcome`
 - [ ] **Static assets** — copy `hero-bg.png` + résumé PDF into `/public`; project screenshots (`fika-screenshot.png`, `retrobox-screenshot.png`) get uploaded through the Studio UI, not committed to the repo

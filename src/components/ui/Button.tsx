@@ -25,7 +25,7 @@ export function Button({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className={`inline-flex items-center gap-2 rounded-pill px-[26px] py-3.5 text-[15px] font-semibold transition-colors duration-300 ${VARIANT_CLASSES[variant]}`}
+      className={`inline-flex items-center gap-2 rounded-pill px-6.5 py-3.5 text-[15px] font-semibold transition-colors duration-300 ${VARIANT_CLASSES[variant]}`}
     >
       {children}
     </a>

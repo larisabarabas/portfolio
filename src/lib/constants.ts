@@ -174,6 +174,16 @@ export const CONTACT = {
   devNotesLabel: "Stef's Dev Notes",
 };
 
+export const CASE_STUDY = {
+  backLinkLabel: "← Back to portfolio",
+  problemHeading: "The problem",
+  uxFlowHeading: "UX flow",
+  uxFlowPlaceholderDefault: "Drop the flow diagram",
+  decisionsHeading: "Key decisions & tradeoffs",
+  outcomeHeadingDefault: "Outcome",
+  backToPortfolioCtaLabel: "← Back to portfolio",
+};
+
 export const FOOTER = {
-  copyright: "Made with ❤️ by Stefania Larisa Barabas · 2026 · Madrid, Spain",
+  copyright: "Made by Stefania Larisa Barabas · 2026 · Madrid, Spain",
 };

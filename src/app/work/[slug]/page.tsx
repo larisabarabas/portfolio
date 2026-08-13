@@ -7,14 +7,19 @@ import { UXFlowSteps } from "@/components/case-study/UXFlowSteps";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { Pill } from "@/components/ui/Pill";
 import { CASE_STUDY } from "@/lib/constants";
-import { client } from "@/lib/sanity/client";
 import { sanityFetch } from "@/lib/sanity/fetch";
 import { urlFor } from "@/lib/sanity/image";
 import { projectBySlugQuery, projectSlugsQuery } from "@/lib/sanity/queries";
-import type { ProjectBySlugQueryResult } from "@/lib/sanity/sanity.types";
+import type {
+  ProjectBySlugQueryResult,
+  ProjectSlugsQueryResult,
+} from "@/lib/sanity/sanity.types";
 
 export async function generateStaticParams() {
-  const slugs = await client.fetch(projectSlugsQuery);
+  const slugs = await sanityFetch<ProjectSlugsQueryResult>({
+    query: projectSlugsQuery,
+    fallback: [],
+  });
   return slugs.map(({ slug }) => ({ slug }));
 }
 

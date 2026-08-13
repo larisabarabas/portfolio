@@ -54,21 +54,22 @@ Decisions locked in before build:
 - [x] Committed: "Project basic setup - Next.js, Tailwindcss, Biome and Sanity as CMS" (`c1d63c2`)
 - [x] Sanity TypeGen wired up: `typegen` config in `sanity.cli.ts` (not a separate `sanity-typegen.json` — that form is deprecated), `npm run typegen` script (`sanity schema extract --force` + `sanity typegen generate`) generates `src/lib/sanity/sanity.types.ts` from schema + `defineQuery` calls; both `schema.json` and `sanity.types.ts` are gitignored build artifacts, regenerate after any schema/query change
 - [x] Removed `src/lib/types.ts` (hand-written, unused by any code) — generated query-result types in `src/lib/sanity/sanity.types.ts` (e.g. `ProjectsQueryResult`, `ExperienceEntriesQueryResult`) are now the single source of truth for Sanity-shaped types going forward
+- [x] **Shared UI + hooks** — `Pill`, `Button`, `SectionLabel`, `Reveal`, `ImagePlaceholder`, plus `SaturationFocusImage` and `TextLink` (not originally scoped) in `src/components/ui/`; `useScrollReveal`, `useActiveSection` in `src/hooks/` (no separate `useHeroParallax` — see deviation note below)
+- [x] **Home page sections** — `Logo`, `NavDots`, `Hero`, `WorkSection`/`WorkCard`, `About`, `HowIWork`, `Skills`, `Experience`/`ExperienceItem`, `Experiments`, `DevNotes`, `Contact`, composed in `src/app/page.tsx` and wired to live Sanity data via `sanityFetch`
+  - Deviation from source-fidelity notes: `Hero` does not implement the pointer-driven parallax blobs — it uses a `SaturationFocusImage` treatment instead
+- [x] Static assets copied into `/public`: `hero-bg.png`, `stefania-barabas-resume.pdf`, `about-img.jpeg`, `sdn-logo.png`
+- [x] GitHub remote created, pushed, PR #3 (`feature/sections`) merged to `main`
+- [x] Domain purchased via Cloudflare, registered as custom domain on the Vercel project (root + `www` CNAMEs, DNS-only), deploy verified live
+
+- [x] **Case study route** — `src/app/work/[slug]/page.tsx` (`generateStaticParams` via `projectSlugsQuery` + `notFound()` for missing/`hasCaseStudy: false` projects) + `CaseStudyHeader`, `MetaRow`, `UXFlowSteps`, `DecisionCard`, `CaseStudyOutcome` in `src/components/case-study/`; static section copy ("The problem", "UX flow", etc.) added as `CASE_STUDY` in `lib/constants.ts`; `tsc`, Biome, and `next build` all clean
+- [x] Fixed case-study section width/spacing bug — each section previously put `mx-auto max-w-230` on the same element as `px-[8vw]`; under Tailwind's `border-box` sizing that let the side padding (which grows with viewport width) eat into the 920px content budget instead of sitting outside it, causing premature wrapping (e.g. the Stack meta value dropping to its own line) and a sparser page than the design reference. Fixed in `page.tsx`'s five sections + `CaseStudyOutcome` by splitting each into an outer `px-[8vw]` element wrapping an inner `mx-auto max-w-230` element
 
 ## Next up
 
-- [ ] **Shared UI + hooks** — `Pill`, `Button`, `SectionLabel`, `Reveal`, `ImagePlaceholder` components; `useScrollReveal`, `useActiveSection`, `useHeroParallax` hooks (`src/components/ui/`, `src/hooks/`)
-- [ ] **Home page sections** — `Logo`, `NavDots`, `Hero` (parallax + blob morph), `WorkSection`/`WorkCard`, `About`, `HowIWork`/`HowIWorkCard`, `Skills`, `Experience`/`ExperienceItem`, `Experiments`, `DevNotes`, `Contact`, composed in `src/app/page.tsx`
-- [ ] **Case study route** — `src/app/work/[slug]/page.tsx` (`generateStaticParams` + `notFound()` for `hasCaseStudy: false`) + `CaseStudyHeader`, `MetaRow`, `UXFlowSteps`, `DecisionCard`, `CaseStudyOutcome`
-- [ ] **Static assets** — copy `hero-bg.png` + résumé PDF into `/public`; project screenshots (`fika-screenshot.png`, `retrobox-screenshot.png`) get uploaded through the Studio UI, not committed to the repo
+- [ ] Project screenshots (`fika-screenshot.png`, `retrobox-screenshot.png`) — uploaded through the Studio UI, not committed to the repo
 - [ ] **Sanity content entry** (manual, in Studio at `/studio`):
   - [ ] Two `project` documents (Fika, RetroBox) — screenshots uploaded from `design_handoff_portfolio/design-files/assets/`
   - [ ] `experienceEntry` documents (4, from `Portfolio-B-Focused.dc.html`)
   - [ ] `articleLink` documents (2)
   - [ ] Single `siteSettings` document (`showExperiments: true`)
-- [ ] **Local verification** — visual compare against `design_handoff_portfolio/screenshots/*.png`, 375px responsive check, hero parallax + `heroAnimation` still/float check, scroll-reveal + nav-dot spy behavior, `showExperiments` toggle, both case-study pages, `npm run lint` + `npm run build` clean
-
-## Explicitly deferred (do not start without asking)
-
-- [ ] GitHub remote creation + push
-- [ ] Vercel project setup + deploy
+- [ ] **Local verification** — visual compare against `design_handoff_portfolio/screenshots/*.png`, 375px responsive check, scroll-reveal + nav-dot spy behavior, `showExperiments` toggle, both case-study pages, `npm run lint` + `npm run build` clean

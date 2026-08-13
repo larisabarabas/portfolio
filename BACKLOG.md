@@ -62,6 +62,7 @@ Decisions locked in before build:
 - [x] Domain purchased via Cloudflare, registered as custom domain on the Vercel project (root + `www` CNAMEs, DNS-only), deploy verified live
 
 - [x] **Case study route** — `src/app/work/[slug]/page.tsx` (`generateStaticParams` via `projectSlugsQuery` + `notFound()` for missing/`hasCaseStudy: false` projects) + `CaseStudyHeader`, `MetaRow`, `UXFlowSteps`, `DecisionCard`, `CaseStudyOutcome` in `src/components/case-study/`; static section copy ("The problem", "UX flow", etc.) added as `CASE_STUDY` in `lib/constants.ts`; `tsc`, Biome, and `next build` all clean
+- [x] Fixed case-study section width/spacing bug — each section previously put `mx-auto max-w-230` on the same element as `px-[8vw]`; under Tailwind's `border-box` sizing that let the side padding (which grows with viewport width) eat into the 920px content budget instead of sitting outside it, causing premature wrapping (e.g. the Stack meta value dropping to its own line) and a sparser page than the design reference. Fixed in `page.tsx`'s five sections + `CaseStudyOutcome` by splitting each into an outer `px-[8vw]` element wrapping an inner `mx-auto max-w-230` element
 
 ## Next up
 

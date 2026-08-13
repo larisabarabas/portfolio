@@ -83,7 +83,7 @@ export default async function CaseStudyPage({
             <ImagePlaceholder
               src={
                 project.uxFlowImage?.asset
-                  ? urlFor(project.uxFlowImage).width(1200).height(360).url()
+                  ? urlFor(project.uxFlowImage).width(1840).url()
                   : undefined
               }
               alt={`${project.title} UX flow`}
@@ -91,7 +91,11 @@ export default async function CaseStudyPage({
                 project.uxFlowPlaceholderLabel ??
                 CASE_STUDY.uxFlowPlaceholderDefault
               }
-              aspectRatio="1200/360"
+              aspectRatio={
+                project.uxFlowImage?.aspectRatio
+                  ? String(project.uxFlowImage.aspectRatio)
+                  : "1200/360"
+              }
               radius={16}
               sizes="(min-width: 1024px) 920px, 100vw"
             />

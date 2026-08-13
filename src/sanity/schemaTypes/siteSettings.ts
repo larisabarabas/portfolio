@@ -11,7 +11,7 @@ export const siteSettings = defineType({
       description:
         "Toggles whether the still-evolving Experiments section renders on the homepage.",
       type: "boolean",
-      initialValue: true,
+      initialValue: false,
     }),
     defineField({
       name: "showOpenSourceProjects",
@@ -19,7 +19,15 @@ export const siteSettings = defineType({
       description:
         "Toggles whether the still-evolving Open Source Projects section renders on the homepage.",
       type: "boolean",
-      initialValue: true,
+      initialValue: false,
+    }),
+     defineField({
+      name: "showHowIWork",
+      title: "Show How I work section",
+      description:
+        "Toggles whether the 'How I Work' section renders on the homepage.",
+      type: "boolean",
+      initialValue: false,
     }),
   ],
   preview: {

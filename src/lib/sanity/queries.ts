@@ -5,7 +5,13 @@ export const projectsQuery = defineQuery(
 );
 
 export const projectBySlugQuery = defineQuery(
-  `*[_type == "project" && slug.current == $slug][0]`,
+  `*[_type == "project" && slug.current == $slug][0]{
+    ...,
+    uxFlowImage{
+      ...,
+      "aspectRatio": asset->metadata.dimensions.aspectRatio
+    }
+  }`,
 );
 
 export const projectSlugsQuery = defineQuery(

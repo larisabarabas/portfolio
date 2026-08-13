@@ -3,7 +3,7 @@ export const LOGO_TEXT = "stefania";
 export const NAV_LINKS = [
   { id: "work", label: "Work" },
   { id: "about", label: "About" },
-  { id: "howiwork", label: "How I Work" },
+  // { id: "howiwork", label: "How I Work" },
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "devnotes", label: "Dev Notes" },
@@ -26,7 +26,7 @@ export const ABOUT = {
   eyebrow: "About",
   heading: "Eight years in. Still curious, still learning.",
   bodyParagraph1:
-    "I've spent the last eight years building scalable, high-performance web applications — usually somewhere between product, design, and, increasingly, AI. I like the parts of engineering that don't always show up on a roadmap: developer experience, technical documentation, technical debt, reading a pull request twice before trusting it, mentoring the person who just joined, asking why before how.",
+    "I've spent the last eight years building scalable, high-performance web applications — usually somewhere between product, design, and, increasingly, AI. Besides frontend engineering and product, there are some things that are not always visible, that I care about: developer experience, technical documentation, technical debt, mentoring the person who just joined, asking why before how.",
   bodyParagraph2Pre:
     "Outside of sprint cycles, I write about frontend engineering — and engineering in general — the wins and the lessons, at ",
   devNotesLinkLabel: "Stef's Dev Notes. ",
@@ -40,7 +40,7 @@ export const ABOUT = {
 
 export const WORK = {
   eyebrow: "Selected Work",
-  heading: "Things I've shipped, and things I'm still shaping",
+  heading: "Things I've shipped in public, and things I'm still figuring out",
   emptyState: "Project case studies coming soon.",
   caseStudyLinkLabel: "Read case study →",
   liveLinkLabelDefault: "Visit the site →",
@@ -50,7 +50,7 @@ export const WORK = {
 
 export const EXPERIENCE = {
   eyebrow: "Experience",
-  heading: "Where I've built it",
+  heading: "Where I've honed my skills",
   emptyState: "Experience timeline coming soon.",
 };
 
@@ -61,22 +61,27 @@ export const HOW_I_WORK = {
     {
       iconBgClass: "bg-primary",
       heading: "I own the outcome",
-      body: "Give me the problem, not just the ticket. I'll find the path, flag risks early, and ship — you shouldn't have to chase me for status.",
+      body: "Give me the problem, not just the ticket. I'll find the path, flag risks early, and ship.",
     },
     {
       iconBgClass: "bg-tertiary",
-      heading: "Remote, async, Madrid-based",
-      body: "I work async-first, with overlap for the calls that matter. Decisions land in writing, so the team isn't stuck waiting on me to wake up.",
+      heading: "Saying no is a decision too",
+      body: "Every deprioritized idea gets a reason and a trigger to revisit, not just a line through it. A backlog should tell you why something isn't happening, not just what is.",
     },
     {
       iconBgClass: "bg-secondary",
-      heading: "AI-assisted, not AI-replaced",
-      body: "I reach for Claude Code and friends to move faster on the parts that don't need me — so I can spend the saved time on the parts that do.",
+      heading: "I want to understand the tradeoff, not just the decision",
+      body: "'Does this work' isn't the answer I'm looking for, I want to know what it cost to get there. Every decision I make gets written down next to what I gave up to make it.",
     },
     {
       iconBgClass: "bg-ink",
-      heading: "Curious over comfortable",
-      body: "I read the pull request twice before trusting it, ask why before how, and I'm usually building some small, slightly strange side project on the weekend.",
+      heading: "I build the smallest thing that tells the truth",
+      body: "Before I invest in the real version, I build the cheapest thing that can prove — or kill — the idea.",
+    },
+      {
+      iconBgClass: "bg-secondary",
+      heading: "AI-assisted, not AI-replaced",
+      body: "I reach for Claude Code and other AI tools to move faster on the parts that don't need me, so I can spend the saved time on the parts that do.",
     },
   ],
 };

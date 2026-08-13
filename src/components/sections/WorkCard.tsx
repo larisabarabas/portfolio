@@ -17,10 +17,11 @@ export function WorkCard({ project, index }: WorkCardProps) {
 
   const image = project.mainImage?.asset ? (
     <Image
-      src={urlFor(project.mainImage).width(960).url()}
+      src={urlFor(project.mainImage).width(1600).url()}
       alt={project.title}
-      width={960}
-      height={720}
+      width={1600}
+      height={1200}
+      quality={100}
       sizes="(min-width: 768px) 50vw, 100vw"
       className="block h-auto w-full rounded-card border border-line shadow-[0_30px_60px_-30px_rgba(34,20,16,0.35)]"
     />

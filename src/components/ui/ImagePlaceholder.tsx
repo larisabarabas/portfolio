@@ -16,6 +16,7 @@ type ImagePlaceholderProps = {
    */
   fit?: "cover" | "contain";
   className?: string;
+  quality?: number;
 };
 
 export function ImagePlaceholder({
@@ -27,6 +28,7 @@ export function ImagePlaceholder({
   sizes = "100vw",
   fit = "cover",
   className,
+  quality = 100,
 }: ImagePlaceholderProps) {
   const style = { aspectRatio, borderRadius: `${radius}px` };
 
@@ -39,6 +41,7 @@ export function ImagePlaceholder({
             alt={alt}
             fill
             sizes={sizes}
+            quality={quality}
             className="object-contain"
           />
         </div>
@@ -55,6 +58,7 @@ export function ImagePlaceholder({
           alt={alt}
           fill
           sizes={sizes}
+          quality={quality}
           className="object-cover"
         />
       </div>

@@ -33,7 +33,7 @@ export const ABOUT = {
   bodyParagraph2Post:
     "I also build small side projects: an app that turns appreciation into a slice of cake, a retrospective tool that captures notes continuously through a sprint, and a digital terrarium that grows with your habits and emotions.",
   devNotesUrl: "https://stefsdevnotes.substack.com",
-  statChips: ["📍 Madrid, Spain · Remote", "8+ years frontend"],
+  statChips: ["8+ years frontend"],
   portraitAlt: "Portrait",
   portraitPlaceholder: "Drop a portrait photo",
 };

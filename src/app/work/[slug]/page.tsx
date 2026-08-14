@@ -50,7 +50,7 @@ export default async function CaseStudyPage({
             {project.title}
           </h1>
           {project.subtitle && (
-            <p className="mb-8 max-w-160 text-[19px] leading-[1.6] opacity-85">
+            <p className="mb-8 text-[19px] leading-[1.6] opacity-85">
               {project.subtitle}
             </p>
           )}

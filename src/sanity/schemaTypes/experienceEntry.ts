@@ -26,9 +26,10 @@ export const experienceEntry = defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "text",
-      rows: 4,
-      validation: (rule) => rule.required(),
+      description: "One bullet point per item.",
+      type: "array",
+      of: [{ type: "string" }],
+      validation: (rule) => rule.required().min(1),
     }),
     defineField({
       name: "dotColor",

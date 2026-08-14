@@ -33,13 +33,18 @@ export function ExperienceItem({ entry }: ExperienceItemProps) {
       >
         {entry.role}
       </h3>
-      <p
-        className={`max-w-155 text-[15.5px] leading-[1.7] ${
+      <ul
+        className={`flex max-w-155 flex-col gap-1.5 text-[15.5px] leading-[1.7] ${
           entry.compact ? "opacity-75" : "opacity-85"
         }`}
       >
-        {entry.description}
-      </p>
+        {entry.description.map((line) => (
+          <li key={line} className="flex gap-2.5">
+            <span className="mt-2.5 h-1 w-1 flex-none rounded-full bg-current" />
+            <span>{line}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

@@ -15,7 +15,7 @@ export const projectBySlugQuery = defineQuery(
 );
 
 export const projectSlugsQuery = defineQuery(
-  `*[_type == "project" && hasCaseStudy == true]{ "slug": slug.current }`,
+  `*[_type == "project" && hasCaseStudy == true]{ "slug": slug.current, _updatedAt }`,
 );
 
 export const experienceEntriesQuery = defineQuery(

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -46,6 +47,7 @@ export default function RootLayout(props: LayoutProps<"/">) {
     >
       <body className="bg-bg font-sans text-ink antialiased">
         {props.children}
+        <Analytics />
       </body>
     </html>
   );

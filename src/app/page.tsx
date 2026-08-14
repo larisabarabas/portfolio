@@ -48,7 +48,7 @@ export default async function Home() {
       <Hero />
       <WorkSection projects={projects} />
       <About />
-      {siteSettings?.showHowIWork &&<HowIWork />}
+      {siteSettings?.showHowIWork && <HowIWork />}
       <Skills />
       <Experience entries={experienceEntries} />
       {siteSettings?.showExperiments && <Experiments />}

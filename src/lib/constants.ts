@@ -78,7 +78,7 @@ export const HOW_I_WORK = {
       heading: "I build the smallest thing that tells the truth",
       body: "Before I invest in the real version, I build the cheapest thing that can prove — or kill — the idea.",
     },
-      {
+    {
       iconBgClass: "bg-secondary",
       heading: "AI-assisted, not AI-replaced",
       body: "I reach for Claude Code and other AI tools to move faster on the parts that don't need me, so I can spend the saved time on the parts that do.",
@@ -96,6 +96,7 @@ export const SKILLS = {
       color: "primary" as const,
       items: [
         "TypeScript",
+        "Javascript",
         "React",
         "Next.js",
         "Vue.js",
@@ -169,7 +170,7 @@ export const DEV_NOTES = {
 export const CONTACT = {
   eyebrow: "Get in touch",
   heading: "Let's talk.",
-  body: "Open to engineering opportunities at the intersection of frontend, product and design.",
+  body: "I'm available for new projects! Feel free to reach out, I usually respond within a day.",
   email: "stefaniabarabas@gmail.com",
   linkedinUrl: "https://linkedin.com/in/stefania-barabas",
   githubUrl: "https://github.com/larisabarabas",

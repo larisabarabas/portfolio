@@ -21,7 +21,7 @@ export const siteSettings = defineType({
       type: "boolean",
       initialValue: false,
     }),
-     defineField({
+    defineField({
       name: "showHowIWork",
       title: "Show How I work section",
       description:

@@ -96,7 +96,7 @@ export const SKILLS = {
       color: "primary" as const,
       items: [
         "TypeScript",
-        "Javascript",
+        "JavaScript",
         "React",
         "Next.js",
         "Vue.js",

@@ -15,10 +15,27 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
 });
 
+const title = "stefania. Engineering and Product, with a touch of Design";
+const description =
+  "Senior frontend engineer building at the intersection of product, design, and AI.";
+
 export const metadata: Metadata = {
-  title: "stefania. Engineering and Product, with a touch of Design",
-  description:
-    "Senior frontend engineer building at the intersection of product, design, and AI.",
+  metadataBase: new URL("https://www.stefaniabarabas.com"),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: "/",
+    siteName: "stefania.",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout(props: LayoutProps<"/">) {

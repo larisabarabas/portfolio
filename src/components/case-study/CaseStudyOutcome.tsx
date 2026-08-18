@@ -19,7 +19,15 @@ export function CaseStudyOutcome({
       <div className="mx-auto max-w-230">
         <h2 className="mb-4 font-serif text-[32px] font-normal">{heading}</h2>
         {body && (
-          <p className="mb-8 text-[17px] leading-[1.75] opacity-85">{body}</p>
+          <div className="mb-8 space-y-4 text-[17px] leading-[1.75] opacity-85">
+            {body
+              .split(/\n+/)
+              .map((paragraph) => paragraph.trim())
+              .filter(Boolean)
+              .map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+          </div>
         )}
         <div className="flex flex-wrap gap-4">
           {ctaLabel && ctaUrl && (

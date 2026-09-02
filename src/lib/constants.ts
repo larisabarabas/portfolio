@@ -12,9 +12,9 @@ export const NAV_LINKS = [
 
 export const HERO = {
   eyebrow: "Engineering and Product, with a touch of Design",
-  headingLine1: "Hi, I'm Stefania —",
-  headingLine2: "always building with a smile.",
-  body: "Senior frontend engineer building at the intersection of product, design, and AI.",
+  headingLine1: "Hi, I'm Stefania.",
+  headingLine2: "I turn ideas into shipped software.",
+  body: "Senior frontend engineer, 8+ years, working across product, design, and AI.",
   status:
     "Currently untangling building from scratch in various side projects.",
   primaryCtaLabel: "See my work ↓",

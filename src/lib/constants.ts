@@ -14,7 +14,7 @@ export const HERO = {
   eyebrow: "Engineering and Product, with a touch of Design",
   headingLine1: "Hi, I'm Stefania.",
   headingLine2: "I turn ideas into shipped software.",
-  body: "Senior frontend engineer, 8+ years, working across product, design, and AI.",
+  body: "Senior engineer working across product, design, and AI.",
   status:
     "Currently untangling building from scratch in various side projects.",
   primaryCtaLabel: "See my work ↓",
@@ -26,14 +26,14 @@ export const ABOUT = {
   eyebrow: "About",
   heading: "Eight years in. Still curious, still learning.",
   bodyParagraph1:
-    "I've spent the last eight years building scalable, high-performance web applications — usually somewhere between product, design, and, increasingly, AI. Besides frontend engineering and product, there are some things that are not always visible, that I care about: developer experience, technical documentation, technical debt, mentoring the person who just joined, asking why before how.",
+    "I've spent the last eight years building scalable, high-performance web applications, usually somewhere between product, design, and, increasingly, AI. Besides frontend engineering and product, there are some things that are not always visible, that I care about: developer experience, technical documentation, technical debt, mentoring the person who just joined, asking why before how.",
   bodyParagraph2Pre:
     "Outside of sprint cycles, I write about frontend engineering — and engineering in general — the wins and the lessons, at ",
   devNotesLinkLabel: "Stef's Dev Notes. ",
   bodyParagraph2Post:
-    "I also build small side projects: an app that turns appreciation into a slice of cake, a retrospective tool that captures notes continuously through a sprint, and a digital terrarium that grows with your habits and emotions.",
+    "I also build small side projects: an app that turns appreciation into a slice of cake, a retrospective tool that captures notes continuously through a sprint, and a tool that turns a theme description or an image into a complete color system.",
   devNotesUrl: "https://stefsdevnotes.substack.com",
-  statChips: ["8+ years frontend"],
+  statChips: ["8+ years engineering", "Product Engineering", "Frontend Architecture", "Product Thinking", "Building in Public", "AI-Assisted Development"],
   portraitAlt: "Portrait",
   portraitPlaceholder: "Drop a portrait photo",
 };
@@ -97,7 +97,7 @@ export const SKILLS = {
       items: [
         "TypeScript",
         "JavaScript",
-        "React",
+        "React.js",
         "Next.js",
         "Vue.js",
         "Tailwind CSS",
@@ -108,7 +108,7 @@ export const SKILLS = {
       label: "AI-assisted development",
       tone: "solid" as const,
       color: "secondary" as const,
-      items: ["Claude Code", "Claude", "Claude Design", "OpenCode", "Cursor"],
+      items: ["Claude Code", "Claude", "Claude Design", "OpenCode", "Cursor", "LM Studio"],
     },
     {
       label: "Architecture",
@@ -132,7 +132,7 @@ export const SKILLS = {
       label: "Testing & observability",
       tone: "outline" as const,
       color: "primary" as const,
-      items: ["Jest", "Vitest", "Datadog", "Sentry"],
+      items: ["Jest", "Vitest", "Playwright", "Cypress", "Datadog", "Sentry"],
     },
     {
       label: "UX/UI",

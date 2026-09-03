@@ -43,17 +43,25 @@ export default async function Home() {
 
   return (
     <>
+      <a
+        href="#main"
+        className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-4 focus-visible:left-4 focus-visible:z-[100] focus-visible:rounded-pill focus-visible:bg-ink focus-visible:px-5 focus-visible:py-3 focus-visible:font-semibold focus-visible:text-paper focus-visible:no-underline"
+      >
+        Skip to content
+      </a>
       <Logo />
       <NavDots />
-      <Hero />
-      <WorkSection projects={projects} />
-      <About />
-      {siteSettings?.showHowIWork && <HowIWork />}
-      <Skills />
-      <Experience entries={experienceEntries} />
-      {siteSettings?.showExperiments && <Experiments />}
-      <DevNotes articleLinks={articleLinks} />
-      <Contact />
+      <main id="main">
+        <Hero />
+        <WorkSection projects={projects} />
+        <About />
+        {siteSettings?.showHowIWork && <HowIWork />}
+        <Skills />
+        <Experience entries={experienceEntries} />
+        {siteSettings?.showExperiments && <Experiments />}
+        <DevNotes articleLinks={articleLinks} />
+        <Contact />
+      </main>
     </>
   );
 }

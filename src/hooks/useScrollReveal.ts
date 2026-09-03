@@ -8,15 +8,26 @@ type UseScrollRevealOptions = {
   threshold?: number;
 };
 
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export function useScrollReveal({
   delay = 0,
-  threshold = 0.15,
+  threshold = 0,
 }: UseScrollRevealOptions = {}) {
   const [visible, setVisible] = useState(false);
 
   const ref = useCallback(
     (el: HTMLElement | null) => {
       if (!el) return;
+      // No animation to gate on — reveal immediately so nothing can get
+      // stranded at opacity: 0 (e.g. a section taller than the viewport that
+      // never reaches the intersection threshold).
+      if (prefersReducedMotion()) {
+        setVisible(true);
+        return;
+      }
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
@@ -24,7 +35,7 @@ export function useScrollReveal({
             observer.disconnect();
           }
         },
-        { threshold },
+        { threshold, rootMargin: "0px 0px -48px 0px" },
       );
       observer.observe(el);
       return () => observer.disconnect();

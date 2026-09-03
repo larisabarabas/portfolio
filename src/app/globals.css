@@ -69,6 +69,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background: var(--color-bg);
     color: var(--color-ink);
@@ -80,5 +84,30 @@
 
   a:hover {
     color: var(--color-primary-hover);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  /* Hash-jump targets clear the fixed wordmark instead of landing under it. */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: a reduced-motion reset has to beat animation utilities and inline styles */
+    animation: none !important;
+    /* biome-ignore lint/complexity/noImportantStyles: same — must override inline transition styles set by useScrollReveal */
+    transition: none !important;
   }
 }

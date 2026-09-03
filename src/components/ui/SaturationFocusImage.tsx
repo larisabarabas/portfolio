@@ -123,6 +123,18 @@ export function SaturationFocusImage({
       container.style.backgroundPosition = "center";
     };
 
+    // The effect is pointer-driven: without a fine pointer it can only ever
+    // show its resting state, which dims and desaturates the whole image.
+    // Reduced-motion users shouldn't get the animated shader either. Both
+    // cases fall back to the plain, full-colour image.
+    const cannotAnimate = window.matchMedia(
+      "(hover: none), (pointer: coarse), (prefers-reduced-motion: reduce)",
+    ).matches;
+    if (cannotAnimate) {
+      applyFallbackBackground();
+      return;
+    }
+
     const gl = canvas.getContext("webgl");
     if (!gl) {
       applyFallbackBackground();
@@ -273,9 +285,12 @@ export function SaturationFocusImage({
       passive: true,
     });
 
-    let rafId: number;
+    let rafId = 0;
+    let running = false;
+    let inView = true;
+
     const render = () => {
-      if (contextLost) return;
+      if (!running || contextLost) return;
 
       mouse.current.x += (targetMouse.current.x - mouse.current.x) * 0.08;
       mouse.current.y += (targetMouse.current.y - mouse.current.y) * 0.08;
@@ -295,11 +310,45 @@ export function SaturationFocusImage({
       }
       rafId = requestAnimationFrame(render);
     };
-    rafId = requestAnimationFrame(render);
+
+    // Only run the RAF loop while the hero is on screen and the tab is
+    // visible — otherwise it burns CPU/battery rendering nothing anyone sees.
+    const stopLoop = () => {
+      running = false;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = 0;
+    };
+    const startLoop = () => {
+      if (running || contextLost || cancelled || !inView || document.hidden) {
+        return;
+      }
+      running = true;
+      rafId = requestAnimationFrame(render);
+    };
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting;
+        if (inView) startLoop();
+        else stopLoop();
+      },
+      { threshold: 0 },
+    );
+    visibilityObserver.observe(container);
+
+    const onVisibilityChange = () => {
+      if (document.hidden) stopLoop();
+      else startLoop();
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
+    startLoop();
 
     return () => {
       cancelled = true;
-      cancelAnimationFrame(rafId);
+      stopLoop();
+      visibilityObserver.disconnect();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       resizeObserver.disconnect();
       container.removeEventListener("pointermove", onPointerMove);
       container.removeEventListener("pointerenter", onPointerEnter);

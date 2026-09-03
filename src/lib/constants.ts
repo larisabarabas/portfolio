@@ -6,7 +6,7 @@ export const NAV_LINKS = [
   // { id: "howiwork", label: "How I Work" },
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
-  { id: "devnotes", label: "Dev Notes" },
+  { id: "devnotes", label: "Stef's Dev Notes" },
   { id: "contact", label: "Contact" },
 ] as const;
 

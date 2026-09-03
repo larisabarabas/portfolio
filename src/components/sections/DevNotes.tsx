@@ -11,7 +11,7 @@ type DevNotesProps = {
 
 export function DevNotes({ articleLinks }: DevNotesProps) {
   return (
-    <section id="devnotes" className="mx-auto max-w-310 px-[8vw] py-25">
+    <section id="devnotes" className="mx-auto max-w-310 px-[8vw] py-25 pb-0">
       <Reveal>
         <SectionLabel>{DEV_NOTES.eyebrow}</SectionLabel>
         <h2 className="mb-12.5 max-w-175 font-serif text-[clamp(32px,4vw,52px)] font-normal">

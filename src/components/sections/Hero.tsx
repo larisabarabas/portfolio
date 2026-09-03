@@ -7,7 +7,7 @@ import { HERO } from "@/lib/constants";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section className="relative min-h-[100svh] overflow-hidden">
       <SaturationFocusImage
         src="/_next/image?url=%2Fhero-bg.png&w=2048&q=100"
         className="absolute inset-0 z-0 h-full w-full animate-bg-reveal"
@@ -30,7 +30,7 @@ export function Hero() {
             </p>
             <div className="flex flex-wrap gap-4">
               <Button href="#work">{HERO.primaryCtaLabel}</Button>
-              <Button href={HERO.resumeHref} variant="outline">
+              <Button href={HERO.resumeHref} external variant="outline">
                 {HERO.resumeCtaLabel}
               </Button>
             </div>

@@ -26,6 +26,9 @@ export function Contact() {
           <Button href={CONTACT.githubUrl} variant="outline" external>
             {CONTACT.githubLabel}
           </Button>
+          <Button href={CONTACT.resumeHref} external variant="outline">
+            {CONTACT.resumeCtaLabel}
+          </Button>
           <Button href={CONTACT.devNotesUrl} variant="outline" external>
             {CONTACT.devNotesLabel}
           </Button>

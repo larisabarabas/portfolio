@@ -4,8 +4,8 @@ export const NAV_LINKS = [
   { id: "work", label: "Work" },
   { id: "about", label: "About" },
   // { id: "howiwork", label: "How I Work" },
-  { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
+  { id: "skills", label: "Skills" },
   { id: "devnotes", label: "Stef's Dev Notes" },
   { id: "contact", label: "Contact" },
 ] as const;
@@ -17,23 +17,15 @@ export const HERO = {
   body: "Senior engineer working across product, design, and AI.",
   status:
     "Currently untangling building from scratch in various side projects.",
-  primaryCtaLabel: "See my work ↓",
-  resumeHref: "/stefania-barabas-resume.pdf",
-  resumeCtaLabel: "Download résumé",
+  primaryCtaLabel: "See my work",
 };
 
 export const ABOUT = {
   eyebrow: "About",
-  heading: "Eight years in. Still curious, still learning.",
-  bodyParagraph1:
-    "I've spent the last eight years building scalable, high-performance web applications, usually somewhere between product, design, and, increasingly, AI. Besides frontend engineering and product, there are some things that are not always visible, that I care about: developer experience, technical documentation, technical debt, mentoring the person who just joined, asking why before how.",
-  bodyParagraph2Pre:
-    "Outside of sprint cycles, I write about frontend engineering — and engineering in general — the wins and the lessons, at ",
-  devNotesLinkLabel: "Stef's Dev Notes. ",
-  bodyParagraph2Post:
-    "I also build small side projects: an app that turns appreciation into a slice of cake, a retrospective tool that captures notes continuously through a sprint, and a tool that turns a theme description or an image into a complete color system.",
-  devNotesUrl: "https://stefsdevnotes.substack.com",
-  statChips: ["8+ years engineering", "Product Engineering", "Frontend Architecture", "Product Thinking", "Building in Public", "AI-Assisted Development"],
+  heading: "I ask before I build",
+  bodyParagraph1: "I've spent the last eight years building scalable, high-performance web applications, usually somewhere between product, design, and, increasingly, AI. I design the interfaces I build, I ship AI features that hold up in production, and I explain the trade-offs in natural language.",
+  bodyParagraph2: "Besides frontend engineering and product, there are some things I care about that are not always visible: I learn the business domain before I touch the architecture, I ask why before how, and performance and usability still matter to me long after the feature has shipped.",
+  statChips: ["8+ years engineering", "Product Engineering", "Frontend Architecture", "UX/UI", "Product Thinking", "Building in Public", "AI-Assisted Development"],
   portraitAlt: "Portrait",
   portraitPlaceholder: "Drop a portrait photo",
 };
@@ -42,9 +34,9 @@ export const WORK = {
   eyebrow: "Selected Work",
   heading: "Things I've shipped in public, and things I'm still figuring out",
   emptyState: "Project case studies coming soon.",
-  caseStudyLinkLabel: "Read case study →",
-  liveLinkLabelDefault: "Visit the site →",
-  githubLinkLabel: "View on GitHub →",
+  caseStudyLinkLabel: "Read case study",
+  liveLinkLabelDefault: "Visit the site",
+  githubLinkLabel: "View on GitHub",
   screenshotPlaceholder: "Drop a screenshot",
 };
 
@@ -178,6 +170,8 @@ export const CONTACT = {
   linkedinLabel: "LinkedIn",
   githubLabel: "GitHub",
   devNotesLabel: "Stef's Dev Notes",
+  resumeHref: "/stefania-barabas-resume.pdf",
+  resumeCtaLabel: "Résumé",
 };
 
 export const CASE_STUDY = {
@@ -191,5 +185,5 @@ export const CASE_STUDY = {
 };
 
 export const FOOTER = {
-  copyright: "Made by Stefania Larisa Barabas · 2026 · Madrid, Spain",
+  copyright: "Made by Stefania Larisa Barabas · 2026",
 };

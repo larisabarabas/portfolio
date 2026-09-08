@@ -6,7 +6,7 @@ import { ABOUT } from "@/lib/constants";
 
 export function About() {
   return (
-    <section id="about" className="mx-auto max-w-310 px-[8vw] py-35">
+    <section id="about" className="mx-auto max-w-310 px-[8vw] py-25">
       <Reveal className="flex flex-wrap items-start gap-17.5">
         <div className="flex-[0_1_280px]">
           <ImagePlaceholder
@@ -26,16 +26,8 @@ export function About() {
           <p className="mb-5 max-w-160 text-[17px] leading-[1.75] opacity-88">
             {ABOUT.bodyParagraph1}
           </p>
-          <p className="mb-8.5 max-w-160 text-[17px] leading-[1.75] opacity-88">
-            {ABOUT.bodyParagraph2Pre}
-            <a
-              href={ABOUT.devNotesUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {ABOUT.devNotesLinkLabel}
-            </a>
-            {ABOUT.bodyParagraph2Post}
+          <p className="mb-5 max-w-160 text-[17px] leading-[1.75] opacity-88">
+            {ABOUT.bodyParagraph2}
           </p>
           <div className="flex flex-wrap gap-3">
             {ABOUT.statChips.map((chip) => (

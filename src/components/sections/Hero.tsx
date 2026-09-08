@@ -30,9 +30,6 @@ export function Hero() {
             </p>
             <div className="flex flex-wrap gap-4">
               <Button href="#work">{HERO.primaryCtaLabel}</Button>
-              <Button href={HERO.resumeHref} external variant="outline">
-                {HERO.resumeCtaLabel}
-              </Button>
             </div>
           </div>
         </div>

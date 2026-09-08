@@ -185,5 +185,5 @@ export const CASE_STUDY = {
 };
 
 export const FOOTER = {
-  copyright: "Made by Stefania Larisa Barabas · 2026 · Madrid, Spain",
+  copyright: "Made by Stefania Larisa Barabas · 2026",
 };

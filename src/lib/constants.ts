@@ -163,7 +163,7 @@ export const CONTACT = {
   eyebrow: "Get in touch",
   heading: "Let's talk.",
   body: "I'm available for new projects! Feel free to reach out, I usually respond within a day.",
-  email: "stefaniabarabas@gmail.com",
+  email: "stef@stefaniabarabas.com",
   linkedinUrl: "https://linkedin.com/in/stefania-barabas",
   githubUrl: "https://github.com/larisabarabas",
   devNotesUrl: "https://stefsdevnotes.substack.com",

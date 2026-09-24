@@ -21,7 +21,6 @@
   --animate-hero-in: heroIn 0.9s ease both;
   --animate-bg-reveal: bgReveal 1.6s ease both;
   --animate-fade-up: fadeUp 0.7s ease both;
-  --animate-icon-pop: iconPop 0.6s ease both;
 }
 
 @keyframes heroIn {
@@ -57,17 +56,6 @@
   }
 }
 
-@keyframes iconPop {
-  from {
-    transform: scale(0.85);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -89,11 +77,6 @@
   :focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
-  }
-
-  /* Hash-jump targets clear the fixed wordmark instead of landing under it. */
-  section[id] {
-    scroll-margin-top: 5.5rem;
   }
 }
 

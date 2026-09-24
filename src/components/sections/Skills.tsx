@@ -5,7 +5,10 @@ import { SKILLS } from "@/lib/constants";
 
 export function Skills() {
   return (
-    <section id="skills" className="mx-auto max-w-310 px-[8vw] py-25">
+    <section
+      id="skills"
+      className="mx-auto box-content max-w-310 px-[8vw] py-25"
+    >
       <Reveal>
         <SectionLabel>{SKILLS.eyebrow}</SectionLabel>
         <h2 className="mb-12.5 font-serif text-[clamp(32px,4vw,52px)] font-normal">

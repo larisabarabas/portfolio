@@ -10,7 +10,10 @@ type ExperienceProps = {
 
 export function Experience({ entries }: ExperienceProps) {
   return (
-    <section id="experience" className="mx-auto max-w-310 px-[8vw] py-25">
+    <section
+      id="experience"
+      className="mx-auto box-content max-w-310 px-[8vw] py-25"
+    >
       <Reveal>
         <SectionLabel>{EXPERIENCE.eyebrow}</SectionLabel>
         <h2 className="mb-14 font-serif text-[clamp(32px,4vw,52px)] font-normal">

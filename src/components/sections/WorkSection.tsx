@@ -9,7 +9,10 @@ type WorkSectionProps = {
 
 export function WorkSection({ projects }: WorkSectionProps) {
   return (
-    <section id="work" className="mx-auto max-w-310 px-[8vw] pt-45 pb-25">
+    <section
+      id="work"
+      className="mx-auto box-content max-w-310 px-[8vw] pt-45 pb-25"
+    >
       <SectionLabel>{WORK.eyebrow}</SectionLabel>
       <h2 className="mb-15 max-w-175 font-serif text-[clamp(32px,4vw,52px)] font-normal">
         {WORK.heading}

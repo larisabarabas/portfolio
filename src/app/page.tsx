@@ -6,7 +6,7 @@ import { DevNotes } from "@/components/sections/DevNotes";
 import { Experience } from "@/components/sections/Experience";
 import { Experiments } from "@/components/sections/Experiments";
 import { Hero } from "@/components/sections/Hero";
-import { HowIWork } from "@/components/sections/HowIWork";
+import { Services } from "@/components/sections/Services";
 import { Skills } from "@/components/sections/Skills";
 import { WorkSection } from "@/components/sections/WorkSection";
 import { sanityFetch } from "@/lib/sanity/fetch";
@@ -53,9 +53,9 @@ export default async function Home() {
       <NavDots />
       <main id="main">
         <Hero />
+        <Services />
         <WorkSection projects={projects} />
         <About />
-        {siteSettings?.showHowIWork && <HowIWork />}
         <Experience entries={experienceEntries} />
         <Skills />
         {siteSettings?.showExperiments && <Experiments />}

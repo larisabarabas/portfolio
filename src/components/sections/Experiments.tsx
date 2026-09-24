@@ -6,7 +6,10 @@ import { EXPERIMENTS } from "@/lib/constants";
 
 export function Experiments() {
   return (
-    <section id="experiments" className="mx-auto max-w-310 px-[8vw] py-25">
+    <section
+      id="experiments"
+      className="mx-auto box-content max-w-310 px-[8vw] py-25"
+    >
       <Reveal>
         <SectionLabel>{EXPERIMENTS.eyebrow}</SectionLabel>
         <h2 className="mb-12.5 max-w-175 font-serif text-[clamp(32px,4vw,52px)] font-normal">

@@ -1,9 +1,9 @@
 export const LOGO_TEXT = "stefania";
 
 export const NAV_LINKS = [
+  { id: "services", label: "Services" },
   { id: "work", label: "Work" },
   { id: "about", label: "About" },
-  // { id: "howiwork", label: "How I Work" },
   { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
   { id: "devnotes", label: "Stef's Dev Notes" },
@@ -30,6 +30,91 @@ export const ABOUT = {
   portraitPlaceholder: "Drop a portrait photo",
 };
 
+export const SERVICES = {
+  eyebrow: "Services",
+  heading: "How I can help",
+  lead: "I help with the parts of a digital product where users decide to stay or leave: the landing page, onboarding, checkout and the main flow, and how fast all of it loads. I find where users stall or give up, design the fix, and build it myself.",
+  workedAcrossLabel: "Worked across",
+  workedAcross:
+    "Enterprise pricing and promotion software · fintech · translation tech · large-scale web apps · real estate tech · booking platforms · microlearning and training tech · community products",
+  problemHeading: "The problem",
+  whatIDoHeading: "What I do",
+  proofHeading: "Where I've done it",
+  startLabel: "How we start",
+  ctaLabel: "Ask about this →",
+  email: "stefaniabarabas@gmail.com",
+  items: [
+    {
+      id: "s1",
+      number: "01",
+      title: "UX & conversion audit",
+      problem:
+        "People land on your site or sign up, then stop somewhere before the product makes sense to them. You can see it in the numbers, but not where it happens.",
+      whatIDo:
+        "I go through your site and product the way a new user would, on desktop and on a phone, and compare it with two or three competitors. Every issue comes with a screenshot of where it happens, how much it matters, and what I would change. Then I design and build the fixes.",
+      proof: [
+        "At Code of Talent I simplified user flows, built onboarding prototypes, and implemented a guided product tour to improve conversion. I also built my own audit tooling that measures performance, accessibility and mobile issues in a real browser, so the findings start with real data.",
+      ],
+      proofAsList: false,
+      start:
+        "A small fixed-price audit, about 2 to 5 days, depending on the product's size and business domain. You get a ranked list of issues, two or three quick wins I can ship first, and a proposal for the larger changes.",
+      subject: "UX & conversion audit",
+    },
+    {
+      id: "s2",
+      number: "02",
+      title: "Performance & mobile fixes",
+      problem:
+        "The site looks fine on your laptop, but it's slow on a phone, the layout breaks on small screens, or parts of it can't be used with a keyboard or screen reader. Most visitors won't tell you. They just leave.",
+      whatIDo:
+        "I measure the site with Lighthouse, plus real-user data where there's enough traffic. Then I fix what slows it down or shuts people out, and check the result on real devices. If you don't have monitoring yet, I can set it up, so you can see where things break for users.",
+      proof: [
+        "At Relex Solutions, performance mattered to every business customer. As part of the on-call rotation, I monitored and fixed performance issues caused by large amounts of data, on both the client and the server.",
+      ],
+      proofAsList: false,
+      start:
+        "One page, usually the one that brings in the most sign-ups, measured before and after.",
+      subject: "Performance & accessibility",
+    },
+    {
+      id: "s3",
+      number: "03",
+      title: "Production-ready frontend delivery",
+      problem:
+        "You have a prototype, a redesign, or a backlog, and you need it built properly without a long ramp-up.",
+      whatIDo:
+        "I own frontend work end to end: architecture, implementation, testing, reviews, and the follow-through on performance after launch. I learn your business domain first, so the code fits your product.",
+      proof: [
+        "At Relex I led two complex frontend epics from start to finish and took a vibe-coded concept to a scalable, production-ready feature. In both cases, I owned planning, technical requirements, implementation and delivery while aligning closely with backend, product, design and other business stakeholders.",
+        "I was part of the on-call rotation, handling critical issues users hit in production.",
+        "At Cognizant I designed a micro-frontend architecture and set up a Lerna monorepo for a 50+ engineer team.",
+        "On the same app I integrated payments, analytics and error tracking, and I use Sentry and Datadog to see what breaks and for whom.",
+      ],
+      proofAsList: true,
+      start:
+        "One well-scoped feature or epic on a fixed timeline, so we can both see how we work together before committing further.",
+      subject: "Frontend delivery",
+    },
+    {
+      id: "s4",
+      number: "04",
+      title: "From AI prototype or idea to a real product",
+      problem:
+        "You have an AI-built demo, or an idea that still lives in a doc. It works when you click through it yourself, but you don't know if it will hold up with real users, real data and a real codebase.",
+      whatIDo:
+        "I map the flow, design the key screens and build a working prototype, using AI tools to move quickly. Then I decide what stays, what gets rewritten, and what it takes to run it in production.",
+      proof: [
+        'At Relex Solutions I took an initial AI-generated ("vibe-coded") concept into a scalable, production-ready feature in close collaboration with design - evaluating and refining AI output against product requirements, architectural standards, and long-term maintainability.',
+        "Fika for Substack, Retrobox and Huecode each started as a single idea that I designed and built myself, assisted by AI coding agents.",
+      ],
+      proofAsList: false,
+      start:
+        "You show me the demo or tell me your idea, and I tell you what it would take to ship it. If it's only an idea, we take it to a first prototype you can test with users. We make the decisions together, from the product brief and design to the architecture and tools.",
+      subject: "Prototype to production",
+    },
+  ],
+};
+
 export const WORK = {
   eyebrow: "Selected Work",
   heading: "Things I've shipped in public, and things I'm still figuring out",
@@ -44,38 +129,6 @@ export const EXPERIENCE = {
   eyebrow: "Experience",
   heading: "Where I've honed my skills",
   emptyState: "Experience timeline coming soon.",
-};
-
-export const HOW_I_WORK = {
-  eyebrow: "How I Work",
-  heading: "What working with me looks like.",
-  cards: [
-    {
-      iconBgClass: "bg-primary",
-      heading: "I own the outcome",
-      body: "Give me the problem, not just the ticket. I'll find the path, flag risks early, and ship.",
-    },
-    {
-      iconBgClass: "bg-tertiary",
-      heading: "Saying no is a decision too",
-      body: "Every deprioritized idea gets a reason and a trigger to revisit, not just a line through it. A backlog should tell you why something isn't happening, not just what is.",
-    },
-    {
-      iconBgClass: "bg-secondary",
-      heading: "I want to understand the tradeoff, not just the decision",
-      body: "'Does this work' isn't the answer I'm looking for, I want to know what it cost to get there. Every decision I make gets written down next to what I gave up to make it.",
-    },
-    {
-      iconBgClass: "bg-ink",
-      heading: "I build the smallest thing that tells the truth",
-      body: "Before I invest in the real version, I build the cheapest thing that can prove — or kill — the idea.",
-    },
-    {
-      iconBgClass: "bg-secondary",
-      heading: "AI-assisted, not AI-replaced",
-      body: "I reach for Claude Code and other AI tools to move faster on the parts that don't need me, so I can spend the saved time on the parts that do.",
-    },
-  ],
 };
 
 export const SKILLS = {

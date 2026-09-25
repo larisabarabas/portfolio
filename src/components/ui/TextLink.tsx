@@ -16,7 +16,9 @@ type TextLinkProps = {
 const COLOR_CLASSES: Record<TextLinkColor, string> = {
   primary: "border-primary",
   tertiary: "border-tertiary",
-  ink: "border-ink opacity-75",
+  // Ink text, not the inherited magenta: magenta at 75% opacity is only
+  // 3.2:1 on bg, ink at 75% is 6.2:1.
+  ink: "border-ink text-ink opacity-75 transition-opacity hover:opacity-100",
 };
 
 export function TextLink({

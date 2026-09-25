@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { TextLink } from "@/components/ui/TextLink";
 import { CONTACT, EMAIL, FOOTER } from "@/lib/constants";
 
 export function Contact() {
@@ -18,20 +19,22 @@ export function Contact() {
         <p className="mx-auto mb-10 max-w-130 text-[17px] opacity-85">
           {CONTACT.body}
         </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <Button href={`mailto:${EMAIL}`}>{EMAIL}</Button>
-          <Button href={CONTACT.linkedinUrl} variant="outline" external>
+        {/* One primary action; everything else is secondary so it doesn't
+            compete with the email. */}
+        <Button href={`mailto:${EMAIL}`}>{EMAIL}</Button>
+        <div className="mt-8 flex flex-wrap justify-center gap-x-7 gap-y-4">
+          <TextLink href={CONTACT.linkedinUrl} color="ink" external>
             {CONTACT.linkedinLabel}
-          </Button>
-          <Button href={CONTACT.githubUrl} variant="outline" external>
+          </TextLink>
+          <TextLink href={CONTACT.githubUrl} color="ink" external>
             {CONTACT.githubLabel}
-          </Button>
-          <Button href={CONTACT.resumeHref} external variant="outline">
+          </TextLink>
+          <TextLink href={CONTACT.resumeHref} color="ink" external>
             {CONTACT.resumeCtaLabel}
-          </Button>
-          <Button href={CONTACT.devNotesUrl} variant="outline" external>
+          </TextLink>
+          <TextLink href={CONTACT.devNotesUrl} color="ink" external>
             {CONTACT.devNotesLabel}
-          </Button>
+          </TextLink>
         </div>
         <p className="mt-17.5 text-[13px] opacity-70">{FOOTER.copyright}</p>
       </Reveal>

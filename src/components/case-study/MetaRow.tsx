@@ -1,3 +1,4 @@
+import { ExternalMark } from "@/components/ui/ExternalMark";
 import type { ProjectBySlugQueryResult } from "@/lib/sanity/sanity.types";
 
 type Project = NonNullable<ProjectBySlugQueryResult>;
@@ -33,7 +34,7 @@ export function MetaRow({
     <div className="flex flex-wrap gap-8 border-t border-b border-line py-6">
       {items.map((item) => (
         <div key={item.label}>
-          <p className="mb-1.5 text-xs tracking-[0.08em] uppercase opacity-60">
+          <p className="mb-1.5 text-xs tracking-[0.08em] uppercase opacity-70">
             {item.label}
           </p>
           <p className="text-[15px] font-semibold">{item.value}</p>
@@ -41,7 +42,7 @@ export function MetaRow({
       ))}
       {metaLinks && metaLinks.length > 0 && (
         <div>
-          <p className="mb-1.5 text-xs tracking-[0.08em] uppercase opacity-60">
+          <p className="mb-1.5 text-xs tracking-[0.08em] uppercase opacity-70">
             Links
           </p>
           <p className="flex flex-wrap gap-x-2 text-[15px] font-semibold">
@@ -52,9 +53,10 @@ export function MetaRow({
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:text-primary-hover"
+                  className="inline-flex items-center gap-1 text-primary hover:text-primary-hover"
                 >
-                  {link.label} ↗
+                  {link.label.trim()}
+                  <ExternalMark />
                 </a>
               </span>
             ))}

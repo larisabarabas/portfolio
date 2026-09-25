@@ -1,15 +1,16 @@
 "use client";
 
+import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { SaturationFocusImage } from "@/components/ui/SaturationFocusImage";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { HERO } from "@/lib/constants";
+import { EMAIL, HERO } from "@/lib/constants";
 
 export function Hero() {
   return (
     <section className="relative min-h-[100svh] overflow-hidden">
       <SaturationFocusImage
-        src="/_next/image?url=%2Fhero-bg.png&w=2048&q=100"
+        src="/_next/image?url=%2Fhero-bg.png&w=2048&q=75"
         className="absolute inset-0 z-0 h-full w-full animate-bg-reveal"
       >
         <div className="pointer-events-none absolute inset-0 z-1 bg-linear-to-b from-transparent from-40% to-bg to-96%" />
@@ -29,7 +30,15 @@ export function Hero() {
               {HERO.status}
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button href="#work">{HERO.primaryCtaLabel}</Button>
+              <Button href="#services" icon={ArrowDown}>
+                {HERO.primaryCtaLabel}
+              </Button>
+              <Button
+                href={`mailto:${EMAIL}?subject=${encodeURIComponent(HERO.secondaryCtaSubject)}`}
+                variant="outline"
+              >
+                {HERO.secondaryCtaLabel}
+              </Button>
             </div>
           </div>
         </div>

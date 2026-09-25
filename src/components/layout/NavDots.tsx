@@ -1,17 +1,16 @@
-"use client";
-
-import { useActiveSection } from "@/hooks/useActiveSection";
 import { NAV_LINKS } from "@/lib/constants";
 
-const NAV_IDS = NAV_LINKS.map((link) => link.id);
+type NavDotsProps = {
+  activeId: string;
+};
 
-export function NavDots() {
-  const activeId = useActiveSection(NAV_IDS);
-
+// Desktop-only: without hover, the labels can't be seen, so phones get
+// MobileNav instead.
+export function NavDots({ activeId }: NavDotsProps) {
   return (
     <nav
       aria-label="Page sections"
-      className="fixed top-1/2 right-2 z-50 -translate-y-1/2"
+      className="fixed top-1/2 right-2 z-50 hidden -translate-y-1/2 md:block"
     >
       <ul className="flex flex-col gap-1">
         {NAV_LINKS.map(({ id, label }) => {

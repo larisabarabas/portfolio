@@ -6,7 +6,10 @@ import { ABOUT } from "@/lib/constants";
 
 export function About() {
   return (
-    <section id="about" className="mx-auto max-w-310 px-[8vw] py-25">
+    <section
+      id="about"
+      className="mx-auto box-content max-w-310 px-[8vw] py-25"
+    >
       <Reveal className="flex flex-wrap items-start gap-17.5">
         <div className="flex-[0_1_280px]">
           <ImagePlaceholder

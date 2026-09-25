@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -11,7 +12,10 @@ type DevNotesProps = {
 
 export function DevNotes({ articleLinks }: DevNotesProps) {
   return (
-    <section id="devnotes" className="mx-auto max-w-310 px-[8vw] py-25 pb-0">
+    <section
+      id="devnotes"
+      className="mx-auto box-content max-w-310 px-[8vw] py-25 pb-0"
+    >
       <Reveal>
         <SectionLabel>{DEV_NOTES.eyebrow}</SectionLabel>
         <h2 className="mb-12.5 max-w-175 font-serif text-[clamp(32px,4vw,52px)] font-normal">
@@ -62,7 +66,12 @@ export function DevNotes({ articleLinks }: DevNotesProps) {
                     </p>
                     <p className="text-lg font-semibold">{link.title}</p>
                   </div>
-                  <span className="shrink-0 text-xl">→</span>
+                  <ArrowUpRight
+                    size={22}
+                    strokeWidth={2}
+                    className="shrink-0"
+                  />
+                  <span className="sr-only">(opens in a new tab)</span>
                 </a>
               ))}
             </div>

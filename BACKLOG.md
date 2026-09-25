@@ -6,7 +6,7 @@ Rebuilding the design handoff at `../design_handoff_portfolio/` — a single-pag
 
 Decisions locked in before build:
 - **CMS**: Sanity — form-based editing (incl. image upload) is easier to maintain long-term than editing MDX/JSON in the repo.
-- **CMS scope**: work/project cards + case studies, experience timeline entries, article/writing links, and the `showExperiments` visibility toggle. Hero, About, How I Work, Skills, Contact stay hardcoded — identity copy the handoff calls "final as shown," not a repeatable list.
+- **CMS scope**: work/project cards + case studies, experience timeline entries, article/writing links, and the `showExperiments` visibility toggle. Hero, About, Services, Skills, Contact stay hardcoded — identity copy the handoff calls "final as shown," not a repeatable list.
 - **Routing**: one dynamic `/work/[slug]` route driven by Sanity, not two static page files.
 - **Sanity Studio**: embedded at `/studio` inside the Next.js app (one deployable), not a standalone `studio/` package.
 - **Linting/formatting**: Biome, replacing ESLint + Prettier.
@@ -17,7 +17,7 @@ Decisions locked in before build:
 
 1. Only **two** of the hero's five computed parallax blobs are actually rendered (top-right/primary using `p1x/p1y`, bottom-left/tertiary using `p3x/p3y`) — the other three offsets are dead code in the source.
 2. `heroAnimation` (`float`/`still`) only gates the continuous morph/float keyframe — pointer-driven parallax stays live in both modes.
-3. Scroll-reveal in `#work` is applied to the two inner cards, not the section wrapper. Full set of revealed elements: `card1`, `card2` (+0.12s delay), `about`, `howiwork`, `skills`, `experience`, `experiments`, `devnotes`, `contact` — 9 total.
+3. Scroll-reveal in `#work` is applied to the two inner cards, not the section wrapper. Full set of revealed elements: `card1`, `card2` (+0.12s delay), `about`, `skills`, `experience`, `experiments`, `devnotes`, `contact` — 8 total.
 4. How-I-Work's 4 cards stagger off their *parent* section's visibility (`index * 0.12s` delay) — no independent per-card observer.
 5. Case-study pages have **no** scroll-reveal — only a static on-load `fadeUp` on the first section. These pages are pure Server Components.
 6. Fika and RetroBox use different lead-in labels ("What I built"/"Result" vs "What I'm building"/"Status") and different meta-row labels ("Timeline" vs "Status") — modeled as free text/fields in the `project` schema, not fixed copy.
@@ -27,7 +27,7 @@ Decisions locked in before build:
 
 | Content | Source |
 |---|---|
-| Hero, About, How I Work, Skills, Contact, nav/logo, footer | Hardcoded (`lib/constants.ts` + components) |
+| Hero, Services, About, Skills, Contact, nav/logo, footer | Hardcoded (`lib/constants.ts` + components) |
 | Work cards + case studies (Fika, RetroBox), incl. screenshots & UX-flow images | Sanity `project` |
 | Experience timeline entries | Sanity `experienceEntry` |
 | Article/writing collaboration links | Sanity `articleLink` |
@@ -55,7 +55,7 @@ Decisions locked in before build:
 - [x] Sanity TypeGen wired up: `typegen` config in `sanity.cli.ts` (not a separate `sanity-typegen.json` — that form is deprecated), `npm run typegen` script (`sanity schema extract --force` + `sanity typegen generate`) generates `src/lib/sanity/sanity.types.ts` from schema + `defineQuery` calls; both `schema.json` and `sanity.types.ts` are gitignored build artifacts, regenerate after any schema/query change
 - [x] Removed `src/lib/types.ts` (hand-written, unused by any code) — generated query-result types in `src/lib/sanity/sanity.types.ts` (e.g. `ProjectsQueryResult`, `ExperienceEntriesQueryResult`) are now the single source of truth for Sanity-shaped types going forward
 - [x] **Shared UI + hooks** — `Pill`, `Button`, `SectionLabel`, `Reveal`, `ImagePlaceholder`, plus `SaturationFocusImage` and `TextLink` (not originally scoped) in `src/components/ui/`; `useScrollReveal`, `useActiveSection` in `src/hooks/` (no separate `useHeroParallax` — see deviation note below)
-- [x] **Home page sections** — `Logo`, `NavDots`, `Hero`, `WorkSection`/`WorkCard`, `About`, `HowIWork`, `Skills`, `Experience`/`ExperienceItem`, `Experiments`, `DevNotes`, `Contact`, composed in `src/app/page.tsx` and wired to live Sanity data via `sanityFetch`
+- [x] **Home page sections** — `Logo`, `NavDots`, `Hero`, `WorkSection`/`WorkCard`, `About`, `Skills`, `Experience`/`ExperienceItem`, `Experiments`, `DevNotes`, `Contact`, composed in `src/app/page.tsx` and wired to live Sanity data via `sanityFetch`
   - Deviation from source-fidelity notes: `Hero` does not implement the pointer-driven parallax blobs — it uses a `SaturationFocusImage` treatment instead
 - [x] Static assets copied into `/public`: `hero-bg.png`, `stefania-barabas-resume.pdf`, `about-img.jpeg`, `sdn-logo.png`
 - [x] GitHub remote created, pushed, PR #3 (`feature/sections`) merged to `main`

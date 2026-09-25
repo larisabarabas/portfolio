@@ -85,10 +85,11 @@ export function WorkCard({ project, index }: WorkCardProps) {
 
   return (
     <Reveal delay={index * 0.12}>
-      <div className="grid items-center gap-14 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
-        {imageFirst ? image : null}
+      {/* Image always comes first in the DOM so every card stacks the same way
+          on mobile; the zig-zag is a desktop-only visual reorder. */}
+      <div className="grid grid-cols-1 items-center gap-14 md:grid-cols-2">
+        <div className={imageFirst ? undefined : "md:order-last"}>{image}</div>
         {copy}
-        {imageFirst ? null : image}
       </div>
     </Reveal>
   );

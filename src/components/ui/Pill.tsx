@@ -13,7 +13,7 @@ type PillProps = {
 
 const SOLID_CLASSES: Record<PillColor, string> = {
   primary: "bg-primary text-paper",
-  secondary: "bg-secondary text-paper",
+  secondary: "bg-secondary-strong text-paper",
   tertiary: "bg-tertiary text-paper",
   soft: "bg-soft text-ink",
 };

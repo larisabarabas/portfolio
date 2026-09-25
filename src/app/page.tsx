@@ -1,12 +1,12 @@
 import { Logo } from "@/components/layout/Logo";
-import { NavDots } from "@/components/layout/NavDots";
+import { SiteNav } from "@/components/layout/SiteNav";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { DevNotes } from "@/components/sections/DevNotes";
 import { Experience } from "@/components/sections/Experience";
 import { Experiments } from "@/components/sections/Experiments";
 import { Hero } from "@/components/sections/Hero";
-import { HowIWork } from "@/components/sections/HowIWork";
+import { Services } from "@/components/sections/Services";
 import { Skills } from "@/components/sections/Skills";
 import { WorkSection } from "@/components/sections/WorkSection";
 import { sanityFetch } from "@/lib/sanity/fetch";
@@ -50,14 +50,14 @@ export default async function Home() {
         Skip to content
       </a>
       <Logo />
-      <NavDots />
+      <SiteNav />
       <main id="main">
         <Hero />
+        <Services />
         <WorkSection projects={projects} />
         <About />
-        {siteSettings?.showHowIWork && <HowIWork />}
-        <Experience entries={experienceEntries} />
         <Skills />
+        <Experience entries={experienceEntries} />
         {siteSettings?.showExperiments && <Experiments />}
         <DevNotes articleLinks={articleLinks} />
         <Contact />

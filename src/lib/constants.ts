@@ -26,9 +26,19 @@ export const HERO = {
 export const ABOUT = {
   eyebrow: "About",
   heading: "I ask before I build",
-  bodyParagraph1: "I've spent the last eight years building scalable, high-performance web applications, usually somewhere between product, design, and, increasingly, AI. I design the interfaces I build, I ship AI features that hold up in production, and I explain the trade-offs in natural language.",
-  bodyParagraph2: "Besides frontend engineering and product, there are some things I care about that are not always visible: I learn the business domain before I touch the architecture, I ask why before how, and performance and usability still matter to me long after the feature has shipped.",
-  statChips: ["8+ years engineering", "Product Engineering", "Frontend Architecture", "UX/UI", "Product Thinking", "Building in Public", "AI-Assisted Development"],
+  bodyParagraph1:
+    "I've spent the last eight years building scalable, high-performance web applications, usually somewhere between product, design, and, increasingly, AI. I design the interfaces I build, I ship AI features that hold up in production, and I explain the trade-offs in natural language.",
+  bodyParagraph2:
+    "Besides frontend engineering and product, there are some things I care about that are not always visible: I learn the business domain before I touch the architecture, I ask why before how, and performance and usability still matter to me long after the feature has shipped.",
+  statChips: [
+    "8+ years engineering",
+    "Product Engineering",
+    "Frontend Architecture",
+    "UX/UI",
+    "Product Thinking",
+    "Building in Public",
+    "AI-Assisted Development",
+  ],
   portraitAlt: "Stefania Barabas",
   portraitPlaceholder: "Drop a portrait photo",
 };
@@ -155,7 +165,14 @@ export const SKILLS = {
       label: "AI-assisted development",
       tone: "solid" as const,
       color: "secondary" as const,
-      items: ["Claude Code", "Claude", "Claude Design", "OpenCode", "Cursor", "LM Studio"],
+      items: [
+        "Claude Code",
+        "Claude",
+        "Claude Design",
+        "OpenCode",
+        "Cursor",
+        "LM Studio",
+      ],
     },
     {
       label: "Architecture",

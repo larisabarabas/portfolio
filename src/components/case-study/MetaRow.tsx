@@ -1,3 +1,4 @@
+import { ExternalMark } from "@/components/ui/ExternalMark";
 import type { ProjectBySlugQueryResult } from "@/lib/sanity/sanity.types";
 
 type Project = NonNullable<ProjectBySlugQueryResult>;
@@ -54,7 +55,8 @@ export function MetaRow({
                   rel="noopener noreferrer"
                   className="text-primary hover:text-primary-hover"
                 >
-                  {link.label} ↗
+                  {link.label.trim()}
+                  <ExternalMark />
                 </a>
               </span>
             ))}

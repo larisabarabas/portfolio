@@ -29,7 +29,7 @@ export const ABOUT = {
   bodyParagraph1: "I've spent the last eight years building scalable, high-performance web applications, usually somewhere between product, design, and, increasingly, AI. I design the interfaces I build, I ship AI features that hold up in production, and I explain the trade-offs in natural language.",
   bodyParagraph2: "Besides frontend engineering and product, there are some things I care about that are not always visible: I learn the business domain before I touch the architecture, I ask why before how, and performance and usability still matter to me long after the feature has shipped.",
   statChips: ["8+ years engineering", "Product Engineering", "Frontend Architecture", "UX/UI", "Product Thinking", "Building in Public", "AI-Assisted Development"],
-  portraitAlt: "Portrait",
+  portraitAlt: "Stefania Barabas",
   portraitPlaceholder: "Drop a portrait photo",
 };
 
@@ -207,7 +207,7 @@ export const DEV_NOTES = {
     "A newsletter about engineering judgment in an industry obsessed with speed",
   featureBody:
     "This is where I think out loud about frontend engineering and engineering in general. The code I'm writing, the career lessons I'm learning, and all the invisible work that actually matters, shared one small note at a time.",
-  featureCtaLabel: "Read Stef's Dev Notes →",
+  featureCtaLabel: "Read Stef's Dev Notes",
   featureUrl: "https://stefsdevnotes.substack.com",
   collaborationsLabel: "Article collaborations",
   logoAlt: "Stef's Dev Notes logo",

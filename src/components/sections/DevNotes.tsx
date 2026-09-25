@@ -65,7 +65,10 @@ export function DevNotes({ articleLinks }: DevNotesProps) {
                     </p>
                     <p className="text-lg font-semibold">{link.title}</p>
                   </div>
-                  <span className="shrink-0 text-xl">→</span>
+                  <span aria-hidden="true" className="shrink-0 text-xl">
+                    ↗
+                  </span>
+                  <span className="sr-only">(opens in a new tab)</span>
                 </a>
               ))}
             </div>

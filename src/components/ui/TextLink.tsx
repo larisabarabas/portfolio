@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ExternalMark } from "@/components/ui/ExternalMark";
 
 type TextLinkColor = "primary" | "tertiary" | "ink";
 
@@ -29,6 +30,7 @@ export function TextLink({
       className={`border-b-2 text-[15px] font-semibold ${COLOR_CLASSES[color]}`}
     >
       {children}
+      {external && <ExternalMark />}
     </a>
   );
 }

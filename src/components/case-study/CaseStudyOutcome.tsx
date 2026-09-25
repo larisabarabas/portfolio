@@ -35,7 +35,7 @@ export function CaseStudyOutcome({
               {ctaLabel}
             </Button>
           )}
-          <Button href="/" variant="outline">
+          <Button href="/#work" variant="outline">
             {CASE_STUDY.backToPortfolioCtaLabel}
           </Button>
         </div>

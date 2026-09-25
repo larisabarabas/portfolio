@@ -20,7 +20,8 @@ export const HERO = {
   status:
     "I find where users stall or give up, then design the fix and build it myself.",
   primaryCtaLabel: "How I can help",
-  secondaryCtaLabel: "Email me",
+  secondaryCtaLabel: "Tell me about your project",
+  secondaryCtaSubject: "Project inquiry",
 };
 
 export const ABOUT = {

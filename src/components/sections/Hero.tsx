@@ -33,7 +33,10 @@ export function Hero() {
               <Button href="#services" icon={ArrowDown}>
                 {HERO.primaryCtaLabel}
               </Button>
-              <Button href={`mailto:${EMAIL}`} variant="outline">
+              <Button
+                href={`mailto:${EMAIL}?subject=${encodeURIComponent(HERO.secondaryCtaSubject)}`}
+                variant="outline"
+              >
                 {HERO.secondaryCtaLabel}
               </Button>
             </div>

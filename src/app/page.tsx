@@ -56,8 +56,8 @@ export default async function Home() {
         <Services />
         <WorkSection projects={projects} />
         <About />
-        <Experience entries={experienceEntries} />
         <Skills />
+        <Experience entries={experienceEntries} />
         {siteSettings?.showExperiments && <Experiments />}
         <DevNotes articleLinks={articleLinks} />
         <Contact />

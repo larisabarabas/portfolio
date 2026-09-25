@@ -65,7 +65,7 @@ export const SERVICES = {
       whatIDo:
         "I go through your site and product the way a new user would, on desktop and on a phone, and compare it with two or three competitors. Every issue comes with a screenshot of where it happens, how much it matters, and what I would change. Then I design and build the fixes.",
       proof: [
-        "At Code of Talent I simplified user flows, built onboarding prototypes, and implemented a guided product tour to improve conversion. I also built my own audit tooling that measures performance, accessibility and mobile issues in a real browser, so the findings start with real data.",
+        "At Code of Talent I worked on conversion: I simplified user flows, prototyped a new onboarding, and built a guided product tour. I also built my own audit tooling that measures performance, accessibility and mobile issues in a real browser, so the findings start with real data.",
       ],
       proofAsList: false,
       start:
@@ -81,7 +81,7 @@ export const SERVICES = {
       whatIDo:
         "I measure the site with Lighthouse, plus real-user data where there's enough traffic. Then I fix what slows it down or shuts people out, and check the result on real devices. If you don't have monitoring yet, I can set it up, so you can see where things break for users.",
       proof: [
-        "At Relex Solutions, performance mattered to every business customer. As part of the on-call rotation, I monitored and fixed performance issues caused by large amounts of data, on both the client and the server.",
+        "At RELEX I was on the on-call rotation, where I tracked down and fixed performance issues caused by large amounts of data, on both the client and the server.",
       ],
       proofAsList: false,
       start:
@@ -97,10 +97,10 @@ export const SERVICES = {
       whatIDo:
         "I own frontend work end to end: architecture, implementation, testing, reviews, and the follow-through on performance after launch. I learn your business domain first, so the code fits your product.",
       proof: [
-        "At Relex I led two complex frontend epics from start to finish and took a vibe-coded concept to a scalable, production-ready feature. In both cases, I owned planning, technical requirements, implementation and delivery while aligning closely with backend, product, design and other business stakeholders.",
-        "I was part of the on-call rotation, handling critical issues users hit in production.",
-        "At Cognizant I designed a micro-frontend architecture and set up a Lerna monorepo for a 50+ engineer team.",
-        "On the same app I integrated payments, analytics and error tracking, and I use Sentry and Datadog to see what breaks and for whom.",
+        "At RELEX I led two frontend epics end to end, from planning and technical requirements to delivery, working with backend, product and design.",
+        "I was also on the on-call rotation, fixing critical issues users hit in production.",
+        "At Cognizant I designed a micro-frontend architecture and set up a Lerna monorepo for a team of 50+ engineers.",
+        "On that app I also integrated payments, analytics and error tracking. I use Sentry and Datadog to see what breaks and for whom.",
       ],
       proofAsList: true,
       start:
@@ -116,8 +116,8 @@ export const SERVICES = {
       whatIDo:
         "I map the flow, design the key screens and build a working prototype, using AI tools to move quickly. Then I decide what stays, what gets rewritten, and what it takes to run it in production.",
       proof: [
-        'At Relex Solutions I took an initial AI-generated ("vibe-coded") concept into a scalable, production-ready feature in close collaboration with design - evaluating and refining AI output against product requirements, architectural standards, and long-term maintainability.',
-        "Fika for Substack, Retrobox and Huecode each started as a single idea that I designed and built myself, assisted by AI coding agents.",
+        "At RELEX I turned a vibe-coded concept into a production-ready feature, working closely with design. I checked the AI-generated code against the product requirements and our architecture, and reworked what wouldn't hold up long term.",
+        "Fika for Substack, Retrobox and Huecode each started as an idea that I designed and built myself, with AI coding agents.",
       ],
       proofAsList: false,
       start:
@@ -153,12 +153,24 @@ export const SKILLS = {
       color: "primary" as const,
       items: [
         "TypeScript",
-        "JavaScript",
-        "React.js",
+        "React",
         "Next.js",
         "Vue.js",
         "Tailwind CSS",
-        "shadcn/ui",
+        "React Query",
+        "Zustand",
+      ],
+    },
+    {
+      label: "Product & UX",
+      tone: "solid" as const,
+      color: "tertiary" as const,
+      items: [
+        "User flows",
+        "Prototyping",
+        "UX audits",
+        "Accessibility",
+        "Figma",
       ],
     },
     {
@@ -167,10 +179,9 @@ export const SKILLS = {
       color: "secondary" as const,
       items: [
         "Claude Code",
-        "Claude",
         "Claude Design",
-        "OpenCode",
         "Cursor",
+        "OpenCode",
         "LM Studio",
       ],
     },
@@ -181,28 +192,16 @@ export const SKILLS = {
       items: ["Micro-frontends", "Monorepos (Lerna)", "Design systems"],
     },
     {
-      label: "State & data",
-      tone: "outline" as const,
-      color: "primary" as const,
-      items: ["React Query", "Zustand", "Redux", "GraphQL"],
-    },
-    {
-      label: "Backend & data stores",
-      tone: "outline" as const,
-      color: "primary" as const,
-      items: ["Node.js", "Go", "Python", "PostgreSQL", "MongoDB"],
-    },
-    {
       label: "Testing & observability",
       tone: "outline" as const,
       color: "primary" as const,
-      items: ["Jest", "Vitest", "Playwright", "Cypress", "Datadog", "Sentry"],
+      items: ["Playwright", "Vitest", "Jest", "Cypress", "Sentry", "Datadog"],
     },
     {
-      label: "UX/UI",
+      label: "Backend",
       tone: "outline" as const,
       color: "primary" as const,
-      items: ["Figma"],
+      items: ["Node.js", "PostgreSQL", "Go", "Python"],
     },
   ],
 };

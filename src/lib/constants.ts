@@ -46,7 +46,7 @@ export const ABOUT = {
 export const SERVICES = {
   eyebrow: "Services",
   heading: "How I can help",
-  lead: "I help with the parts of a digital product where users decide to stay or leave: the landing page, onboarding, checkout and the main flow, and how fast all of it loads. I find where users stall or give up, design the fix, and build it myself.",
+  lead: "I work on digital products from the first prototype to the fixes after launch. I find where people drop off, make slow or hard-to-use pages fast and accessible, build features properly without a long ramp-up, and turn AI demos and ideas into products that hold up with real users.",
   workedAcrossLabel: "Worked across",
   workedAcross:
     "Enterprise pricing and promotion software · fintech · translation tech · large-scale web apps · real estate tech · booking platforms · microlearning and training tech · community products",

@@ -53,7 +53,7 @@ export function MetaRow({
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:text-primary-hover"
+                  className="inline-flex items-center gap-1 text-primary hover:text-primary-hover"
                 >
                   {link.label.trim()}
                   <ExternalMark />

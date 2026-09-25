@@ -1,3 +1,4 @@
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { CASE_STUDY } from "@/lib/constants";
 
@@ -35,7 +36,12 @@ export function CaseStudyOutcome({
               {ctaLabel}
             </Button>
           )}
-          <Button href="/#work" variant="outline">
+          <Button
+            href="/#work"
+            variant="outline"
+            icon={ArrowLeft}
+            iconPosition="start"
+          >
             {CASE_STUDY.backToPortfolioCtaLabel}
           </Button>
         </div>

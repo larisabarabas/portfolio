@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import { ServiceAccordionItem } from "@/components/sections/ServiceAccordionItem";
 import { Pill } from "@/components/ui/Pill";
 import { Reveal } from "@/components/ui/Reveal";
@@ -67,7 +68,9 @@ function ServiceCard({
             <p className="mb-2.5 text-base leading-[1.6] font-medium text-pretty">
               {service.start}
             </p>
-            <TextLink href={mailto}>{SERVICES.ctaLabel}</TextLink>
+            <TextLink href={mailto} icon={ArrowRight}>
+              {SERVICES.ctaLabel}
+            </TextLink>
           </div>
         </div>
       </div>

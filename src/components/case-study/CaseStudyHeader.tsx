@@ -1,3 +1,4 @@
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { CASE_STUDY, LOGO_TEXT } from "@/lib/constants";
 
@@ -8,8 +9,9 @@ export function CaseStudyHeader() {
           lands where they left off. */}
       <Link
         href="/#work"
-        className="text-sm font-semibold text-ink hover:text-primary"
+        className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-primary"
       >
+        <ArrowLeft size={16} strokeWidth={2.25} className="shrink-0" />
         {CASE_STUDY.backLinkLabel}
       </Link>
       <Link

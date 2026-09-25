@@ -19,7 +19,7 @@ export const HERO = {
   body: "Senior engineer working across product, design, and AI.",
   status:
     "I find where users stall or give up, then design the fix and build it myself.",
-  primaryCtaLabel: "How I can help ↓",
+  primaryCtaLabel: "How I can help",
   secondaryCtaLabel: "Email me",
 };
 
@@ -54,7 +54,7 @@ export const SERVICES = {
   whatIDoHeading: "What I do",
   proofHeading: "Where I've done it",
   startLabel: "How we start",
-  ctaLabel: "Ask about this →",
+  ctaLabel: "Ask about this",
   items: [
     {
       id: "s1",
@@ -246,13 +246,13 @@ export const CONTACT = {
 };
 
 export const CASE_STUDY = {
-  backLinkLabel: "← Back to portfolio",
+  backLinkLabel: "Back to portfolio",
   problemHeading: "The problem",
   uxFlowHeading: "UX flow",
   uxFlowPlaceholderDefault: "Drop the flow diagram",
   decisionsHeading: "Key decisions & tradeoffs",
   outcomeHeadingDefault: "Outcome",
-  backToPortfolioCtaLabel: "← Back to portfolio",
+  backToPortfolioCtaLabel: "Back to portfolio",
 };
 
 export const FOOTER = {

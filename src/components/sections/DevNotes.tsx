@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -65,9 +66,11 @@ export function DevNotes({ articleLinks }: DevNotesProps) {
                     </p>
                     <p className="text-lg font-semibold">{link.title}</p>
                   </div>
-                  <span aria-hidden="true" className="shrink-0 text-xl">
-                    ↗
-                  </span>
+                  <ArrowUpRight
+                    size={22}
+                    strokeWidth={2}
+                    className="shrink-0"
+                  />
                   <span className="sr-only">(opens in a new tab)</span>
                 </a>
               ))}

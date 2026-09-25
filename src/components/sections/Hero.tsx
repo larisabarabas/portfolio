@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/Button";
 import { SaturationFocusImage } from "@/components/ui/SaturationFocusImage";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { HERO } from "@/lib/constants";
+import { EMAIL, HERO } from "@/lib/constants";
 
 export function Hero() {
   return (
@@ -29,7 +29,10 @@ export function Hero() {
               {HERO.status}
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button href="#work">{HERO.primaryCtaLabel}</Button>
+              <Button href="#services">{HERO.primaryCtaLabel}</Button>
+              <Button href={`mailto:${EMAIL}`} variant="outline">
+                {HERO.secondaryCtaLabel}
+              </Button>
             </div>
           </div>
         </div>

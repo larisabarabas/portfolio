@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { CONTACT, FOOTER } from "@/lib/constants";
+import { CONTACT, EMAIL, FOOTER } from "@/lib/constants";
 
 export function Contact() {
   return (
@@ -19,7 +19,7 @@ export function Contact() {
           {CONTACT.body}
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button href={`mailto:${CONTACT.email}`}>{CONTACT.email}</Button>
+          <Button href={`mailto:${EMAIL}`}>{EMAIL}</Button>
           <Button href={CONTACT.linkedinUrl} variant="outline" external>
             {CONTACT.linkedinLabel}
           </Button>

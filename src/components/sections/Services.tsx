@@ -3,7 +3,7 @@ import { Pill } from "@/components/ui/Pill";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { TextLink } from "@/components/ui/TextLink";
-import { SERVICES } from "@/lib/constants";
+import { EMAIL, SERVICES } from "@/lib/constants";
 
 type Service = (typeof SERVICES.items)[number];
 
@@ -11,8 +11,14 @@ const SUBHEADING_CLASSES =
   "mb-2 text-xs font-semibold uppercase tracking-widest text-tertiary";
 const BODY_CLASSES = "text-base leading-[1.65] text-pretty opacity-88";
 
-function ServiceCard({ service }: { service: Service }) {
-  const mailto = `mailto:${SERVICES.email}?subject=${encodeURIComponent(service.subject)}`;
+function ServiceCard({
+  service,
+  defaultOpen,
+}: {
+  service: Service;
+  defaultOpen: boolean;
+}) {
+  const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(service.subject)}`;
 
   return (
     <ServiceAccordionItem
@@ -20,6 +26,7 @@ function ServiceCard({ service }: { service: Service }) {
       number={service.number}
       title={service.title}
       teaser={service.problem}
+      defaultOpen={defaultOpen}
     >
       <div className="flex flex-col gap-6.5">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),1fr))] gap-x-9 gap-y-6">
@@ -95,9 +102,11 @@ export function Services() {
       </Reveal>
 
       <div className="grid grid-cols-[minmax(0,1fr)] gap-7">
-        {SERVICES.items.map((service) => (
+        {/* The first card starts open so a reader sees one complete offer — proof
+            and "How we start" included — without having to click. */}
+        {SERVICES.items.map((service, index) => (
           <Reveal key={service.id}>
-            <ServiceCard service={service} />
+            <ServiceCard service={service} defaultOpen={index === 0} />
           </Reveal>
         ))}
       </div>

@@ -1,5 +1,7 @@
 export const LOGO_TEXT = "stefania";
 
+export const EMAIL = "stef@stefaniabarabas.com";
+
 export const NAV_LINKS = [
   { id: "services", label: "Services" },
   { id: "work", label: "Work" },
@@ -16,8 +18,9 @@ export const HERO = {
   headingLine2: "I turn ideas into shipped software.",
   body: "Senior engineer working across product, design, and AI.",
   status:
-    "Currently untangling building from scratch in various side projects.",
-  primaryCtaLabel: "See my work",
+    "I find where users stall or give up, then design the fix and build it myself.",
+  primaryCtaLabel: "How I can help ↓",
+  secondaryCtaLabel: "Email me",
 };
 
 export const ABOUT = {
@@ -42,7 +45,6 @@ export const SERVICES = {
   proofHeading: "Where I've done it",
   startLabel: "How we start",
   ctaLabel: "Ask about this →",
-  email: "stefaniabarabas@gmail.com",
   items: [
     {
       id: "s1",
@@ -216,7 +218,6 @@ export const CONTACT = {
   eyebrow: "Get in touch",
   heading: "Let's talk.",
   body: "I'm available for new projects! Feel free to reach out, I usually respond within a day.",
-  email: "stef@stefaniabarabas.com",
   linkedinUrl: "https://linkedin.com/in/stefania-barabas",
   githubUrl: "https://github.com/larisabarabas",
   devNotesUrl: "https://stefsdevnotes.substack.com",

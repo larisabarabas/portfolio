@@ -8,6 +8,7 @@ type ServiceAccordionItemProps = {
   number: string;
   title: string;
   teaser: string;
+  defaultOpen?: boolean;
   children: ReactNode;
 };
 
@@ -23,9 +24,10 @@ export function ServiceAccordionItem({
   number,
   title,
   teaser,
+  defaultOpen = false,
   children,
 }: ServiceAccordionItemProps) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(defaultOpen);
   const titleId = `${id}-title`;
   const panelId = `${id}-panel`;
 

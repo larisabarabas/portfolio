@@ -1,5 +1,5 @@
 import { Logo } from "@/components/layout/Logo";
-import { NavDots } from "@/components/layout/NavDots";
+import { SiteNav } from "@/components/layout/SiteNav";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { DevNotes } from "@/components/sections/DevNotes";
@@ -50,7 +50,7 @@ export default async function Home() {
         Skip to content
       </a>
       <Logo />
-      <NavDots />
+      <SiteNav />
       <main id="main">
         <Hero />
         <Services />

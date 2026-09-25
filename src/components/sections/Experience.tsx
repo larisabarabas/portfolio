@@ -20,7 +20,7 @@ export function Experience({ entries }: ExperienceProps) {
           {EXPERIENCE.heading}
         </h2>
         {entries.length > 0 ? (
-          <div className="flex flex-col gap-12 border-l-2 border-line pl-9">
+          <div className="flex flex-col gap-9 border-l-2 border-line pl-9">
             {entries.map((entry) => (
               <ExperienceItem key={entry._id} entry={entry} />
             ))}

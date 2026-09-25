@@ -27,11 +27,10 @@ export const ABOUT = {
   eyebrow: "About",
   heading: "I ask before I build",
   bodyParagraph1:
-    "I've spent the last eight years building scalable, high-performance web applications, usually somewhere between product, design, and, increasingly, AI. I design the interfaces I build, I ship AI features that hold up in production, and I explain the trade-offs in natural language.",
+    "I build scalable, high-performance web applications, usually somewhere between product, design, and, increasingly, AI. I design the interfaces I ship, build AI features that hold up in production, and explain the trade-offs in natural language.",
   bodyParagraph2:
     "Besides frontend engineering and product, there are some things I care about that are not always visible: I learn the business domain before I touch the architecture, I ask why before how, and performance and usability still matter to me long after the feature has shipped.",
   statChips: [
-    "8+ years engineering",
     "Product Engineering",
     "Frontend Architecture",
     "UX/UI",
@@ -217,7 +216,7 @@ export const EXPERIMENTS = {
 };
 
 export const DEV_NOTES = {
-  eyebrow: "Writing",
+  eyebrow: "Technical and Content Writing",
   heading: "Stef's Dev Notes",
   featureHeading:
     "A newsletter about engineering judgment in an industry obsessed with speed",

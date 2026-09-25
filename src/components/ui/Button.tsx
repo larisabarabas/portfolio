@@ -10,7 +10,7 @@ type ButtonProps = {
 };
 
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
-  solid: "bg-tertiary text-paper hover:bg-primary hover:text-ink",
+  solid: "bg-tertiary text-paper hover:bg-primary",
   outline: "border-[1.5px] border-ink text-ink hover:bg-ink hover:text-paper",
 };
 

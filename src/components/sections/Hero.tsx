@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section className="relative min-h-[100svh] overflow-hidden">
       <SaturationFocusImage
-        src="/_next/image?url=%2Fhero-bg.png&w=2048&q=100"
+        src="/_next/image?url=%2Fhero-bg.png&w=2048&q=75"
         className="absolute inset-0 z-0 h-full w-full animate-bg-reveal"
       >
         <div className="pointer-events-none absolute inset-0 z-1 bg-linear-to-b from-transparent from-40% to-bg to-96%" />

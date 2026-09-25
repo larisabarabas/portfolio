@@ -5,8 +5,13 @@
   --color-paper: #ffffff;
   --color-ink: #2a2430;
   --color-primary: #a8447a;
-  --color-primary-hover: #d97dae;
+  /* Darker than primary, not lighter: the design system's #d97dae hover only
+     reached 2.5:1 on bg. This one is 7.6:1. */
+  --color-primary-hover: #7e2f5a;
   --color-secondary: #5c9682;
+  /* Background for white text in the secondary hue: secondary itself only
+     reaches 3.4:1 against white, this is 5.1:1. */
+  --color-secondary-strong: #467766;
   --color-tertiary: #5a4a73;
   --color-soft: #f0c9db;
   --color-line: #2a243024;

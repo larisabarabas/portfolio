@@ -33,7 +33,7 @@ export function Contact() {
             {CONTACT.devNotesLabel}
           </Button>
         </div>
-        <p className="mt-17.5 text-[13px] opacity-50">{FOOTER.copyright}</p>
+        <p className="mt-17.5 text-[13px] opacity-70">{FOOTER.copyright}</p>
       </Reveal>
     </section>
   );

@@ -26,7 +26,7 @@ export function Experience({ entries }: ExperienceProps) {
             ))}
           </div>
         ) : (
-          <p className="text-[15.5px] italic opacity-60">
+          <p className="text-[15.5px] italic opacity-70">
             {EXPERIENCE.emptyState}
           </p>
         )}

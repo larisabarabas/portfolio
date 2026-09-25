@@ -24,7 +24,7 @@ export function WorkSection({ projects }: WorkSectionProps) {
           ))}
         </div>
       ) : (
-        <p className="text-base italic opacity-60">{WORK.emptyState}</p>
+        <p className="text-base italic opacity-70">{WORK.emptyState}</p>
       )}
     </section>
   );

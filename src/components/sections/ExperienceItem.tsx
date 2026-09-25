@@ -20,7 +20,7 @@ export function ExperienceItem({ entry }: ExperienceItemProps) {
       <div
         className={`absolute top-1 -left-10.5 h-3 w-3 rounded-full ${DOT_CLASSES[entry.dotColor]}`}
       />
-      <p className="mb-1.5 text-[13px] opacity-60">
+      <p className="mb-1.5 text-[13px] opacity-70">
         {entry.dateRange}
         {entry.location ? ` · ${entry.location}` : ""}
       </p>

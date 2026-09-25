@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 export function useActiveSection(ids: string[]): string {
-  const [activeId, setActiveId] = useState(ids[0] ?? "");
+  const [activeId, setActiveId] = useState("");
   const key = ids.join(",");
 
   useEffect(() => {

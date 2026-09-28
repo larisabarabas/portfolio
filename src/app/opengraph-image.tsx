@@ -1,9 +1,9 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
+import { HERO, JOB_TITLE } from "@/lib/constants";
 
-export const alt =
-  "stefania. — Engineering and Product, with a touch of Design";
+export const alt = `stefania. — ${JOB_TITLE}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -52,7 +52,7 @@ export default async function Image() {
           margin: "0 0 28px",
         }}
       >
-        Engineering and Product, with a touch of Design
+        {JOB_TITLE}
       </p>
       <div
         style={{
@@ -64,9 +64,9 @@ export default async function Image() {
           color: "#2A2430",
         }}
       >
-        <span>Hi, I&apos;m Stefania —</span>
+        <span>{HERO.headingLine1}</span>
         <span style={{ fontStyle: "italic", color: "#5A4A73" }}>
-          always building with a smile.
+          {HERO.headingLine2}
         </span>
       </div>
       <p
@@ -79,8 +79,7 @@ export default async function Image() {
           margin: "36px 0 0",
         }}
       >
-        Senior frontend engineer building at the intersection of product,
-        design, and AI.
+        {HERO.status}
       </p>
       <div
         style={{

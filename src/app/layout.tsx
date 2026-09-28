@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Serif, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { JOB_TITLE, SITE_DESCRIPTION } from "@/lib/constants";
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -16,9 +17,8 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
 });
 
-const title = "stefania. Engineering and Product, with a touch of Design";
-const description =
-  "Senior frontend engineer building at the intersection of product, design, and AI.";
+const title = `stefania. ${JOB_TITLE}`;
+const description = SITE_DESCRIPTION;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.stefaniabarabas.com"),

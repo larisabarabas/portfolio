@@ -55,7 +55,7 @@ export const SERVICES = {
   lead: "I work on digital products from the first prototype to the fixes after launch. I find where people drop off, make slow or hard-to-use pages fast and accessible, build features properly without a long ramp-up, and turn AI demos and ideas into products that hold up with real users.",
   workedAcrossLabel: "Worked across",
   workedAcross:
-    "Enterprise pricing and promotion software · fintech · translation tech · large-scale web apps · real estate tech · booking platforms · microlearning and training tech · community products",
+    "Enterprise pricing and promotion software · fintech · translation software · large-scale web apps · real estate and property management software · booking platforms · microlearning and training software · community products",
   problemHeading: "The problem",
   whatIDoHeading: "What I do",
   proofHeading: "Where I've done it",

@@ -14,7 +14,7 @@ type ExperienceItemProps = {
   entry: ExperienceEntriesQueryResult[number];
 };
 
-// Shows only the dates, location and "Role — Company". The description
+// Shows only the dates, location, "Role — Company" and industry. The description
 // bullets still live in Sanity (and in the query); they're just not rendered.
 export function ExperienceItem({ entry }: ExperienceItemProps) {
   return (
@@ -33,6 +33,11 @@ export function ExperienceItem({ entry }: ExperienceItemProps) {
       >
         {entry.role}
       </h3>
+      {entry.industry ? (
+        <p className="mt-1.5 text-[15.5px] leading-[1.7] opacity-85">
+          {entry.industry}
+        </p>
+      ) : null}
     </div>
   );
 }

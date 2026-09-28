@@ -24,6 +24,13 @@ export const experienceEntry = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "industry",
+      title: "Industry",
+      description:
+        'Shown under the role, e.g. "Retail pricing and promotion software"',
+      type: "string",
+    }),
+    defineField({
       name: "description",
       title: "Description",
       description: "One bullet point per item.",

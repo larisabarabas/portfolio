@@ -2,6 +2,12 @@ export const LOGO_TEXT = "stefania";
 
 export const EMAIL = "stef@stefaniabarabas.com";
 
+// One title everywhere (page title, meta, OG image, hero) so every surface
+// describes the same person.
+export const JOB_TITLE = "Senior engineer and designer";
+
+export const SITE_DESCRIPTION = `${JOB_TITLE} working across product, design, and AI. I find where users stall or give up, then design the fix and build it.`;
+
 export const NAV_LINKS = [
   { id: "services", label: "Services" },
   { id: "work", label: "Work" },
@@ -13,10 +19,10 @@ export const NAV_LINKS = [
 ] as const;
 
 export const HERO = {
-  eyebrow: "Engineering and Product, with a touch of Design",
+  eyebrow: JOB_TITLE,
   headingLine1: "Hi, I'm Stefania.",
-  headingLine2: "I turn ideas into shipped software.",
-  body: "Senior engineer working across product, design, and AI.",
+  headingLine2: "I turn ideas into shipped software and fix what's broken.",
+  body: "I work across product, design, and AI.",
   status:
     "I find where users stall or give up, then design the fix and build it myself.",
   primaryCtaLabel: "How I can help",
@@ -49,7 +55,7 @@ export const SERVICES = {
   lead: "I work on digital products from the first prototype to the fixes after launch. I find where people drop off, make slow or hard-to-use pages fast and accessible, build features properly without a long ramp-up, and turn AI demos and ideas into products that hold up with real users.",
   workedAcrossLabel: "Worked across",
   workedAcross:
-    "Enterprise pricing and promotion software · fintech · translation tech · large-scale web apps · real estate tech · booking platforms · microlearning and training tech · community products",
+    "Enterprise pricing and promotion software · fintech · translation software · large-scale web apps · real estate and property management software · booking platforms · microlearning and training software · community products",
   problemHeading: "The problem",
   whatIDoHeading: "What I do",
   proofHeading: "Where I've done it",
@@ -63,7 +69,7 @@ export const SERVICES = {
       problem:
         "People land on your site or sign up, then stop somewhere before the product makes sense to them. You can see it in the numbers, but not where it happens.",
       whatIDo:
-        "I go through your site and product the way a new user would, on desktop and on a phone, and compare it with two or three competitors. Every issue comes with a screenshot of where it happens, how much it matters, and what I would change. Then I design and build the fixes.",
+        "I go through your site and product the way a new user would, on desktop and on a phone. Depending on what you need, that includes screenshots of where each issue happens and a comparison with two or three competitors. Every audit ends with a walkthrough of what matters most, in plain language, and what I'd change. Then I design and build the fixes.",
       proof: [
         "At Code of Talent I worked on conversion: I simplified user flows, prototyped a new onboarding, and built a guided product tour. I also built my own audit tooling that measures performance, accessibility and mobile issues in a real browser, so the findings start with real data.",
       ],
@@ -98,7 +104,6 @@ export const SERVICES = {
         "I own frontend work end to end: architecture, implementation, testing, reviews, and the follow-through on performance after launch. I learn your business domain first, so the code fits your product.",
       proof: [
         "At RELEX I led two frontend epics end to end, from planning and technical requirements to delivery, working with backend, product and design.",
-        "I was also on the on-call rotation, fixing critical issues users hit in production.",
         "At Cognizant I designed a micro-frontend architecture and set up a Lerna monorepo for a team of 50+ engineers.",
         "On that app I also integrated payments, analytics and error tracking. I use Sentry and Datadog to see what breaks and for whom.",
       ],

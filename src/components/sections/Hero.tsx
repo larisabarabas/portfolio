@@ -51,8 +51,11 @@ export function Hero() {
       {/* Raised frame → inset well → floating photo. Beside the text on
           wide screens; once the hero stacks it becomes a short banner above
           the text, so the photo is in the first screen without pushing the
-          headline out of it. */}
-      <div className="order-first w-full min-w-0 justify-self-center rounded-[28px] p-2 shadow-neu-out lg:order-none lg:max-w-130 lg:rounded-[44px] lg:p-4.5">
+          headline out of it. On screens too short to fit the banner and
+          both buttons above the pager (under ~820px of visible height, which
+          includes most phones once the browser bars are showing), it's left
+          out so the text and buttons come first. */}
+      <div className="order-first w-full min-w-0 max-lg:[@media(height<820px)]:hidden justify-self-center rounded-[28px] p-2 shadow-neu-out lg:order-none lg:max-w-130 lg:rounded-[44px] lg:p-4.5">
         <div className="rounded-[20px] p-2 shadow-neu-in lg:rounded-[30px] lg:p-5">
           {/* A portrait crop of hero-bg.png (its centre 4:5 slice, at full
               resolution). Loading the wide original left only ~460px of

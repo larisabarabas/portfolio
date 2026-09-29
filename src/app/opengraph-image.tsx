@@ -7,13 +7,29 @@ export const alt = `stefania. — ${JOB_TITLE}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const fontsDir = join(process.cwd(), "src/app/fonts");
-const [serifRegular, serifItalic, sansRegular, sansBold] = await Promise.all([
-  readFile(join(fontsDir, "InstrumentSerif-Regular.ttf")),
-  readFile(join(fontsDir, "InstrumentSerif-Italic.ttf")),
-  readFile(join(fontsDir, "SpaceGrotesk-Regular.woff")),
-  readFile(join(fontsDir, "SpaceGrotesk-Bold.woff")),
-]);
+// The design's light palette and "soft" neumorphic shadows (see globals.css);
+// the preview is always light, whatever theme the sharer uses.
+const BG = "#F8EFE6";
+const INK = "#2A2430";
+const PRIMARY = "#A8447A";
+const TERTIARY = "#5A4A73";
+const DARK = "rgba(178,150,128,0.42)";
+const LIGHT = "rgba(255,255,255,0.9)";
+const RAISED = `10px 10px 24px ${DARK}, -10px -10px 24px ${LIGHT}`;
+const INSET = `inset 5px 5px 10px ${DARK}, inset -5px -5px 10px ${LIGHT}`;
+const INSET_SM = `inset 2px 2px 5px ${DARK}, inset -2px -2px 5px ${LIGHT}`;
+
+const appDir = join(process.cwd(), "src/app");
+const [serifRegular, serifItalic, sansRegular, sansBold, heroPhoto] =
+  await Promise.all([
+    readFile(join(appDir, "fonts/InstrumentSerif-Regular.ttf")),
+    readFile(join(appDir, "fonts/InstrumentSerif-Italic.ttf")),
+    readFile(join(appDir, "fonts/SpaceGrotesk-Regular.woff")),
+    readFile(join(appDir, "fonts/SpaceGrotesk-Bold.woff")),
+    // A 720×900 copy of public/hero-portrait.jpg, small enough to inline.
+    readFile(join(appDir, "og/hero-portrait-og.jpg"), "base64"),
+  ]);
+const heroPhotoSrc = `data:image/jpeg;base64,${heroPhoto}`;
 
 export default async function Image() {
   return new ImageResponse(
@@ -22,82 +38,110 @@ export default async function Image() {
         width: "100%",
         height: "100%",
         display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        padding: "80px 90px",
-        background: "#F8EFE6",
+        alignItems: "center",
+        gap: 56,
+        padding: "64px 72px",
+        background: BG,
         fontFamily: "Space Grotesk",
+        color: INK,
       }}
     >
-      <div
-        style={{
-          position: "absolute",
-          top: -160,
-          right: -160,
-          width: 520,
-          height: 520,
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle at 35% 30%, #A8447A, transparent 72%)",
-          opacity: 0.35,
-        }}
-      />
-      <p
-        style={{
-          fontSize: 22,
-          fontWeight: 700,
-          letterSpacing: "0.16em",
-          textTransform: "uppercase",
-          color: "#A8447A",
-          margin: "0 0 28px",
-        }}
-      >
-        {JOB_TITLE}
-      </p>
+      {/* Left: the hero's pitch, set as on the site. */}
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          fontFamily: "Instrument Serif",
-          fontSize: 76,
-          lineHeight: 1.05,
-          color: "#2A2430",
+          flex: 1,
+          height: "100%",
+          justifyContent: "center",
         }}
       >
-        <span>{HERO.headingLine1}</span>
-        <span style={{ fontStyle: "italic", color: "#5A4A73" }}>
-          {HERO.headingLine2}
-        </span>
-      </div>
-      <p
-        style={{
-          fontSize: 30,
-          lineHeight: 1.5,
-          color: "#2A2430",
-          opacity: 0.85,
-          maxWidth: 780,
-          margin: "36px 0 0",
-        }}
-      >
-        {HERO.status}
-      </p>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "baseline",
-          marginTop: "auto",
-          paddingTop: 56,
-        }}
-      >
-        <span
+        <div style={{ display: "flex" }}>
+          <p
+            style={{
+              fontSize: 17,
+              fontWeight: 700,
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: PRIMARY,
+              margin: 0,
+              padding: "11px 20px",
+              borderRadius: 100,
+              boxShadow: INSET_SM,
+            }}
+          >
+            {JOB_TITLE}
+          </p>
+        </div>
+        <div
           style={{
-            fontSize: 20,
-            color: "#2A2430",
-            opacity: 0.6,
+            display: "flex",
+            flexDirection: "column",
+            fontFamily: "Instrument Serif",
+            fontSize: 58,
+            lineHeight: 1.04,
+            margin: "28px 0 0",
+          }}
+        >
+          <span>{HERO.headingLine1}</span>
+          <span style={{ fontStyle: "italic", color: TERTIARY }}>
+            {HERO.headingLine2}
+          </span>
+        </div>
+        <p
+          style={{
+            fontSize: 23,
+            lineHeight: 1.5,
+            opacity: 0.85,
+            margin: "26px 0 0",
+          }}
+        >
+          {HERO.status}
+        </p>
+        <p
+          style={{
+            fontSize: 18,
+            opacity: 0.7,
+            margin: "auto 0 0",
+            paddingTop: 24,
           }}
         >
           www.stefaniabarabas.com
-        </span>
+        </p>
+      </div>
+
+      {/* Right: raised frame → inset well → the hero photo, in its muted
+          resting state (a preview can't show the colour reveal). */}
+      <div
+        style={{
+          display: "flex",
+          padding: 14,
+          borderRadius: 38,
+          background: BG,
+          boxShadow: RAISED,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            padding: 14,
+            borderRadius: 28,
+            boxShadow: INSET,
+          }}
+        >
+          {/* biome-ignore lint/performance/noImgElement: ImageResponse renders plain HTML, next/image doesn't apply */}
+          <img
+            src={heroPhotoSrc}
+            alt=""
+            width={330}
+            height={412}
+            style={{
+              borderRadius: 18,
+              objectFit: "cover",
+              filter: "saturate(0.35) brightness(0.92)",
+            }}
+          />
+        </div>
       </div>
     </div>,
     {

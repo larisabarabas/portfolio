@@ -1,15 +1,5 @@
 import type { ExperienceEntriesQueryResult } from "@/lib/sanity/sanity.types";
 
-type DotColor = ExperienceEntriesQueryResult[number]["dotColor"];
-
-const DOT_CLASSES: Record<DotColor, string> = {
-  primary: "bg-primary",
-  magenta: "bg-primary",
-  secondary: "bg-secondary",
-  tertiary: "bg-tertiary",
-  soft: "bg-soft",
-};
-
 type ExperienceItemProps = {
   entry: ExperienceEntriesQueryResult[number];
 };
@@ -18,26 +8,15 @@ type ExperienceItemProps = {
 // bullets still live in Sanity (and in the query); they're just not rendered.
 export function ExperienceItem({ entry }: ExperienceItemProps) {
   return (
-    <div className="relative">
-      <div
-        className={`absolute top-1 -left-10.5 h-3 w-3 rounded-full ${DOT_CLASSES[entry.dotColor]}`}
-      />
-      <p className="mb-1.5 text-[13px] opacity-70">
-        {entry.dateRange}
-        {entry.location ? ` · ${entry.location}` : ""}
+    <li className="flex flex-col gap-2 rounded-[22px] bg-bg px-5.5 py-4.5 leading-normal shadow-neu-out-sm">
+      <p className="self-start rounded-pill px-3 py-1.25 text-[12.5px] tabular-nums opacity-80 shadow-neu-in-sm">
+        {entry.dateRange.trim()}
+        {entry.location ? ` · ${entry.location.trim()}` : ""}
       </p>
-      <h3
-        className={
-          entry.compact ? "text-lg font-semibold" : "text-[21px] font-semibold"
-        }
-      >
-        {entry.role}
-      </h3>
+      <h3 className="mt-1 text-[17px] font-semibold">{entry.role}</h3>
       {entry.industry ? (
-        <p className="mt-1.5 text-[15.5px] leading-[1.7] opacity-85">
-          {entry.industry}
-        </p>
+        <p className="text-[14.5px] opacity-75">{entry.industry.trim()}</p>
       ) : null}
-    </div>
+    </li>
   );
 }

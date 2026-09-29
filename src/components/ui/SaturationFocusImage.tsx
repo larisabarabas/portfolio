@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, useEffect, useRef } from "react";
+import { type ReactNode, useEffect, useEffectEvent, useRef } from "react";
 
 const VERTEX_SHADER_SOURCE = `
 attribute vec2 a_position;
@@ -96,17 +96,38 @@ type SaturationFocusImageProps = {
    * one it'll position against a further-up ancestor instead.
    */
   className?: string;
+  /**
+   * While nobody is hovering, drift the colour spot around on its own (with a
+   * ring showing where), so visitors see the effect before they find it.
+   */
+  autoPlay?: boolean;
+  /** Stop rendering entirely, e.g. while the image is on a hidden slide. */
+  paused?: boolean;
+  /** Called the first time a real pointer enters the image. */
+  onUserHover?: () => void;
   children?: ReactNode;
 };
+
+// Auto-play waits this long after load, and after the visitor's pointer
+// leaves, before taking over again.
+const AUTO_START_DELAY_MS = 1400;
+const AUTO_RESUME_DELAY_MS = 1800;
 
 export function SaturationFocusImage({
   src,
   alt = "",
   className,
+  autoPlay = false,
+  paused = false,
+  onUserHover,
   children,
 }: SaturationFocusImageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(paused);
+  const loop = useRef<{ start: () => void; stop: () => void } | null>(null);
+  const handleUserHover = useEffectEvent(() => onUserHover?.());
   const targetMouse = useRef({ x: 0.5, y: 0.5 });
   const mouse = useRef({ x: 0.5, y: 0.5 });
   const targetHover = useRef(0);
@@ -271,11 +292,46 @@ export function SaturationFocusImage({
         y: 1 - (e.clientY - rect.top) / rect.height,
       };
     };
+    let userHovering = false;
+    let autoOn = false;
+    let autoResumeAt = performance.now() + AUTO_START_DELAY_MS;
+    const ring = ringRef.current;
+    const setAutoOn = (on: boolean) => {
+      autoOn = on;
+      if (ring) ring.style.opacity = on ? "1" : "0";
+    };
+
     const onPointerEnter = () => {
+      userHovering = true;
+      setAutoOn(false);
       targetHover.current = 1;
+      handleUserHover();
     };
     const onPointerLeave = () => {
+      userHovering = false;
+      autoResumeAt = performance.now() + AUTO_RESUME_DELAY_MS;
       targetHover.current = 0;
+    };
+
+    // A slow Lissajous path around the middle of the image.
+    const drive = (now: number) => {
+      if (!autoPlay || userHovering) return;
+      if (now < autoResumeAt) {
+        if (autoOn) {
+          setAutoOn(false);
+          targetHover.current = 0;
+        }
+        return;
+      }
+      const t = now / 1000;
+      const px = 0.5 + 0.3 * Math.sin(t * 0.55);
+      const py = 0.5 + 0.26 * Math.sin(t * 0.83 + 1.2);
+      if (!autoOn) setAutoOn(true);
+      targetMouse.current = { x: px, y: 1 - py };
+      targetHover.current = 1;
+      if (ring) {
+        ring.style.transform = `translate(${px * container.clientWidth}px, ${py * container.clientHeight}px)`;
+      }
     };
     container.addEventListener("pointermove", onPointerMove, { passive: true });
     container.addEventListener("pointerenter", onPointerEnter, {
@@ -289,8 +345,9 @@ export function SaturationFocusImage({
     let running = false;
     let inView = true;
 
-    const render = () => {
+    const render = (now: number) => {
       if (!running || contextLost) return;
+      drive(now);
 
       mouse.current.x += (targetMouse.current.x - mouse.current.x) * 0.08;
       mouse.current.y += (targetMouse.current.y - mouse.current.y) * 0.08;
@@ -319,7 +376,14 @@ export function SaturationFocusImage({
       rafId = 0;
     };
     const startLoop = () => {
-      if (running || contextLost || cancelled || !inView || document.hidden) {
+      if (
+        running ||
+        contextLost ||
+        cancelled ||
+        !inView ||
+        document.hidden ||
+        pausedRef.current
+      ) {
         return;
       }
       running = true;
@@ -342,10 +406,22 @@ export function SaturationFocusImage({
     };
     document.addEventListener("visibilitychange", onVisibilityChange);
 
+    loop.current = {
+      start: () => {
+        autoResumeAt = performance.now() + AUTO_START_DELAY_MS;
+        startLoop();
+      },
+      stop: () => {
+        stopLoop();
+        setAutoOn(false);
+        targetHover.current = 0;
+      },
+    };
     startLoop();
 
     return () => {
       cancelled = true;
+      loop.current = null;
       stopLoop();
       visibilityObserver.disconnect();
       document.removeEventListener("visibilitychange", onVisibilityChange);
@@ -360,7 +436,13 @@ export function SaturationFocusImage({
       gl.deleteBuffer(positionBuffer);
       gl.deleteTexture(texture);
     };
-  }, [src]);
+  }, [src, autoPlay]);
+
+  useEffect(() => {
+    pausedRef.current = paused;
+    if (paused) loop.current?.stop();
+    else loop.current?.start();
+  }, [paused]);
 
   return (
     <div ref={containerRef} className={className}>
@@ -371,6 +453,13 @@ export function SaturationFocusImage({
         aria-hidden={alt ? undefined : true}
         className="absolute inset-0 h-full w-full"
       />
+      {autoPlay && (
+        <div
+          ref={ringRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute top-0 left-0 z-4 -mt-13.75 -ml-13.75 size-27.5 rounded-full border-[1.5px] border-white/75 bg-[radial-gradient(circle,rgba(255,255,255,.18),rgba(255,255,255,0)_70%)] opacity-0 shadow-[0_0_0_8px_rgba(255,255,255,.08)] transition-opacity duration-600"
+        />
+      )}
       {children && (
         <div style={{ position: "relative" }} className="h-full w-full">
           {children}

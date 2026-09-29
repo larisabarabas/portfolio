@@ -1,5 +1,6 @@
 import { Logo } from "@/components/layout/Logo";
-import { SiteNav } from "@/components/layout/SiteNav";
+import { type Slide, SlideDeck } from "@/components/layout/SlideDeck";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { DevNotes } from "@/components/sections/DevNotes";
@@ -9,6 +10,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
 import { Skills } from "@/components/sections/Skills";
 import { WorkSection } from "@/components/sections/WorkSection";
+import { SECTION_LABELS } from "@/lib/constants";
 import { sanityFetch } from "@/lib/sanity/fetch";
 import {
   articleLinksQuery,
@@ -41,6 +43,38 @@ export default async function Home() {
       }),
     ]);
 
+  const slides: Slide[] = [
+    { id: "hero", label: SECTION_LABELS.hero, content: <Hero /> },
+    { id: "services", label: SECTION_LABELS.services, content: <Services /> },
+    {
+      id: "work",
+      label: SECTION_LABELS.work,
+      content: <WorkSection projects={projects} />,
+    },
+    { id: "about", label: SECTION_LABELS.about, content: <About /> },
+    { id: "skills", label: SECTION_LABELS.skills, content: <Skills /> },
+    {
+      id: "experience",
+      label: SECTION_LABELS.experience,
+      content: <Experience entries={experienceEntries} />,
+    },
+    ...(siteSettings?.showExperiments
+      ? [
+          {
+            id: "experiments",
+            label: SECTION_LABELS.experiments,
+            content: <Experiments />,
+          },
+        ]
+      : []),
+    {
+      id: "devnotes",
+      label: SECTION_LABELS.devnotes,
+      content: <DevNotes articleLinks={articleLinks} />,
+    },
+    { id: "contact", label: SECTION_LABELS.contact, content: <Contact /> },
+  ];
+
   return (
     <>
       <a
@@ -50,18 +84,8 @@ export default async function Home() {
         Skip to content
       </a>
       <Logo />
-      <SiteNav />
-      <main id="main">
-        <Hero />
-        <Services />
-        <WorkSection projects={projects} />
-        <About />
-        <Skills />
-        <Experience entries={experienceEntries} />
-        {siteSettings?.showExperiments && <Experiments />}
-        <DevNotes articleLinks={articleLinks} />
-        <Contact />
-      </main>
+      <ThemeToggle />
+      <SlideDeck slides={slides} />
     </>
   );
 }

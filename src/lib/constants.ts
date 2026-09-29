@@ -8,15 +8,30 @@ export const JOB_TITLE = "Senior engineer and designer";
 
 export const SITE_DESCRIPTION = `${JOB_TITLE} working across product, design, and AI. I find where users stall or give up, then design the fix and build it.`;
 
-export const NAV_LINKS = [
-  { id: "services", label: "Services" },
-  { id: "work", label: "Work" },
-  { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
-  { id: "skills", label: "Skills" },
-  { id: "devnotes", label: "Writing" },
-  { id: "contact", label: "Contact" },
-] as const;
+// localStorage key for the light/dark choice. Read by the inline script in
+// layout.tsx and by ThemeToggle, so they must agree.
+export const THEME_STORAGE_KEY = "stef-theme";
+
+// Home page slides, in order. Labels show in the section rail and pager.
+export const SECTION_LABELS = {
+  hero: "Intro",
+  services: "Services",
+  work: "Work",
+  about: "About",
+  skills: "Skills",
+  experience: "Experience",
+  experiments: "Experiments",
+  devnotes: "Writing",
+  contact: "Contact",
+} as const;
+
+export const NAV = {
+  railLabel: "Sections",
+  menuLabel: "All sections",
+  previousLabel: "Previous section",
+  nextLabel: "Next section",
+  themeLabel: "Dark theme",
+};
 
 export const HERO = {
   eyebrow: JOB_TITLE,
@@ -28,6 +43,7 @@ export const HERO = {
   primaryCtaLabel: "How I can help",
   secondaryCtaLabel: "Tell me about your project",
   secondaryCtaSubject: "Project inquiry",
+  imageHint: "Hover to see it in color",
 };
 
 export const ABOUT = {
@@ -168,8 +184,8 @@ export const SKILLS = {
     },
     {
       label: "Product & UX",
-      tone: "solid" as const,
-      color: "tertiary" as const,
+      tone: "outline" as const,
+      color: "primary" as const,
       items: [
         "User flows",
         "Prototyping",

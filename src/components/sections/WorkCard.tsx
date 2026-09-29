@@ -1,7 +1,5 @@
 import Image from "next/image";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
-import { Pill } from "@/components/ui/Pill";
-import { Reveal } from "@/components/ui/Reveal";
+import { Chip } from "@/components/ui/Chip";
 import { TextLink } from "@/components/ui/TextLink";
 import { WORK } from "@/lib/constants";
 import { urlFor } from "@/lib/sanity/image";
@@ -9,88 +7,79 @@ import type { ProjectsQueryResult } from "@/lib/sanity/sanity.types";
 
 type WorkCardProps = {
   project: ProjectsQueryResult[number];
-  index: number;
 };
 
-export function WorkCard({ project, index }: WorkCardProps) {
-  const imageFirst = index % 2 === 0;
-
-  const image = project.mainImage?.asset ? (
-    <Image
-      src={urlFor(project.mainImage).width(1600).url()}
-      alt={project.title}
-      width={1600}
-      height={1200}
-      quality={100}
-      sizes="(min-width: 768px) 50vw, 100vw"
-      className="block h-auto w-full rounded-card border border-line shadow-[0_30px_60px_-30px_rgba(34,20,16,0.35)]"
-    />
-  ) : (
-    <ImagePlaceholder
-      alt={project.title}
-      placeholder={WORK.screenshotPlaceholder}
-      aspectRatio="4/3"
-      radius={20}
-      sizes="(min-width: 768px) 50vw, 100vw"
-    />
-  );
-
-  const copy = (
-    <div>
-      <Pill tone="solid" color={project.statusPillColor} size="sm">
-        {project.statusLabel}
-      </Pill>
-      <h3 className="mt-4 mb-3.5 font-serif text-[32px] font-normal">
-        {project.title}
-      </h3>
-      {project.summaryPoints?.map((point) => (
-        <p
-          key={point._key}
-          className="mb-2.5 text-base leading-[1.7] opacity-85"
-        >
-          <strong>{point.label}:</strong> {point.text}
-        </p>
-      ))}
-      {project.techTags && project.techTags.length > 0 && (
-        <div className="mt-5 mb-5 flex flex-wrap gap-2">
-          {project.techTags.map((tag) => (
-            <Pill key={tag} tone="outline" size="sm">
-              {tag}
-            </Pill>
-          ))}
-        </div>
-      )}
-      <div className="flex flex-wrap gap-5">
-        {project.hasCaseStudy && (
-          <TextLink
-            href={`/work/${project.slug.current}`}
-            color={project.accentColor}
-          >
-            {WORK.caseStudyLinkLabel}
-          </TextLink>
-        )}
-        {project.liveUrl && (
-          <TextLink href={project.liveUrl} color="tertiary" external>
-            {project.liveUrlLabel ?? WORK.liveLinkLabelDefault}
-          </TextLink>
-        )}
-        {project.githubUrl && (
-          <TextLink href={project.githubUrl} color="ink" external>
-            {WORK.githubLinkLabel}
-          </TextLink>
-        )}
-      </div>
-    </div>
-  );
-
+export function WorkCard({ project }: WorkCardProps) {
   return (
-    <Reveal delay={index * 0.12}>
-      {/* Image always comes first in the DOM so every card stacks the same way
-          on mobile; the zig-zag is a desktop-only visual reorder. */}
-      <div className="grid grid-cols-1 items-center gap-14 md:grid-cols-2">
-        <div className={imageFirst ? undefined : "md:order-last"}>{image}</div>
-        {copy}
+    <article className="flex min-w-0 flex-col gap-3.5 rounded-[32px] bg-bg px-4 pt-4 pb-6.5 shadow-neu-out">
+      <div className="rounded-[22px] p-2 shadow-neu-in">
+        {project.mainImage?.asset ? (
+          <Image
+            src={urlFor(project.mainImage).width(1600).url()}
+            alt={project.title}
+            width={1600}
+            height={1000}
+            quality={100}
+            sizes="(min-width: 1240px) 400px, (min-width: 760px) 50vw, 100vw"
+            className="block aspect-16/10 h-auto w-full rounded-2xl object-cover"
+          />
+        ) : (
+          <div className="flex aspect-16/10 items-center justify-center rounded-2xl px-4 text-center text-sm opacity-60">
+            {WORK.screenshotPlaceholder}
+          </div>
+        )}
       </div>
-    </Reveal>
+      <div className="flex flex-col gap-3 px-2.5 pt-1">
+        <div>
+          <Chip variant="accent" color={project.statusPillColor} size="status">
+            {project.statusLabel}
+          </Chip>
+        </div>
+        <h3 className="font-serif text-[28px] font-normal">{project.title}</h3>
+        {project.summaryPoints?.map((point) => (
+          <p
+            key={point._key}
+            className="text-[14.5px] leading-[1.6] opacity-85"
+          >
+            <strong>{point.label}:</strong> {point.text}
+          </p>
+        ))}
+        {project.techTags && project.techTags.length > 0 ? (
+          <ul className="flex flex-wrap gap-2">
+            {project.techTags.map((tag) => (
+              <li key={tag}>
+                <Chip size="tag">{tag}</Chip>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        <div className="mt-1 flex flex-wrap gap-4.5">
+          {project.hasCaseStudy ? (
+            <TextLink
+              href={`/work/${project.slug.current}`}
+              color="primary"
+              size="sm"
+            >
+              {WORK.caseStudyLinkLabel}
+            </TextLink>
+          ) : null}
+          {project.liveUrl ? (
+            <TextLink
+              href={project.liveUrl}
+              color="tertiary"
+              size="sm"
+              external
+            >
+              {project.liveUrlLabel ?? WORK.liveLinkLabelDefault}
+            </TextLink>
+          ) : null}
+          {project.githubUrl ? (
+            <TextLink href={project.githubUrl} color="ink" size="sm" external>
+              {WORK.githubLinkLabel}
+            </TextLink>
+          ) : null}
+        </div>
+      </div>
+    </article>
   );
 }

@@ -2,6 +2,12 @@ export const LOGO_TEXT = "stefania";
 
 export const EMAIL = "stef@stefaniabarabas.com";
 
+// 20-minute intro call. A plain link (opens Calendly in a new tab) rather
+// than their embed widget, which would load Calendly's script and cookies on
+// every visit.
+export const CALENDLY_URL = "https://calendly.com/stef-stefaniabarabas/20min";
+export const BOOK_CALL_LABEL = "Book a 20-min call";
+
 // One title everywhere (page title, meta, OG image, hero) so every surface
 // describes the same person.
 export const JOB_TITLE = "Senior engineer and designer";
@@ -45,8 +51,6 @@ export const HERO = {
   status:
     "I find where users stall or give up, then design the fix and build it myself.",
   primaryCtaLabel: "How I can help",
-  secondaryCtaLabel: "Tell me about your project",
-  secondaryCtaSubject: "Project inquiry",
   imageHint: "Hover to see it in color",
 };
 

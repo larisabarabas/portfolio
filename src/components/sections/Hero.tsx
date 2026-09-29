@@ -5,7 +5,7 @@ import { useIsActiveSlide } from "@/components/layout/SlideDeck";
 import { PillLink } from "@/components/ui/PillLink";
 import { SaturationFocusImage } from "@/components/ui/SaturationFocusImage";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { EMAIL, HERO } from "@/lib/constants";
+import { BOOK_CALL_LABEL, CALENDLY_URL, HERO } from "@/lib/constants";
 
 // The same 4:5 portrait crop at three sizes, via the Next image optimizer
 // (widths from its default size list). A phone banner loads the 640px one;
@@ -51,11 +51,8 @@ export function Hero() {
           <PillLink href="#services" variant="cta" size="lg">
             {HERO.primaryCtaLabel}
           </PillLink>
-          <PillLink
-            href={`mailto:${EMAIL}?subject=${encodeURIComponent(HERO.secondaryCtaSubject)}`}
-            size="lg"
-          >
-            {HERO.secondaryCtaLabel}
+          <PillLink href={CALENDLY_URL} size="lg" external>
+            {BOOK_CALL_LABEL}
           </PillLink>
         </div>
       </div>

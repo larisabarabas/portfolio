@@ -33,6 +33,17 @@ export const COOKIES = {
   acceptLabel: "Accept",
   declineLabel: "Decline",
   settingsLabel: "Cookie settings",
+  privacyLinkLabel: "Privacy policy",
+};
+
+export const PRIVACY = {
+  path: "/privacy",
+  eyebrow: "Privacy",
+  title: "What this site collects, and why",
+  footerLabel: "Privacy",
+  backLinkLabel: "Back to portfolio",
+  // Bump whenever the policy text changes.
+  lastUpdated: "29 September 2026",
 };
 
 // Home page slides, in order. Labels show in the section rail and pager.

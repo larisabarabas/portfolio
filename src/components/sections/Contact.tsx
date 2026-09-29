@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CookieSettingsButton } from "@/components/consent/CookieSettingsButton";
 import { PillLink } from "@/components/ui/PillLink";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -8,6 +9,7 @@ import {
   CONTACT,
   EMAIL,
   FOOTER,
+  PRIVACY,
 } from "@/lib/constants";
 
 const SECONDARY_LINKS = [
@@ -58,6 +60,9 @@ export function Contact() {
       </div>
       <div className="mt-8 flex flex-wrap items-baseline justify-center gap-x-5 gap-y-2 text-[13px] opacity-70">
         <p>{FOOTER.copyright}</p>
+        <Link href={PRIVACY.path} className="border-b border-current">
+          {PRIVACY.footerLabel}
+        </Link>
         <CookieSettingsButton />
       </div>
     </section>

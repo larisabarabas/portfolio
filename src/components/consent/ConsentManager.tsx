@@ -1,10 +1,11 @@
 "use client";
 
 import { GoogleTagManager } from "@next/third-parties/google";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { setConsent, useConsent, useConsentReopened } from "@/lib/consent";
-import { COOKIES } from "@/lib/constants";
+import { COOKIES, PRIVACY } from "@/lib/constants";
 
 // Same look as the raised PillLink, as a button. Accept and Decline share it
 // so saying no is exactly as easy as saying yes.
@@ -51,7 +52,13 @@ export function ConsentManager({ gtmId }: ConsentManagerProps) {
             {COOKIES.heading}
           </h2>
           <p className="mb-5.5 text-[15px] leading-[1.6] opacity-85">
-            {COOKIES.body}
+            {COOKIES.body}{" "}
+            <Link
+              href={PRIVACY.path}
+              className="border-b-2 border-primary font-semibold transition-colors hover:text-primary"
+            >
+              {COOKIES.privacyLinkLabel}
+            </Link>
           </p>
           <div className="flex flex-wrap gap-4">
             <button

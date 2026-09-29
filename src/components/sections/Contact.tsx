@@ -1,3 +1,4 @@
+import { CookieSettingsButton } from "@/components/consent/CookieSettingsButton";
 import { PillLink } from "@/components/ui/PillLink";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { TextLink } from "@/components/ui/TextLink";
@@ -55,9 +56,10 @@ export function Contact() {
           ))}
         </ul>
       </div>
-      <p className="mt-8 text-center text-[13px] opacity-70">
-        {FOOTER.copyright}
-      </p>
+      <div className="mt-8 flex flex-wrap items-baseline justify-center gap-x-5 gap-y-2 text-[13px] opacity-70">
+        <p>{FOOTER.copyright}</p>
+        <CookieSettingsButton />
+      </div>
     </section>
   );
 }

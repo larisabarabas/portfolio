@@ -18,6 +18,23 @@ export const SITE_DESCRIPTION = `${JOB_TITLE} working across product, design, an
 // layout.tsx and by ThemeToggle, so they must agree.
 export const THEME_STORAGE_KEY = "stef-theme";
 
+// localStorage key for the analytics cookie choice ("granted" | "denied").
+// Read by the inline consent script in layout.tsx and by lib/consent.ts.
+export const CONSENT_STORAGE_KEY = "stef-consent";
+
+// Google Tag Manager container. Unset locally and on preview deploys, which
+// turns off GTM, the consent banner and the footer's cookie settings button.
+export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+
+export const COOKIES = {
+  eyebrow: "Cookies",
+  heading: "Can I count your visit?",
+  body: "I use Google Analytics to see which pages get read, so I know what to improve. It sets cookies only if you say yes, and nothing is used for ads.",
+  acceptLabel: "Accept",
+  declineLabel: "Decline",
+  settingsLabel: "Cookie settings",
+};
+
 // Home page slides, in order. Labels show in the section rail and pager.
 export const SECTION_LABELS = {
   hero: "Intro",

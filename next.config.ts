@@ -73,11 +73,11 @@ export default nextConfig;
  *   "form-action 'self'",
  *   "frame-ancestors 'self'",
  *   "frame-src 'self'",
- *   `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com${isDev ? " 'unsafe-eval'" : ""}`,
+ *   `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com https://www.googletagmanager.com${isDev ? " 'unsafe-eval'" : ""}`,
  *   "style-src 'self' 'unsafe-inline'",
- *   "img-src 'self' blob: data: https://cdn.sanity.io",
+ *   "img-src 'self' blob: data: https://cdn.sanity.io https://*.google-analytics.com https://www.googletagmanager.com",
  *   "font-src 'self'",
- *   `connect-src 'self' https://cdn.sanity.io https://*.api.sanity.io https://*.apicdn.sanity.io https://vitals.vercel-insights.com${isDev ? " ws:" : ""}`,
+ *   `connect-src 'self' https://cdn.sanity.io https://*.api.sanity.io https://*.apicdn.sanity.io https://vitals.vercel-insights.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com${isDev ? " ws:" : ""}`,
  *   "upgrade-insecure-requests",
  * ].join("; ");
  *

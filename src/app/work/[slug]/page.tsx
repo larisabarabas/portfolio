@@ -68,7 +68,7 @@ export default async function CaseStudyPage({
       <CaseStudyHeader />
 
       <main id="main">
-        <section className="animate-fade-up px-[8vw] pt-16 pb-12">
+        <section className="animate-fade-up px-[8vw] pt-32 pb-12 nav:pt-36">
           <div className="mx-auto max-w-310">
             <div className="mb-6">
               <Chip

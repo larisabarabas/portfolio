@@ -17,6 +17,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useSlideNavigation } from "@/hooks/useSlideNavigation";
+import { SLIDE_CHANGE_EVENT } from "@/lib/constants";
 
 // Must match --breakpoint-nav in globals.css.
 const DESKTOP_QUERY = "(width >= 47.5rem)";
@@ -135,6 +136,21 @@ export function SlideDeck({ slides }: SlideDeckProps) {
     indexRef.current = target;
     setInstant(true);
     setIndex(target);
+
+    // The browser's own jump to #work scrolls that slide down to the anchor,
+    // past its top padding, which leaves the eyebrow under the header. Start
+    // the slide at its top instead; again next frame, in case the router's
+    // hash scroll (client-side navigation) runs after this.
+    const panel = deckRef.current?.querySelector<HTMLElement>(
+      `[data-slide="${target}"]`,
+    );
+    if (!panel) return;
+    panel.scrollTop = 0;
+    // No cleanup: the dev Strict Mode re-run exits early above, so cancelling
+    // here would drop the follow-up reset.
+    requestAnimationFrame(() => {
+      panel.scrollTop = 0;
+    });
   }, [isDesktop, resolveHash]);
 
   useEffect(() => {
@@ -145,6 +161,11 @@ export function SlideDeck({ slides }: SlideDeckProps) {
     });
     return () => cancelAnimationFrame(frame);
   }, [instant]);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: announce every slide change
+  useEffect(() => {
+    window.dispatchEvent(new Event(SLIDE_CHANGE_EVENT));
+  }, [index]);
 
   useEffect(() => {
     if (!focusPending.current) return;

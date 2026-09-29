@@ -1,7 +1,5 @@
-import { Logo } from "@/components/layout/Logo";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import { type Slide, SlideDeck } from "@/components/layout/SlideDeck";
-import { ThemeToggle } from "@/components/layout/ThemeToggle";
-import { TopBar } from "@/components/layout/TopBar";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { DevNotes } from "@/components/sections/DevNotes";
@@ -84,10 +82,7 @@ export default async function Home() {
       >
         Skip to content
       </a>
-      <TopBar>
-        <Logo />
-        <ThemeToggle />
-      </TopBar>
+      <SiteHeader logoHref="#hero" />
       <SlideDeck slides={slides} />
     </>
   );

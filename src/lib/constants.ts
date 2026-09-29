@@ -25,6 +25,10 @@ export const SECTION_LABELS = {
   contact: "Contact",
 } as const;
 
+// Fired on window by the home page's SlideDeck after the current slide
+// changes (desktop), so the header can re-check how far the slide scrolled.
+export const SLIDE_CHANGE_EVENT = "slidechange";
+
 export const NAV = {
   railLabel: "Sections",
   menuLabel: "All sections",

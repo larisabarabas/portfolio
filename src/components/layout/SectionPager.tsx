@@ -10,6 +10,11 @@ type SectionPagerProps = {
   onSelect: (index: number) => void;
   /** Extra link at the end of the section list, e.g. back to the portfolio. */
   exitLink?: { href: string; label: string };
+  /**
+   * Phones only: slide the pager out of view (and out of the tab order),
+   * e.g. while the intro, which has its own buttons, is on screen.
+   */
+  hiddenOnPhones?: boolean;
 };
 
 const STEP_BUTTON_CLASSES =
@@ -26,8 +31,15 @@ export function SectionPager({
   index,
   onSelect,
   exitLink,
+  hiddenOnPhones = false,
 }: SectionPagerProps) {
   const [open, setOpen] = useState(false);
+
+  // Scrolling back to the intro on a phone hides the pager; don't leave its
+  // menu open to reappear later.
+  useEffect(() => {
+    if (hiddenOnPhones) setOpen(false);
+  }, [hiddenOnPhones]);
   const rootRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const menuId = useId();
@@ -60,7 +72,12 @@ export function SectionPager({
     <nav
       ref={rootRef}
       aria-label={NAV.menuLabel}
-      className="fixed bottom-5.5 left-1/2 z-50 flex -translate-x-1/2 items-center gap-3.5 rounded-pill bg-bg p-2 shadow-neu-out-sm print:hidden"
+      inert={hiddenOnPhones}
+      className={`fixed bottom-5.5 left-1/2 z-50 flex -translate-x-1/2 items-center gap-3.5 rounded-pill bg-bg p-2 shadow-neu-out-sm transition-[translate,opacity] duration-300 print:hidden ${
+        hiddenOnPhones
+          ? "max-nav:pointer-events-none max-nav:translate-y-[calc(100%+2rem)] max-nav:opacity-0"
+          : ""
+      }`}
     >
       <button
         type="button"

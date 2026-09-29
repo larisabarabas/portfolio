@@ -213,10 +213,13 @@ export function SlideDeck({ slides }: SlideDeckProps) {
         ))}
       </main>
       <SectionRail items={navItems} index={index} onSelect={go} />
+      {/* On phones the intro has its own buttons, and the pager would cover
+          them on short screens, so it only appears once you scroll on. */}
       <SectionPager
         items={navItems}
         index={currentIndex}
         onSelect={isDesktop ? go : scrollToSection}
+        hiddenOnPhones={!isDesktop && currentIndex === 0}
       />
     </ActiveSlideContext>
   );

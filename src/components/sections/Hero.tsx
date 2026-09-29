@@ -51,8 +51,11 @@ export function Hero() {
       {/* Raised frame → inset well → floating photo. */}
       <div className="w-full max-w-130 min-w-0 justify-self-center rounded-[44px] p-4.5 shadow-neu-out">
         <div className="rounded-[30px] p-5 shadow-neu-in">
+          {/* A portrait crop of hero-bg.png (its centre 4:5 slice, at full
+              resolution). Loading the wide original left only ~460px of
+              height to fill a ~1100px-tall retina canvas, so it was blurry. */}
           <SaturationFocusImage
-            src="/_next/image?url=%2Fhero-bg.png&w=1080&q=75"
+            src="/_next/image?url=%2Fhero-portrait.jpg&w=1200&q=75"
             autoPlay
             paused={!isActive}
             onUserHover={() => setHintVisible(false)}

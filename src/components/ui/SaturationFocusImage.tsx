@@ -98,7 +98,8 @@ type SaturationFocusImageProps = {
   className?: string;
   /**
    * While nobody is hovering, drift the colour spot around on its own (with a
-   * ring showing where), so visitors see the effect before they find it.
+   * ring showing where), so visitors see the effect before they find it. Also
+   * runs on touch screens, where nothing else could drive the effect.
    */
   autoPlay?: boolean;
   /** Stop rendering entirely, e.g. while the image is on a hidden slide. */
@@ -144,14 +145,18 @@ export function SaturationFocusImage({
       container.style.backgroundPosition = "center";
     };
 
-    // The effect is pointer-driven: without a fine pointer it can only ever
-    // show its resting state, which dims and desaturates the whole image.
-    // Reduced-motion users shouldn't get the animated shader either. Both
-    // cases fall back to the plain, full-colour image.
-    const cannotAnimate = window.matchMedia(
-      "(hover: none), (pointer: coarse), (prefers-reduced-motion: reduce)",
+    // Without a fine, hovering pointer the effect has nothing to follow, so
+    // it would only ever show its resting state (the whole image dimmed and
+    // desaturated) unless auto-play drives it. Reduced-motion users don't get
+    // the animated shader at all. Those cases get the plain, full-colour
+    // image instead.
+    const canHover = window.matchMedia(
+      "(hover: hover) and (pointer: fine)",
     ).matches;
-    if (cannotAnimate) {
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (reducedMotion || (!canHover && !autoPlay)) {
       applyFallbackBackground();
       return;
     }
@@ -295,7 +300,9 @@ export function SaturationFocusImage({
     let userHovering = false;
     let autoOn = false;
     let autoResumeAt = performance.now() + AUTO_START_DELAY_MS;
-    const ring = ringRef.current;
+    // The ring stands in for a cursor, so it's only drawn beside a real
+    // mouse pointer; on touch screens the colour spot drifts on its own.
+    const ring = canHover ? ringRef.current : null;
     const setAutoOn = (on: boolean) => {
       autoOn = on;
       if (ring) ring.style.opacity = on ? "1" : "0";
@@ -333,13 +340,19 @@ export function SaturationFocusImage({
         ring.style.transform = `translate(${px * container.clientWidth}px, ${py * container.clientHeight}px)`;
       }
     };
-    container.addEventListener("pointermove", onPointerMove, { passive: true });
-    container.addEventListener("pointerenter", onPointerEnter, {
-      passive: true,
-    });
-    container.addEventListener("pointerleave", onPointerLeave, {
-      passive: true,
-    });
+    // Touch screens only get auto-play: a tap, or a scroll that starts on the
+    // image, shouldn't interrupt it.
+    if (canHover) {
+      container.addEventListener("pointermove", onPointerMove, {
+        passive: true,
+      });
+      container.addEventListener("pointerenter", onPointerEnter, {
+        passive: true,
+      });
+      container.addEventListener("pointerleave", onPointerLeave, {
+        passive: true,
+      });
+    }
 
     let rafId = 0;
     let running = false;

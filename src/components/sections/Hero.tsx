@@ -15,7 +15,7 @@ export function Hero() {
     <section
       id="hero"
       aria-labelledby="hero-title"
-      className="mx-auto grid w-full max-w-310 grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] items-center gap-16"
+      className="mx-auto grid w-full max-w-310 grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16"
     >
       <div className="min-w-0">
         <SectionLabel variant="inset" className="mb-6.5">
@@ -48,9 +48,12 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Raised frame → inset well → floating photo. */}
-      <div className="w-full max-w-130 min-w-0 justify-self-center rounded-[44px] p-4.5 shadow-neu-out">
-        <div className="rounded-[30px] p-5 shadow-neu-in">
+      {/* Raised frame → inset well → floating photo. Beside the text on
+          wide screens; once the hero stacks it becomes a short banner above
+          the text, so the photo is in the first screen without pushing the
+          headline out of it. */}
+      <div className="order-first w-full min-w-0 justify-self-center rounded-[28px] p-2.5 shadow-neu-out lg:order-none lg:max-w-130 lg:rounded-[44px] lg:p-4.5">
+        <div className="rounded-[20px] p-2.5 shadow-neu-in lg:rounded-[30px] lg:p-5">
           {/* A portrait crop of hero-bg.png (its centre 4:5 slice, at full
               resolution). Loading the wide original left only ~460px of
               height to fill a ~1100px-tall retina canvas, so it was blurry. */}
@@ -59,7 +62,7 @@ export function Hero() {
             autoPlay
             paused={!isActive}
             onUserHover={() => setHintVisible(false)}
-            className="relative aspect-4/5 max-h-[calc(100svh-300px)] w-full animate-neu-float cursor-crosshair overflow-hidden rounded-[20px] will-change-transform"
+            className="relative aspect-video w-full animate-neu-float cursor-crosshair overflow-hidden rounded-[14px] will-change-transform lg:aspect-4/5 lg:max-h-[calc(100svh-300px)] lg:rounded-[20px]"
           >
             {/* Only where the effect runs: touch screens and reduced motion
                 get the photo in full colour instead. */}

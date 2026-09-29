@@ -15,27 +15,27 @@ export function Hero() {
     <section
       id="hero"
       aria-labelledby="hero-title"
-      className="mx-auto grid w-full max-w-310 grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16"
+      className="mx-auto grid w-full max-w-310 grid-cols-1 items-center gap-4 lg:grid-cols-2 lg:gap-16"
     >
       <div className="min-w-0">
-        <SectionLabel variant="inset" className="mb-6.5">
+        <SectionLabel variant="inset" className="mb-4 lg:mb-6.5">
           {HERO.eyebrow}
         </SectionLabel>
         <h1
           id="hero-title"
-          className="mb-6.5 font-serif text-[clamp(48px,6.4vw,96px)] leading-[1.02] font-normal text-balance"
+          className="mb-5 font-serif text-[clamp(38px,6.4vw,96px)] leading-[1.02] font-normal text-balance lg:mb-6.5"
         >
           {HERO.headingLine1}
           <br />
           <span className="text-tertiary italic">{HERO.headingLine2}</span>
         </h1>
-        <p className="mb-2 max-w-140 text-[19px] leading-[1.6] opacity-85">
+        <p className="mb-2 max-w-140 text-[17px] leading-[1.6] opacity-85 lg:text-[19px]">
           {HERO.body}
         </p>
-        <p className="mb-10 max-w-140 text-[19px] leading-[1.6] opacity-85">
+        <p className="mb-7 max-w-140 text-[17px] leading-[1.6] opacity-85 lg:mb-10 lg:text-[19px]">
           {HERO.status}
         </p>
-        <div className="flex flex-wrap gap-5">
+        <div className="flex flex-wrap gap-3 lg:gap-5">
           <PillLink href="#services" variant="cta" size="lg">
             {HERO.primaryCtaLabel}
           </PillLink>
@@ -52,8 +52,8 @@ export function Hero() {
           wide screens; once the hero stacks it becomes a short banner above
           the text, so the photo is in the first screen without pushing the
           headline out of it. */}
-      <div className="order-first w-full min-w-0 justify-self-center rounded-[28px] p-2.5 shadow-neu-out lg:order-none lg:max-w-130 lg:rounded-[44px] lg:p-4.5">
-        <div className="rounded-[20px] p-2.5 shadow-neu-in lg:rounded-[30px] lg:p-5">
+      <div className="order-first w-full min-w-0 justify-self-center rounded-[28px] p-2 shadow-neu-out lg:order-none lg:max-w-130 lg:rounded-[44px] lg:p-4.5">
+        <div className="rounded-[20px] p-2 shadow-neu-in lg:rounded-[30px] lg:p-5">
           {/* A portrait crop of hero-bg.png (its centre 4:5 slice, at full
               resolution). Loading the wide original left only ~460px of
               height to fill a ~1100px-tall retina canvas, so it was blurry. */}
@@ -62,7 +62,7 @@ export function Hero() {
             autoPlay
             paused={!isActive}
             onUserHover={() => setHintVisible(false)}
-            className="relative aspect-video w-full animate-neu-float cursor-crosshair overflow-hidden rounded-[14px] will-change-transform lg:aspect-4/5 lg:max-h-[calc(100svh-300px)] lg:rounded-[20px]"
+            className="relative aspect-5/2 w-full animate-neu-float cursor-crosshair overflow-hidden rounded-[14px] will-change-transform lg:aspect-4/5 lg:max-h-[calc(100svh-300px)] lg:rounded-[20px]"
           >
             {/* Only where the effect runs: touch screens and reduced motion
                 get the photo in full colour instead. */}

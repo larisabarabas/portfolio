@@ -195,7 +195,7 @@ export function SlideDeck({ slides }: SlideDeckProps) {
             }
             inert={isDesktop && i !== index}
             tabIndex={isDesktop ? -1 : undefined}
-            className="slide-panel flex min-h-svh px-[8vw] pt-24 pb-30 outline-none nav:min-h-0 nav:overflow-y-auto nav:overscroll-contain"
+            className="slide-panel flex min-h-svh px-[8vw] pt-20 pb-30 nav:pt-24 outline-none nav:min-h-0 nav:overflow-y-auto nav:overscroll-contain"
           >
             {/* Phones fade sections in on scroll; the hero is already on
                 screen. On desktop, Reveal stays inert because every slide

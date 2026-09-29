@@ -1,4 +1,3 @@
-import { ExternalMark } from "@/components/ui/ExternalMark";
 import type { ProjectBySlugQueryResult } from "@/lib/sanity/sanity.types";
 
 type Project = NonNullable<ProjectBySlugQueryResult>;
@@ -10,6 +9,9 @@ type MetaRowProps = {
   stackText?: Project["stackText"];
   metaLinks?: Project["metaLinks"];
 };
+
+const LABEL_CLASSES =
+  "mb-1 text-[11.5px] tracking-[0.08em] uppercase opacity-70";
 
 export function MetaRow({
   role,
@@ -31,38 +33,38 @@ export function MetaRow({
   }
 
   return (
-    <div className="flex flex-wrap gap-8 border-t border-b border-line py-6">
+    <dl className="flex flex-wrap gap-x-9 gap-y-3.5 rounded-card-lg px-6 py-4 shadow-neu-in-sm">
       {items.map((item) => (
         <div key={item.label}>
-          <p className="mb-1.5 text-xs tracking-[0.08em] uppercase opacity-70">
-            {item.label}
-          </p>
-          <p className="text-[15px] font-semibold">{item.value}</p>
+          <dt className={LABEL_CLASSES}>{item.label}</dt>
+          <dd className="text-[14.5px] font-semibold">{item.value}</dd>
         </div>
       ))}
       {metaLinks && metaLinks.length > 0 && (
         <div>
-          <p className="mb-1.5 text-xs tracking-[0.08em] uppercase opacity-70">
-            Links
-          </p>
-          <p className="flex flex-wrap gap-x-2 text-[15px] font-semibold">
+          <dt className={LABEL_CLASSES}>Links</dt>
+          <dd className="flex flex-wrap gap-x-2 text-[14.5px] font-semibold">
             {metaLinks.map((link, index) => (
               <span key={link._key}>
-                {index > 0 && <span className="mr-2 opacity-60">·</span>}
+                {index > 0 && (
+                  <span aria-hidden="true" className="mr-2 opacity-60">
+                    ·
+                  </span>
+                )}
                 <a
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-primary hover:text-primary-hover"
+                  className="text-primary hover:text-primary-hover"
                 >
                   {link.label.trim()}
-                  <ExternalMark />
+                  <span className="sr-only"> (opens in a new tab)</span>
                 </a>
               </span>
             ))}
-          </p>
+          </dd>
         </div>
       )}
-    </div>
+    </dl>
   );
 }

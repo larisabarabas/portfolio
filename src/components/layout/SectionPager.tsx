@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { NAV } from "@/lib/constants";
 
@@ -7,6 +8,8 @@ type SectionPagerProps = {
   items: { id: string; label: string }[];
   index: number;
   onSelect: (index: number) => void;
+  /** Extra link at the end of the section list, e.g. back to the portfolio. */
+  exitLink?: { href: string; label: string };
 };
 
 const STEP_BUTTON_CLASSES =
@@ -18,7 +21,12 @@ const pad = (n: number) => String(n + 1).padStart(2, "0");
 
 // Bottom-centre control: previous / current section (opens a list of every
 // section) / next. The only section navigation on phones.
-export function SectionPager({ items, index, onSelect }: SectionPagerProps) {
+export function SectionPager({
+  items,
+  index,
+  onSelect,
+  exitLink,
+}: SectionPagerProps) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -103,6 +111,22 @@ export function SectionPager({ items, index, onSelect }: SectionPagerProps) {
             </li>
           );
         })}
+        {exitLink ? (
+          <li className="mt-1.5 border-t border-line pt-1.5">
+            <Link
+              href={exitLink.href}
+              className="flex w-full items-center gap-3.5 rounded-[18px] px-3 py-1.75 text-sm font-semibold text-ink transition-colors duration-300 hover:text-primary"
+            >
+              <span
+                aria-hidden="true"
+                className="flex size-8 flex-none items-center justify-center rounded-full text-primary shadow-neu-out-sm"
+              >
+                ←
+              </span>
+              {exitLink.label}
+            </Link>
+          </li>
+        ) : null}
       </ul>
 
       <button

@@ -35,7 +35,8 @@ export function ThemeToggle() {
 
   // The inline script only runs on full page loads. This covers arriving here
   // via client-side navigation, and React clearing the attribute on the dev
-  // Strict Mode remount. The cleanup keeps dark mode off the case studies.
+  // Strict Mode remount. The cleanup keeps dark mode off pages without a
+  // toggle, such as /studio.
   useLayoutEffect(() => {
     const root = document.documentElement;
     root.dataset.theme = readTheme();

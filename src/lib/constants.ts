@@ -271,8 +271,8 @@ export const CASE_STUDY = {
   uxFlowHeading: "UX flow",
   uxFlowPlaceholderDefault: "Drop the flow diagram",
   decisionsHeading: "Key decisions & tradeoffs",
+  decisionsNavLabel: "Decisions",
   outcomeHeadingDefault: "Outcome",
-  backToPortfolioCtaLabel: "Back to portfolio",
 };
 
 export const FOOTER = {

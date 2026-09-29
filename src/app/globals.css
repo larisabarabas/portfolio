@@ -70,8 +70,8 @@
   --cta-dk: rgba(90, 74, 115, 0.35);
 }
 
-/* Only ever set on the home page (see the theme script in layout.tsx), so the
-   case-study pages always render light. Screen only: printing always uses the
+/* Only ever set on the home page and case studies (see the theme script in
+   layout.tsx and ThemeToggle), so /studio always renders light. Screen only: printing always uses the
    light palette, since browsers drop backgrounds and light text would vanish. */
 @media screen {
   :root[data-theme="dark"] {

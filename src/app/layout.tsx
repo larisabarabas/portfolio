@@ -44,9 +44,10 @@ export const metadata: Metadata = {
 };
 
 // Sets the theme before first paint so dark-mode visitors don't see a light
-// flash. Home page only: the case studies haven't been redesigned for dark
-// mode yet. Must agree with readTheme() in ThemeToggle.
-const THEME_SCRIPT = `(function(){try{if(location.pathname!=="/")return;var t=localStorage.getItem("${THEME_STORAGE_KEY}");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
+// flash. Home page and case studies only (the pages with a ThemeToggle); the
+// embedded Sanity Studio keeps its own look. Must agree with readTheme() in
+// ThemeToggle.
+const THEME_SCRIPT = `(function(){try{var p=location.pathname;if(p!=="/"&&p.indexOf("/work/")!==0)return;var t=localStorage.getItem("${THEME_STORAGE_KEY}");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
 
 export default function RootLayout(props: LayoutProps<"/">) {
   return (

@@ -1,8 +1,7 @@
-import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { CASE_STUDY } from "@/lib/constants";
+import { PillLink } from "@/components/ui/PillLink";
 
 type CaseStudyOutcomeProps = {
+  id: string;
   heading: string;
   body?: string | null;
   ctaLabel?: string | null;
@@ -10,41 +9,52 @@ type CaseStudyOutcomeProps = {
 };
 
 export function CaseStudyOutcome({
+  id,
   heading,
   body,
   ctaLabel,
   ctaUrl,
 }: CaseStudyOutcomeProps) {
+  const paragraphs = (body ?? "")
+    .split(/\n+/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+
   return (
-    <section className="px-[8vw] pb-30">
-      <div className="mx-auto max-w-230">
-        <h2 className="mb-4 font-serif text-[32px] font-normal">{heading}</h2>
-        {body && (
-          <div className="mb-8 space-y-4 text-[17px] leading-[1.75] opacity-85">
-            {body
-              .split(/\n+/)
-              .map((paragraph) => paragraph.trim())
-              .filter(Boolean)
-              .map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
+    <section
+      id={id}
+      aria-labelledby={`${id}-title`}
+      className="scroll-mt-24 px-[8vw] pt-22 pb-35"
+    >
+      <div className="mx-auto max-w-310">
+        <h2
+          id={`${id}-title`}
+          className="mb-6 font-serif text-[clamp(30px,3.4vw,40px)] font-normal"
+        >
+          {heading}
+        </h2>
+        {paragraphs.length > 0 && (
+          <div className="flex flex-col gap-4.5 rounded-[32px] bg-bg p-[clamp(24px,3.4vw,36px)] shadow-neu-out">
+            {/* The first paragraph is the headline result. */}
+            {paragraphs.map((paragraph, index) => (
+              <p
+                key={paragraph}
+                className={`max-w-190 text-[17px] leading-[1.75] ${
+                  index === 0 ? "font-medium text-tertiary" : "opacity-85"
+                }`}
+              >
+                {paragraph}
+              </p>
+            ))}
           </div>
         )}
-        <div className="flex flex-wrap gap-4">
-          {ctaLabel && ctaUrl && (
-            <Button href={ctaUrl} external>
+        {ctaLabel && ctaUrl && (
+          <div className="mt-10 flex flex-wrap gap-5">
+            <PillLink href={ctaUrl} variant="cta" external>
               {ctaLabel}
-            </Button>
-          )}
-          <Button
-            href="/#work"
-            variant="outline"
-            icon={ArrowLeft}
-            iconPosition="start"
-          >
-            {CASE_STUDY.backToPortfolioCtaLabel}
-          </Button>
-        </div>
+            </PillLink>
+          </div>
+        )}
       </div>
     </section>
   );

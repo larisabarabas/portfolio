@@ -42,7 +42,7 @@ export function Contact() {
           ))}
         </div>
       </div>
-      <p className="mt-8 text-center text-[13px] opacity-60">
+      <p className="mt-8 text-center text-[13px] opacity-70">
         {FOOTER.copyright}
       </p>
     </section>

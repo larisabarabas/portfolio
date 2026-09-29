@@ -37,9 +37,7 @@ export function About() {
         <ul className="flex flex-wrap gap-3.5">
           {ABOUT.statChips.map((chip) => (
             <li key={chip}>
-              <Chip variant="raised" size="lg">
-                {chip}
-              </Chip>
+              <Chip size="lg">{chip}</Chip>
             </li>
           ))}
         </ul>

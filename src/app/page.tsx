@@ -1,6 +1,8 @@
+import type { ReactNode } from "react";
 import { Logo } from "@/components/layout/Logo";
-import { type Slide, SlideDeck } from "@/components/layout/SlideDeck";
+import { SectionNav } from "@/components/layout/SectionNav";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { TopBar } from "@/components/layout/TopBar";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { DevNotes } from "@/components/sections/DevNotes";
@@ -10,6 +12,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
 import { Skills } from "@/components/sections/Skills";
 import { WorkSection } from "@/components/sections/WorkSection";
+import { Reveal } from "@/components/ui/Reveal";
 import { SECTION_LABELS } from "@/lib/constants";
 import { sanityFetch } from "@/lib/sanity/fetch";
 import {
@@ -43,7 +46,7 @@ export default async function Home() {
       }),
     ]);
 
-  const slides: Slide[] = [
+  const sections: { id: string; label: string; content: ReactNode }[] = [
     { id: "hero", label: SECTION_LABELS.hero, content: <Hero /> },
     { id: "services", label: SECTION_LABELS.services, content: <Services /> },
     {
@@ -83,9 +86,24 @@ export default async function Home() {
       >
         Skip to content
       </a>
-      <Logo />
-      <ThemeToggle />
-      <SlideDeck slides={slides} />
+      <TopBar>
+        <Logo />
+        <ThemeToggle />
+      </TopBar>
+      {/* Each section fills at least one screen, content centred, and fades
+          in as it scrolls into view (the hero is already on screen). */}
+      <main id="main" className="snap-sections">
+        {sections.map(({ id, content }) => (
+          <div key={id} className="flex min-h-svh px-[8vw] pt-24 pb-30">
+            {id === "hero" ? (
+              <div className="my-auto flex w-full">{content}</div>
+            ) : (
+              <Reveal className="my-auto flex w-full">{content}</Reveal>
+            )}
+          </div>
+        ))}
+      </main>
+      <SectionNav items={sections.map(({ id, label }) => ({ id, label }))} />
     </>
   );
 }

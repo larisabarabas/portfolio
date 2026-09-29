@@ -52,7 +52,7 @@ export function SectionPager({ items, index, onSelect }: SectionPagerProps) {
     <nav
       ref={rootRef}
       aria-label={NAV.menuLabel}
-      className="fixed bottom-5.5 left-1/2 z-50 flex -translate-x-1/2 items-center gap-3.5 rounded-pill bg-bg p-2 shadow-neu-out-sm"
+      className="fixed bottom-5.5 left-1/2 z-50 flex -translate-x-1/2 items-center gap-3.5 rounded-pill bg-bg p-2 shadow-neu-out-sm print:hidden"
     >
       <button
         type="button"
@@ -66,7 +66,6 @@ export function SectionPager({ items, index, onSelect }: SectionPagerProps) {
 
       <ul
         id={menuId}
-        data-slide-nav
         inert={!open}
         style={{
           transition: `opacity .35s ease, scale .45s ${MENU_EASE}, translate .45s ${MENU_EASE}, visibility 0s linear ${open ? "0s" : ".45s"}`,

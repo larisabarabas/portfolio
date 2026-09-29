@@ -101,8 +101,6 @@ type SaturationFocusImageProps = {
    * ring showing where), so visitors see the effect before they find it.
    */
   autoPlay?: boolean;
-  /** Stop rendering entirely, e.g. while the image is on a hidden slide. */
-  paused?: boolean;
   /** Called the first time a real pointer enters the image. */
   onUserHover?: () => void;
   children?: ReactNode;
@@ -118,15 +116,12 @@ export function SaturationFocusImage({
   alt = "",
   className,
   autoPlay = false,
-  paused = false,
   onUserHover,
   children,
 }: SaturationFocusImageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
-  const pausedRef = useRef(paused);
-  const loop = useRef<{ start: () => void; stop: () => void } | null>(null);
   const handleUserHover = useEffectEvent(() => onUserHover?.());
   const targetMouse = useRef({ x: 0.5, y: 0.5 });
   const mouse = useRef({ x: 0.5, y: 0.5 });
@@ -376,14 +371,7 @@ export function SaturationFocusImage({
       rafId = 0;
     };
     const startLoop = () => {
-      if (
-        running ||
-        contextLost ||
-        cancelled ||
-        !inView ||
-        document.hidden ||
-        pausedRef.current
-      ) {
+      if (running || contextLost || cancelled || !inView || document.hidden) {
         return;
       }
       running = true;
@@ -406,22 +394,10 @@ export function SaturationFocusImage({
     };
     document.addEventListener("visibilitychange", onVisibilityChange);
 
-    loop.current = {
-      start: () => {
-        autoResumeAt = performance.now() + AUTO_START_DELAY_MS;
-        startLoop();
-      },
-      stop: () => {
-        stopLoop();
-        setAutoOn(false);
-        targetHover.current = 0;
-      },
-    };
     startLoop();
 
     return () => {
       cancelled = true;
-      loop.current = null;
       stopLoop();
       visibilityObserver.disconnect();
       document.removeEventListener("visibilitychange", onVisibilityChange);
@@ -437,12 +413,6 @@ export function SaturationFocusImage({
       gl.deleteTexture(texture);
     };
   }, [src, autoPlay]);
-
-  useEffect(() => {
-    pausedRef.current = paused;
-    if (paused) loop.current?.stop();
-    else loop.current?.start();
-  }, [paused]);
 
   return (
     <div ref={containerRef} className={className}>

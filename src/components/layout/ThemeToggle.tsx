@@ -61,7 +61,7 @@ export function ThemeToggle() {
       aria-checked={isDark}
       aria-label={NAV.themeLabel}
       onClick={toggle}
-      className="fixed top-4.5 right-5 z-60 flex h-11 w-19 cursor-pointer items-center rounded-pill bg-bg p-1.5 shadow-neu-in-sm"
+      className="flex h-11 w-19 cursor-pointer items-center rounded-pill bg-bg p-1.5 shadow-neu-in-sm"
     >
       <span
         aria-hidden="true"

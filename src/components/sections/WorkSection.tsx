@@ -22,7 +22,7 @@ export function WorkSection({ projects }: WorkSectionProps) {
         {WORK.heading}
       </h2>
       {projects.length > 0 ? (
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] items-start gap-9">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-9">
           {projects.map((project) => (
             <WorkCard key={project._id} project={project} />
           ))}

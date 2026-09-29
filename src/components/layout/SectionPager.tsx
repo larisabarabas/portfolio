@@ -66,6 +66,7 @@ export function SectionPager({ items, index, onSelect }: SectionPagerProps) {
 
       <ul
         id={menuId}
+        data-slide-nav
         inert={!open}
         style={{
           transition: `opacity .35s ease, scale .45s ${MENU_EASE}, translate .45s ${MENU_EASE}, visibility 0s linear ${open ? "0s" : ".45s"}`,

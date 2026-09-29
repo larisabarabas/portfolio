@@ -56,6 +56,8 @@
     4px 4px 10px rgba(90, 74, 115, 0.35), -4px -4px 10px var(--neu-lt);
   --shadow-cta: 6px 6px 16px var(--cta-dk), -6px -6px 16px var(--neu-lt);
 
+  --ease-slide: cubic-bezier(0.77, 0, 0.18, 1);
+
   --animate-hero-in: heroIn 0.9s ease both;
   --animate-bg-reveal: bgReveal 1.6s ease both;
   --animate-fade-up: fadeUp 0.7s ease both;
@@ -173,24 +175,89 @@
 }
 
 @layer components {
-  /* Home page: normal scrolling, with each section gently settling into place
-     when a scroll ends near its top. The margin keeps headings clear of the
-     top bar, and also applies to #links and the pager. */
-  :root:has(.snap-sections) {
-    scroll-snap-type: y proximity;
+  /* Phones: the home page scrolls normally, each section gently settling into
+     place when a scroll ends near its top. The margin keeps headings clear of
+     the top bar, and also applies to #links and the pager. */
+  @media (width < 47.5rem) {
+    :root:has(.snap-sections) {
+      scroll-snap-type: y proximity;
+    }
+
+    .snap-sections section[id] {
+      scroll-snap-align: start;
+      scroll-margin-top: 6rem;
+    }
+
+    /* The hero is vertically centred, so 6rem above it is still ~90px down
+       the page: snapping there would stop the page from ever resting at the
+       top. A full-screen margin puts its snap point (and #hero) below 0,
+       which the browser clamps to the very top. */
+    .snap-sections #hero {
+      scroll-margin-top: 100vh;
+    }
   }
 
-  .snap-sections section[id] {
-    scroll-snap-align: start;
-    scroll-margin-top: 6rem;
-  }
+  /* Desktop: slides with the "rise" transition. Every panel is stacked
+     full-screen; the current one fades in and scales from 0.94 (moving
+     forward) or 1.04 (moving back), and its content drifts in 70px from the
+     travel direction. Outgoing panels stay visible for 1s so the crossfade
+     can finish. */
+  @media (width >= 47.5rem) {
+    .slide-panel {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: scale(0.94);
+      transition:
+        opacity 0.8s ease,
+        transform 1s var(--ease-slide),
+        visibility 0s linear 1s;
+    }
 
-  /* The hero is vertically centred, so 6rem above it is still ~90px down the
-     page: snapping there would stop the page from ever resting at the top.
-     A full-screen margin puts its snap point (and #hero) below 0, which the
-     browser clamps to the very top. */
-  .snap-sections #hero {
-    scroll-margin-top: 100vh;
+    .slide-panel[data-position="before"] {
+      transform: scale(1.04);
+    }
+
+    .slide-panel[data-position="current"] {
+      z-index: 2;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: none;
+      transition:
+        opacity 0.8s ease,
+        transform 1s var(--ease-slide),
+        visibility 0s linear 0s;
+    }
+
+    .slide-content {
+      opacity: 0;
+      transform: translateX(70px);
+      transition:
+        opacity 0.4s ease,
+        transform 1s var(--ease-slide);
+    }
+
+    .slide-panel[data-position="before"] .slide-content {
+      transform: translateX(-70px);
+    }
+
+    .slide-panel[data-position="current"] .slide-content {
+      opacity: 1;
+      transform: none;
+      transition:
+        opacity 0.8s ease 0.4s,
+        transform 1s var(--ease-slide) 0.25s;
+    }
+
+    /* Landing straight on a deep link (/#work) shouldn't animate through. */
+    [data-instant] .slide-panel,
+    [data-instant] .slide-content {
+      transition: none;
+    }
   }
 }
 
@@ -218,8 +285,25 @@
     transform: none !important;
   }
 
+  /* Paper is wider than the desktop breakpoint, so undo the slide stacking:
+     every section prints, one after another. */
+  .snap-sections {
+    position: static;
+    overflow: visible;
+  }
+
   .snap-sections > * {
+    position: static;
     min-height: 0;
     padding-block: 1.5rem;
+    overflow: visible;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .snap-sections .slide-content {
+    opacity: 1;
+    transform: none;
   }
 }

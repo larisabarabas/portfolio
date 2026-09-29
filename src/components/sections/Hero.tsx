@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useIsActiveSlide } from "@/components/layout/SlideDeck";
 import { PillLink } from "@/components/ui/PillLink";
 import { SaturationFocusImage } from "@/components/ui/SaturationFocusImage";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { EMAIL, HERO } from "@/lib/constants";
 
 export function Hero() {
+  const isActive = useIsActiveSlide("hero");
   const [hintVisible, setHintVisible] = useState(true);
 
   return (
@@ -55,6 +57,7 @@ export function Hero() {
           <SaturationFocusImage
             src="/_next/image?url=%2Fhero-portrait.jpg&w=1200&q=75"
             autoPlay
+            paused={!isActive}
             onUserHover={() => setHintVisible(false)}
             className="relative aspect-4/5 max-h-[calc(100svh-300px)] w-full animate-neu-float cursor-crosshair overflow-hidden rounded-[20px] will-change-transform"
           >

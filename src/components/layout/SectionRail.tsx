@@ -3,12 +3,13 @@ import { NAV } from "@/lib/constants";
 type SectionRailProps = {
   items: { id: string; label: string }[];
   index: number;
+  onSelect: (index: number) => void;
 };
 
 // Desktop-only dot rail; on phones it would sit on top of the content, so the
 // pager is the only navigation there. Each dot shows its label on hover and
 // keyboard focus.
-export function SectionRail({ items, index }: SectionRailProps) {
+export function SectionRail({ items, index, onSelect }: SectionRailProps) {
   return (
     <nav
       aria-label={NAV.railLabel}
@@ -22,6 +23,10 @@ export function SectionRail({ items, index }: SectionRailProps) {
             href={`#${id}`}
             aria-label={label}
             aria-current={isCurrent ? "true" : undefined}
+            onClick={(e) => {
+              e.preventDefault();
+              onSelect(i);
+            }}
             className="group relative flex size-4 items-center justify-center rounded-full shadow-neu-in-sm"
           >
             <span

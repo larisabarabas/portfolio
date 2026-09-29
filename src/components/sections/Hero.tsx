@@ -7,6 +7,18 @@ import { SaturationFocusImage } from "@/components/ui/SaturationFocusImage";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { EMAIL, HERO } from "@/lib/constants";
 
+// The same 4:5 portrait crop at three sizes, via the Next image optimizer
+// (widths from its default size list). A phone banner loads the 640px one;
+// the desktop frame the 1200px one.
+const HERO_IMAGE_WIDTHS = [640, 828, 1200];
+const heroImageUrl = (width: number) =>
+  `/_next/image?url=%2Fhero-portrait.jpg&w=${width}&q=75`;
+const HERO_IMAGE_SOURCES = HERO_IMAGE_WIDTHS.map((width) => ({
+  src: heroImageUrl(width),
+  width,
+  height: Math.round((width * 5) / 4),
+}));
+
 export function Hero() {
   const isActive = useIsActiveSlide("hero");
   const [hintVisible, setHintVisible] = useState(true);
@@ -61,7 +73,8 @@ export function Hero() {
               resolution). Loading the wide original left only ~460px of
               height to fill a ~1100px-tall retina canvas, so it was blurry. */}
           <SaturationFocusImage
-            src="/_next/image?url=%2Fhero-portrait.jpg&w=1200&q=75"
+            src={heroImageUrl(1200)}
+            sources={HERO_IMAGE_SOURCES}
             autoPlay
             paused={!isActive}
             onUserHover={() => setHintVisible(false)}

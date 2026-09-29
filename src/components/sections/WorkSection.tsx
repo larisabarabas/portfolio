@@ -11,16 +11,20 @@ export function WorkSection({ projects }: WorkSectionProps) {
   return (
     <section
       id="work"
-      className="mx-auto box-content max-w-310 px-[8vw] pt-45 pb-25"
+      aria-labelledby="work-title"
+      className="mx-auto w-full max-w-310"
     >
       <SectionLabel>{WORK.eyebrow}</SectionLabel>
-      <h2 className="mb-15 max-w-175 font-serif text-[clamp(32px,4vw,52px)] font-normal">
+      <h2
+        id="work-title"
+        className="mb-9 max-w-170 font-serif text-[clamp(28px,3.4vw,42px)] font-normal"
+      >
         {WORK.heading}
       </h2>
       {projects.length > 0 ? (
-        <div className="flex flex-col gap-25">
-          {projects.map((project, index) => (
-            <WorkCard key={project._id} project={project} index={index} />
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-9">
+          {projects.map((project) => (
+            <WorkCard key={project._id} project={project} />
           ))}
         </div>
       ) : (

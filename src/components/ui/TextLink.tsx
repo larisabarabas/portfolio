@@ -1,14 +1,14 @@
 import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
-import { ExternalMark } from "@/components/ui/ExternalMark";
 
 type TextLinkColor = "primary" | "tertiary" | "ink";
 
 type TextLinkProps = {
   href: string;
   color?: TextLinkColor;
+  size?: "sm" | "md";
   external?: boolean;
-  /** Trailing icon for internal links; external links get ↗ automatically. */
+  /** Trailing icon, e.g. an arrow. */
   icon?: LucideIcon;
   children: ReactNode;
 };
@@ -16,14 +16,13 @@ type TextLinkProps = {
 const COLOR_CLASSES: Record<TextLinkColor, string> = {
   primary: "border-primary",
   tertiary: "border-tertiary",
-  // Ink text, not the inherited magenta: magenta at 75% opacity is only
-  // 3.2:1 on bg, ink at 75% is 6.2:1.
-  ink: "border-ink text-ink opacity-75 transition-opacity hover:opacity-100",
+  ink: "border-ink text-ink",
 };
 
 export function TextLink({
   href,
   color = "primary",
+  size = "md",
   external = false,
   icon: Icon,
   children,
@@ -33,11 +32,11 @@ export function TextLink({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className={`inline-flex items-center gap-1 border-b-2 text-[15px] font-semibold ${COLOR_CLASSES[color]}`}
+      className={`inline-flex items-center gap-1 border-b-2 font-semibold ${size === "sm" ? "text-sm" : "text-[15px]"} ${COLOR_CLASSES[color]}`}
     >
       {children}
       {Icon && <Icon size={16} strokeWidth={2.25} className="shrink-0" />}
-      {external && <ExternalMark />}
+      {external && <span className="sr-only"> (opens in a new tab)</span>}
     </a>
   );
 }

@@ -1,17 +1,39 @@
+import Link from "next/link";
 import { LOGO_TEXT } from "@/lib/constants";
 
-export function Logo() {
-  return (
-    // Plain fragment anchor, not next/link: the logo only renders on the home
-    // page, and a same-page `<Link href="/#main">` doesn't scroll to the anchor
-    // in a production build (the router treats it as a no-op navigation).
-    <a
-      href="#main"
-      aria-label={`${LOGO_TEXT} — back to top`}
-      className="absolute top-5.5 left-7 z-50 hidden items-baseline md:flex gap-0.5 font-serif text-2xl italic font-bold text-tertiary no-underline transition-colors hover:text-primary"
-    >
+type LogoProps = {
+  href: string;
+};
+
+const CLASSES =
+  "flex items-baseline gap-0.5 font-serif text-[28px] leading-none font-bold text-tertiary italic no-underline transition-colors hover:text-primary";
+
+export function Logo({ href }: LogoProps) {
+  const content = (
+    <>
       {LOGO_TEXT}
       <span className="text-primary">.</span>
-    </a>
+    </>
+  );
+
+  // Same-page anchors stay plain <a>: the home page's slide deck intercepts
+  // them, and a same-page `<Link href="/#hero">` doesn't scroll to the anchor
+  // in a production build (the router treats it as a no-op navigation).
+  if (href.startsWith("#")) {
+    return (
+      <a
+        href={href}
+        aria-label={`${LOGO_TEXT} — back to the start`}
+        className={CLASSES}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} aria-label={`${LOGO_TEXT} — home`} className={CLASSES}>
+      {content}
+    </Link>
   );
 }

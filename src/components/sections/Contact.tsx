@@ -1,43 +1,63 @@
-import { Button } from "@/components/ui/Button";
-import { Reveal } from "@/components/ui/Reveal";
+import { PillLink } from "@/components/ui/PillLink";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { TextLink } from "@/components/ui/TextLink";
-import { CONTACT, EMAIL, FOOTER } from "@/lib/constants";
+import {
+  BOOK_CALL_LABEL,
+  CALENDLY_URL,
+  CONTACT,
+  EMAIL,
+  FOOTER,
+} from "@/lib/constants";
+
+const SECONDARY_LINKS = [
+  { href: CONTACT.linkedinUrl, label: CONTACT.linkedinLabel },
+  { href: CONTACT.githubUrl, label: CONTACT.githubLabel },
+  { href: CONTACT.resumeHref, label: CONTACT.resumeCtaLabel },
+  { href: CONTACT.devNotesUrl, label: CONTACT.devNotesLabel },
+];
 
 export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden px-[8vw] pt-35 pb-22.5 text-center"
+      aria-labelledby="contact-title"
+      className="mx-auto w-full max-w-275"
     >
-      <div className="pointer-events-none absolute top-0 left-1/2 h-150 w-150 -translate-x-1/2 translate-y-[-40%] rounded-full bg-[radial-gradient(circle,var(--color-primary),transparent_70%)] opacity-25 blur-[20px]" />
-      <Reveal className="relative">
-        <SectionLabel>{CONTACT.eyebrow}</SectionLabel>
-        <h2 className="mb-6 font-serif text-[clamp(40px,6vw,76px)] font-normal">
+      <div className="rounded-[44px] bg-bg px-[clamp(22px,5vw,64px)] py-[clamp(40px,6vw,88px)] text-center shadow-neu-out">
+        <SectionLabel variant="inset" className="mb-6">
+          {CONTACT.eyebrow}
+        </SectionLabel>
+        <h2
+          id="contact-title"
+          className="mx-auto mb-6 max-w-225 font-serif text-[clamp(40px,6vw,76px)] leading-[1.05] font-normal text-balance"
+        >
           {CONTACT.heading}
         </h2>
-        <p className="mx-auto mb-10 max-w-130 text-[17px] opacity-85">
+        <p className="mx-auto mb-11 max-w-135 text-[17px] leading-[1.6] opacity-85">
           {CONTACT.body}
         </p>
-        {/* One primary action; everything else is secondary so it doesn't
-            compete with the email. */}
-        <Button href={`mailto:${EMAIL}`}>{EMAIL}</Button>
-        <div className="mt-8 flex flex-wrap justify-center gap-x-7 gap-y-4">
-          <TextLink href={CONTACT.linkedinUrl} color="ink" external>
-            {CONTACT.linkedinLabel}
-          </TextLink>
-          <TextLink href={CONTACT.githubUrl} color="ink" external>
-            {CONTACT.githubLabel}
-          </TextLink>
-          <TextLink href={CONTACT.resumeHref} color="ink" external>
-            {CONTACT.resumeCtaLabel}
-          </TextLink>
-          <TextLink href={CONTACT.devNotesUrl} color="ink" external>
-            {CONTACT.devNotesLabel}
-          </TextLink>
+        {/* Two ways to start: booking a call (the one coloured action) or
+            email, with the address visible for people who'd rather copy it.
+            The other links sit below as plain text so they don't compete. */}
+        <div className="flex flex-wrap justify-center gap-5">
+          <PillLink href={CALENDLY_URL} variant="cta" external>
+            {BOOK_CALL_LABEL}
+          </PillLink>
+          <PillLink href={`mailto:${EMAIL}`}>{EMAIL}</PillLink>
         </div>
-        <p className="mt-17.5 text-[13px] opacity-70">{FOOTER.copyright}</p>
-      </Reveal>
+        <ul className="mt-9 flex flex-wrap justify-center gap-x-7 gap-y-4">
+          {SECONDARY_LINKS.map((link) => (
+            <li key={link.label}>
+              <TextLink href={link.href} color="ink" size="sm" external>
+                {link.label}
+              </TextLink>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <p className="mt-8 text-center text-[13px] opacity-70">
+        {FOOTER.copyright}
+      </p>
     </section>
   );
 }

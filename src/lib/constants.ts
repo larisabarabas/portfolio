@@ -2,21 +2,46 @@ export const LOGO_TEXT = "stefania";
 
 export const EMAIL = "stef@stefaniabarabas.com";
 
+// 20-minute intro call. A plain link (opens Calendly in a new tab) rather
+// than their embed widget, which would load Calendly's script and cookies on
+// every visit.
+export const CALENDLY_URL = "https://calendly.com/stef-stefaniabarabas/20min";
+export const BOOK_CALL_LABEL = "Book a 20-min call";
+
 // One title everywhere (page title, meta, OG image, hero) so every surface
 // describes the same person.
 export const JOB_TITLE = "Senior engineer and designer";
 
 export const SITE_DESCRIPTION = `${JOB_TITLE} working across product, design, and AI. I find where users stall or give up, then design the fix and build it.`;
 
-export const NAV_LINKS = [
-  { id: "services", label: "Services" },
-  { id: "work", label: "Work" },
-  { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
-  { id: "skills", label: "Skills" },
-  { id: "devnotes", label: "Writing" },
-  { id: "contact", label: "Contact" },
-] as const;
+// localStorage key for the light/dark choice. Read by the inline script in
+// layout.tsx and by ThemeToggle, so they must agree.
+export const THEME_STORAGE_KEY = "stef-theme";
+
+// Home page slides, in order. Labels show in the section rail and pager.
+export const SECTION_LABELS = {
+  hero: "Intro",
+  services: "Services",
+  work: "Work",
+  about: "About",
+  skills: "Skills",
+  experience: "Experience",
+  experiments: "Experiments",
+  devnotes: "Writing",
+  contact: "Contact",
+} as const;
+
+// Fired on window by the home page's SlideDeck after the current slide
+// changes (desktop), so the header can re-check how far the slide scrolled.
+export const SLIDE_CHANGE_EVENT = "slidechange";
+
+export const NAV = {
+  railLabel: "Sections",
+  menuLabel: "All sections",
+  previousLabel: "Previous section",
+  nextLabel: "Next section",
+  themeLabel: "Dark theme",
+};
 
 export const HERO = {
   eyebrow: JOB_TITLE,
@@ -26,8 +51,7 @@ export const HERO = {
   status:
     "I find where users stall or give up, then design the fix and build it myself.",
   primaryCtaLabel: "How I can help",
-  secondaryCtaLabel: "Tell me about your project",
-  secondaryCtaSubject: "Project inquiry",
+  imageHint: "Hover to see it in color",
 };
 
 export const ABOUT = {
@@ -168,8 +192,8 @@ export const SKILLS = {
     },
     {
       label: "Product & UX",
-      tone: "solid" as const,
-      color: "tertiary" as const,
+      tone: "outline" as const,
+      color: "primary" as const,
       items: [
         "User flows",
         "Prototyping",
@@ -255,8 +279,8 @@ export const CASE_STUDY = {
   uxFlowHeading: "UX flow",
   uxFlowPlaceholderDefault: "Drop the flow diagram",
   decisionsHeading: "Key decisions & tradeoffs",
+  decisionsNavLabel: "Decisions",
   outcomeHeadingDefault: "Outcome",
-  backToPortfolioCtaLabel: "Back to portfolio",
 };
 
 export const FOOTER = {

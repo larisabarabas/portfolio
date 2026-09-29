@@ -4,11 +4,24 @@ import { type RefObject, useEffect, useEffectEvent, useRef } from "react";
 
 // After a slide change, ignore the wheel for this long so one flick of a
 // trackpad (which keeps firing momentum events) moves exactly one slide.
-const WHEEL_LOCK_MS = 1000;
+const WHEEL_LOCK_MS = 700;
 // A slide whose content scrolls has to be held at its top/bottom edge this
 // long before the wheel moves on, so reaching the end doesn't skip ahead.
 const EDGE_DWELL_MS = 350;
 const SWIPE_MIN_PX = 70;
+// Page Up/Down scroll a tall slide by this share of its height, keeping a
+// few lines of overlap so the reader doesn't lose their place.
+const PAGE_SCROLL_RATIO = 0.85;
+
+function isScrollable(panel: HTMLElement | null | undefined) {
+  return panel != null && panel.scrollHeight > panel.clientHeight + 4;
+}
+
+function isAtEdge(panel: HTMLElement, down: boolean) {
+  return down
+    ? panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 2
+    : panel.scrollTop <= 0;
+}
 
 // Keys inside these belong to the element, not to slide navigation.
 const OWN_KEYS_SELECTOR =
@@ -45,6 +58,9 @@ export function useSlideNavigation({
     edgeSince.current = null;
   }, [index]);
 
+  const currentPanel = () =>
+    deckRef.current?.querySelector<HTMLElement>(`[data-slide="${index}"]`);
+
   const onWheel = useEffectEvent((e: WheelEvent) => {
     if (!enabled) return;
     if (e.ctrlKey || Date.now() < lockUntil.current) return;
@@ -59,20 +75,13 @@ export function useSlideNavigation({
     if (ay < 12) return;
 
     const down = e.deltaY > 0;
-    const panel = deckRef.current?.querySelector<HTMLElement>(
-      `[data-slide="${index}"]`,
-    );
-    const scrollable =
-      panel != null && panel.scrollHeight > panel.clientHeight + 4;
-    if (!scrollable) {
+    const panel = currentPanel();
+    if (!panel || !isScrollable(panel)) {
       go(index + (down ? 1 : -1));
       return;
     }
 
-    const atEdge = down
-      ? panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 2
-      : panel.scrollTop <= 0;
-    if (!atEdge) {
+    if (!isAtEdge(panel, down)) {
       edgeSince.current = null;
       return;
     }
@@ -91,12 +100,30 @@ export function useSlideNavigation({
 
     let target: number;
     switch (e.key) {
-      case "ArrowRight":
       case "PageDown":
+      case "PageUp": {
+        // In a slide taller than the screen, page through it first; move on
+        // only once it's already at that edge.
+        const down = e.key === "PageDown";
+        const panel = currentPanel();
+        if (panel && isScrollable(panel) && !isAtEdge(panel, down)) {
+          e.preventDefault();
+          const reduced = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+          ).matches;
+          panel.scrollBy({
+            top: (down ? 1 : -1) * panel.clientHeight * PAGE_SCROLL_RATIO,
+            behavior: reduced ? "auto" : "smooth",
+          });
+          return;
+        }
+        target = index + (down ? 1 : -1);
+        break;
+      }
+      case "ArrowRight":
         target = index + 1;
         break;
       case "ArrowLeft":
-      case "PageUp":
         target = index - 1;
         break;
       case "Home":

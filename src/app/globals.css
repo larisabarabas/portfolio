@@ -200,9 +200,18 @@
   /* Desktop: slides with the "rise" transition. Every panel is stacked
      full-screen; the current one fades in and scales from 0.94 (moving
      forward) or 1.04 (moving back), and its content drifts in 70px from the
-     travel direction. Outgoing panels stay visible for 1s so the crossfade
-     can finish. */
+     travel direction. Fades are short (content readable after ~0.65s) so
+     skimming all the slides stays quick; the movement keeps its 1s curve.
+     Outgoing panels stay visible for 1s so the crossfade can finish. */
   @media (width >= 47.5rem) {
+    /* The deck uses sideways trackpad swipes, so the browser mustn't also
+       treat them as its Back gesture. Home page only: the case studies keep
+       swipe-to-go-back. */
+    :root:has(.snap-sections),
+    :root:has(.snap-sections) body {
+      overscroll-behavior-x: none;
+    }
+
     .slide-panel {
       position: absolute;
       inset: 0;
@@ -212,7 +221,7 @@
       pointer-events: none;
       transform: scale(0.94);
       transition:
-        opacity 0.8s ease,
+        opacity 0.5s ease,
         transform 1s var(--ease-slide),
         visibility 0s linear 1s;
     }
@@ -228,7 +237,7 @@
       pointer-events: auto;
       transform: none;
       transition:
-        opacity 0.8s ease,
+        opacity 0.5s ease,
         transform 1s var(--ease-slide),
         visibility 0s linear 0s;
     }
@@ -237,7 +246,7 @@
       opacity: 0;
       transform: translateX(70px);
       transition:
-        opacity 0.4s ease,
+        opacity 0.3s ease,
         transform 1s var(--ease-slide);
     }
 
@@ -249,8 +258,8 @@
       opacity: 1;
       transform: none;
       transition:
-        opacity 0.8s ease 0.4s,
-        transform 1s var(--ease-slide) 0.25s;
+        opacity 0.5s ease 0.15s,
+        transform 1s var(--ease-slide) 0.1s;
     }
 
     /* Landing straight on a deep link (/#work) shouldn't animate through. */

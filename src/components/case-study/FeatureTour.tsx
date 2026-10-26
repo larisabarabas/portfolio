@@ -84,7 +84,9 @@ export function FeatureTour({ steps }: { steps: TourStep[] }) {
 
       <div className="hidden min-w-0 nav:sticky nav:top-28 nav:block nav:flex-[1.3_1_520px]">
         <ProductFrame>
-          <div className="grid">
+          {/* The frame is as tall as the tallest screenshot; shorter ones sit
+              in the middle of it instead of leaving a gap below. */}
+          <div className="grid items-center">
             {steps.map((step, index) => (
               <div
                 key={step.id}

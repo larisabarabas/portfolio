@@ -314,11 +314,14 @@ export const CONTACT = {
 
 export const CASE_STUDY = {
   backLinkLabel: "Back to portfolio",
+  tourHeading: "How it works",
   problemHeading: "The problem",
   uxFlowHeading: "UX flow",
   uxFlowPlaceholderDefault: "Drop the flow diagram",
   decisionsHeading: "Key decisions & tradeoffs",
   decisionsNavLabel: "Decisions",
+  decisionLabel: "Decision",
+  tradeoffLabel: "Tradeoff",
   outcomeHeadingDefault: "Outcome",
 };
 

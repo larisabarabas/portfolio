@@ -115,12 +115,21 @@ Order: Hero → Services → Work → About → Skills → Experience → Experi
 
 ### Case studies (`src/components/case-study/`, `src/app/work/[slug]`)
 
-Same neumorphic language as home, native scrolling, no slide deck. `SiteHeader` + `BackLink` on top; `CaseStudyNav` reuses `SectionPager` at the bottom, following scroll via `useActiveSection`, with an exit link back to `/#work`.
+Same neumorphic language as home, native scrolling, no slide deck. `SiteHeader` + `BackLink` on top; `CaseStudyNav` reuses `SectionPager` at the bottom, following scroll via `useActiveSection`, with an exit link back to `/#work`. Built to be scanned: the product is in the first screen, features come before the reasoning, and every row fills its width (rule 8).
 
-- `MetaRow` — inset well (24px) holding Role / Timeline-or-Status / Stack / Links as small uppercase labels over 14.5px semibold values.
-- `DecisionCard` — raised 28px card; "Decision:" and "Tradeoff:" lead-ins in `tertiary`.
-- `UXFlowSteps`, `CaseStudyOutcome` — restyled to match (raised/inset surfaces, no borders).
-- Sections use an outer `px-[8vw]` wrapper with an inner `max-w-310` element (padding must not eat the content width).
+Page order, each section present only when the project has it: top → How it works → The problem → Key decisions → Outcome → UX flow → closing bar. The page decides which sections exist in one place, and the pager follows.
+
+- `CaseStudyHero` — status chip, title, subtitle, the italic one-line "why" in `tertiary`, the live link as the one `cta` plus the other links as `raised` pills, and the product in a `ProductFrame`. Split from `lg`; stacked below. The product image falls back from `heroImage` to the home card's screenshot.
+- `MetaRow` — one inset strip (24px) holding Role / Timeline / Stack, sentence-case labels, items share the row.
+- `FeatureTour` (client) — the product, feature by feature. Phones: each step is its own screenshot above its text, no script. From `nav`: a sticky `ProductFrame` beside the text swaps as each step reaches the middle of the screen (`IntersectionObserver`, only on desktop). Needs a screenshot on every feature; otherwise the features show as `UXFlowSteps`, the plain numbered list.
+- The problem — heading left, paragraph set in 28px serif to fill the column beside it.
+- `DecisionCard` — raised 28px card; from `lg` one row of three columns (title, decision, trade-off, sized 1 : 1.1 : 1.8). Labels are sentence case.
+- `CaseStudyOutcome` — an intro line, up to four stat cards on one row (2×2 on phones; an odd last one spans both columns), then up to two notes side by side (first wider, 1.7 : 1, so the columns end together). The older single-text outcome shows only when there are no stats or notes.
+- UX flow — the Figma diagram in a raised frame → inset well.
+- `CaseStudyClosing` — an inset bar: one line left, the one `cta` right.
+- `UXFlowSteps` — the numbered flat list; now only the fallback for the tour.
+
+Content lives in Sanity (`project` document). New optional fields: `whyLine`, `heroImage`, a `screenshot` and `screenshotAlt` on each feature, `outcomeIntro`, `outcomeStats`, `outcomeNotes`, `closingNote`.
 
 ### Consent and privacy
 

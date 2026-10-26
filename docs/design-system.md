@@ -140,3 +140,4 @@ Same neumorphic language as home, native scrolling, no slide deck. `SiteHeader` 
 5. Anything that must be readable in dark mode uses tokens, never raw hex. The exceptions are the accent shadow tints and the hero float shadow, which are fixed RGB.
 6. Anything animated must respect reduced motion (the global reset handles CSS; JS-driven effects must check the media query themselves).
 7. Phone first for the hero and pager: check 375×667 and 390×844 before shipping changes.
+8. No dead space from capped text. A text block with a `max-width` inside a full-width container must not leave the rest of the row empty: let it fill a column sized to a readable measure, pair it with something in the same row (image, aside, stats, CTA), or split the content into side-by-side columns. Stretch a shorter column into a panel so row ends align. Check every section at desktop width before shipping.

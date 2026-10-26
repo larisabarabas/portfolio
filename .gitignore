@@ -44,3 +44,8 @@ next-env.d.ts
 # sanity typegen (generated, run `npm run typegen`)
 /schema.json
 src/lib/sanity/sanity.types.ts
+
+# agent skills installed locally with `npx skills add`
+/.agents/
+/.claude/skills/
+/skills-lock.json

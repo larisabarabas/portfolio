@@ -132,72 +132,62 @@ export const SERVICES = {
   workedAcrossLabel: "Worked across",
   workedAcross:
     "Enterprise pricing and promotion software, fintech, translation software, large-scale web apps, real estate and property management software, booking platforms, microlearning and training software, community products.",
-  problemHeading: "The problem",
-  whatIDoHeading: "What I do",
-  proofHeading: "Where I've done it",
   startLabel: "How we start",
   ctaLabel: "Ask about this",
+  // `verbs` ties each offer back to the hero words (HERO.words ids).
   items: [
     {
       id: "s1",
-      number: "01",
       title: "UX & conversion audit",
+      verbs: ["designs", "improves"],
       problem:
         "People land on your site or sign up, then stop somewhere before the product makes sense to them. You can see it in the numbers, but not where it happens.",
       whatIDo:
         "I go through your site and product the way a new user would, on desktop and on a phone. Depending on what you need, that includes screenshots of where each issue happens and a comparison with two or three competitors. Every audit ends with a walkthrough of what matters most, in plain language, and what I'd change. Then I design and build the fixes.",
-      proof: [
+      proof:
         "At Code of Talent I simplified user flows, prototyped a new onboarding and built a guided product tour. I also built my own audit tooling that measures performance, accessibility and mobile issues in a real browser, so the findings start with real data.",
-      ],
-      proofAsList: false,
       start:
         "A small fixed-price audit, about 2 to 5 days, depending on the product's size and business domain. You get a ranked list of issues, two or three quick wins I can ship first, and a proposal for the larger changes.",
       subject: "UX & conversion audit",
     },
     {
       id: "s2",
-      number: "02",
       title: "Performance & reliability fixes",
+      verbs: ["improves"],
       problem:
         "The site looks fine on your laptop, but it's slow on a phone, the layout breaks on small screens, or parts of it can't be used with a keyboard or screen reader. Or it slows down as the data grows, because of an API that needs restructuring or contract issues between frontend and backend that are hard to detect.",
       whatIDo:
         "I measure the site with Lighthouse, plus real-user data where there's enough traffic. Then I fix what slows it down or shuts people out, on the frontend or in the API behind it, and check the result on real devices. If you don't have monitoring yet, I can set it up, so you can see where things break for users.",
-      proof: [
+      proof:
         "At RELEX I was on the on-call rotation, where I tracked down and fixed performance issues caused by large amounts of data, on both the client and the server.",
-      ],
-      proofAsList: false,
       start:
         "One page, usually the one that brings in the most sign-ups, measured before and after.",
       subject: "Performance & reliability fixes",
     },
     {
       id: "s3",
-      number: "03",
       title: "Production-ready frontend delivery",
+      verbs: ["builds"],
       problem:
         "You have a prototype, a redesign, or a backlog, and you need it built properly without a long ramp-up.",
       whatIDo:
         "I own frontend work end to end: architecture, implementation, testing, reviews, and the follow-through on performance after launch. I learn your business domain first, so the code fits your product.",
-      proof: [
+      proof:
         "At RELEX I led two frontend epics end to end, from planning and technical requirements to delivery.",
-      ],
-      proofAsList: false,
       start:
         "One well-scoped feature or epic on a fixed timeline, so we can both see how we work together before committing further.",
       subject: "Frontend delivery",
     },
     {
       id: "s4",
-      number: "04",
       title: "From AI prototype or idea to a real product",
+      verbs: ["designs", "builds"],
       problem:
         "You have an AI-built demo, or an idea that still lives in a doc. It works when you click through it yourself, but you don't know if it will hold up with real users, real data and a real codebase.",
       whatIDo:
         "I map the flow, design the key screens and build a working prototype, using AI tools to move quickly. Then I decide what stays, what gets rewritten, and what it takes to run it in production.",
-      proof: [
+      proof:
         "Fika for Substack, Retrobox and Huecode each started as an idea that I designed and built myself, with AI coding agents.",
-      ],
-      proofAsList: false,
       start:
         "You show me the demo or tell me your idea, and I tell you what it would take to ship it. If it's only an idea, we take it to a first prototype you can test with users. We make the decisions together, from the product brief and design to the architecture and tools.",
       subject: "Prototype to production",

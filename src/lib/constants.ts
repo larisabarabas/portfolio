@@ -110,16 +110,16 @@ export const ABOUT = {
   eyebrow: "About",
   heading: "I ask before I build",
   bodyParagraph1:
-    "I build scalable, high-performance web applications, usually somewhere between product, design, and, increasingly, AI. I design the interfaces I ship, build AI features that hold up in production, and explain the trade-offs in natural language.",
+    "I build web applications somewhere between product, design, and, increasingly, AI. I design the interfaces I ship, build AI features that hold up in production, and explain the trade-offs in plain language.",
   bodyParagraph2:
-    "Besides frontend engineering and product, there are some things I care about that are not always visible: I learn the business domain before I touch the architecture, I ask why before how, and performance and usability still matter to me long after the feature has shipped.",
+    "I learn the business domain before I touch the architecture and ask why before how. I care about performance and usability long after a feature has shipped.",
   statChips: [
     "Product Engineering",
     "Frontend Architecture",
     "UX/UI",
-    "Product Thinking",
-    "Building in Public",
+    "Performance & Accessibility",
     "AI-Assisted Development",
+    "Building in Public",
   ],
   portraitAlt: "Stefania Barabas",
   portraitPlaceholder: "Drop a portrait photo",

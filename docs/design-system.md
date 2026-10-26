@@ -128,6 +128,7 @@ Page order, each section present only when the project has it: top → How it wo
 - UX flow — the Figma diagram in a raised frame → inset well.
 - `CaseStudyClosing` — an inset bar: one line left, the one `cta` right.
 - `UXFlowSteps` — the numbered flat list; now only the fallback for the tour.
+- `ZoomableImage` (client) — wraps a thumbnail (hero image, tour screenshots, UX flow diagram) in a button with a raised expand badge in its corner. It opens the large file in a native `<dialog>`: fits the screen first, a click or the "Zoom in" button shows it at full size to scroll around, Escape or "Close" shuts it and returns focus. The large file isn't requested until it opens. Controls are `raised` pills.
 
 Content lives in Sanity (`project` document). New optional fields: `whyLine`, `heroImage`, a `screenshot` and `screenshotAlt` on each feature, `outcomeIntro`, `outcomeStats`, `outcomeNotes`, `closingNote`.
 

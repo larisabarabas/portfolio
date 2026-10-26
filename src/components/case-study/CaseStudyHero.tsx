@@ -3,9 +3,10 @@ import {
   FRAME_IMAGE_CLASSES,
   ProductFrame,
 } from "@/components/case-study/ProductFrame";
+import { ZoomableImage } from "@/components/case-study/ZoomableImage";
 import { Chip } from "@/components/ui/Chip";
 import { PillLink } from "@/components/ui/PillLink";
-import { imageProps } from "@/lib/sanity/image";
+import { imageProps, urlFor } from "@/lib/sanity/image";
 import type { ProjectBySlugQueryResult } from "@/lib/sanity/sanity.types";
 
 type Project = NonNullable<ProjectBySlugQueryResult>;
@@ -58,13 +59,18 @@ export function CaseStudyHero({ project }: { project: Project }) {
       {image.asset && (
         <div className="min-w-0 lg:flex-[1.1_1_480px]">
           <ProductFrame>
-            <Image
-              {...imageProps(image, image.aspectRatio, 1600)}
+            <ZoomableImage
+              src={urlFor(image).width(2400).url()}
               alt={`${project.title} product screenshot`}
-              sizes="(min-width: 1024px) 540px, 90vw"
-              preload
-              className={FRAME_IMAGE_CLASSES}
-            />
+            >
+              <Image
+                {...imageProps(image, image.aspectRatio, 1600)}
+                alt=""
+                sizes="(min-width: 1024px) 540px, 90vw"
+                preload
+                className={FRAME_IMAGE_CLASSES}
+              />
+            </ZoomableImage>
           </ProductFrame>
         </div>
       )}

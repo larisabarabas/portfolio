@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ProductFrame } from "@/components/case-study/ProductFrame";
+import { ZoomableImage } from "@/components/case-study/ZoomableImage";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export type TourStep = {
@@ -10,6 +11,8 @@ export type TourStep = {
   label: string;
   description: string;
   src: string;
+  /** The large version for the lightbox. */
+  fullSrc: string;
   /** CSS `object-position`, from the image's hotspot in the Studio. */
   focus: string;
   alt: string;
@@ -19,7 +22,7 @@ export type TourStep = {
 // view when a screenshot has another shape comes from its crop and hotspot in
 // the Studio.
 const SCREEN_CLASSES =
-  "relative aspect-5/4 overflow-hidden rounded-[12px] lg:rounded-[18px]";
+  "relative block aspect-5/4 overflow-hidden rounded-[12px] lg:rounded-[18px]";
 
 // Must match --breakpoint-nav in globals.css.
 const DESKTOP_QUERY = "(width >= 47.5rem)";
@@ -80,16 +83,18 @@ export function FeatureTour({ steps }: { steps: TourStep[] }) {
             </h3>
             <div className="mb-4 nav:hidden">
               <ProductFrame>
-                <div className={SCREEN_CLASSES}>
-                  <Image
-                    src={step.src}
-                    fill
-                    alt={step.alt}
-                    sizes="90vw"
-                    className="object-cover"
-                    style={{ objectPosition: step.focus }}
-                  />
-                </div>
+                <ZoomableImage src={step.fullSrc} alt={step.alt}>
+                  <span className={SCREEN_CLASSES}>
+                    <Image
+                      src={step.src}
+                      fill
+                      alt=""
+                      sizes="90vw"
+                      className="object-cover"
+                      style={{ objectPosition: step.focus }}
+                    />
+                  </span>
+                </ZoomableImage>
               </ProductFrame>
             </div>
             <p className="text-[16px] leading-[1.65] nav:text-[17px] nav:leading-[1.7]">
@@ -106,20 +111,23 @@ export function FeatureTour({ steps }: { steps: TourStep[] }) {
               <div
                 key={step.id}
                 aria-hidden={index !== active}
+                inert={index !== active}
                 className={`[grid-area:1/1] transition-opacity duration-500 ${
                   index === active ? "opacity-100" : "opacity-0"
                 }`}
               >
-                <div className={SCREEN_CLASSES}>
-                  <Image
-                    src={step.src}
-                    fill
-                    alt={step.alt}
-                    sizes="(min-width: 1240px) 700px, 56vw"
-                    className="object-cover"
-                    style={{ objectPosition: step.focus }}
-                  />
-                </div>
+                <ZoomableImage src={step.fullSrc} alt={step.alt}>
+                  <span className={SCREEN_CLASSES}>
+                    <Image
+                      src={step.src}
+                      fill
+                      alt=""
+                      sizes="(min-width: 1240px) 700px, 56vw"
+                      className="object-cover"
+                      style={{ objectPosition: step.focus }}
+                    />
+                  </span>
+                </ZoomableImage>
               </div>
             ))}
           </div>

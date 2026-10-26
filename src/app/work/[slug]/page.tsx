@@ -12,6 +12,7 @@ import {
 } from "@/components/case-study/FeatureTour";
 import { MetaRow } from "@/components/case-study/MetaRow";
 import { UXFlowSteps } from "@/components/case-study/UXFlowSteps";
+import { ZoomableImage } from "@/components/case-study/ZoomableImage";
 import { CASE_STUDY } from "@/lib/constants";
 import { sanityFetch } from "@/lib/sanity/fetch";
 import { urlFor } from "@/lib/sanity/image";
@@ -45,6 +46,7 @@ function toTourStep(feature: Feature): TourStep | null {
     description: feature.description.trim(),
     alt: feature.screenshotAlt?.trim() || feature.label.trim(),
     src: urlFor(feature.screenshot).width(1600).url(),
+    fullSrc: urlFor(feature.screenshot).width(2400).url(),
     focus: feature.screenshot.hotspot
       ? `${feature.screenshot.hotspot.x * 100}% ${feature.screenshot.hotspot.y * 100}%`
       : "50% 50%",
@@ -202,16 +204,22 @@ export default async function CaseStudyPage({
               <div className="rounded-[32px] p-3 shadow-neu-out">
                 <div className="rounded-card-lg p-2.5 shadow-neu-in">
                   {project.uxFlowImage?.asset ? (
-                    <Image
-                      src={urlFor(project.uxFlowImage).width(1840).url()}
+                    <ZoomableImage
+                      src={urlFor(project.uxFlowImage).width(3200).url()}
                       alt={`${project.title} UX flow`}
-                      width={1840}
-                      height={Math.round(
-                        1840 / (project.uxFlowImage.aspectRatio ?? 1840 / 1190),
-                      )}
-                      sizes="(min-width: 1240px) 1200px, 90vw"
-                      className="block h-auto w-full rounded-2xl bg-paper"
-                    />
+                    >
+                      <Image
+                        src={urlFor(project.uxFlowImage).width(1840).url()}
+                        alt=""
+                        width={1840}
+                        height={Math.round(
+                          1840 /
+                            (project.uxFlowImage.aspectRatio ?? 1840 / 1190),
+                        )}
+                        sizes="(min-width: 1240px) 1200px, 90vw"
+                        className="block h-auto w-full rounded-2xl bg-paper"
+                      />
+                    </ZoomableImage>
                   ) : (
                     <div className="flex aspect-10/3 items-center justify-center rounded-2xl px-4 text-center text-sm opacity-60">
                       {project.uxFlowPlaceholderLabel ??

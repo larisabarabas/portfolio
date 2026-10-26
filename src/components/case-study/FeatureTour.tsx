@@ -27,28 +27,41 @@ const DESKTOP_QUERY = "(width >= 47.5rem)";
 // The product, feature by feature. On phones each step is its own screenshot
 // above its text, an ordinary stack that needs no script. From the `nav`
 // breakpoint the screenshots collapse into one sticky frame beside the text
-// and the frame swaps as each step scrolls to the middle of the screen.
+// and the frame swaps as each step reaches the middle of the screen.
 export function FeatureTour({ steps }: { steps: TourStep[] }) {
   const isDesktop = useMediaQuery(DESKTOP_QUERY);
   const [active, setActive] = useState(0);
   const stepRefs = useRef<(HTMLLIElement | null)[]>([]);
 
+  // The active step is the one under the middle of the screen, worked out on
+  // every scroll. (An IntersectionObserver only reports steps entering or
+  // leaving, so after scrolling back and forth across a boundary the frame
+  // could show a different step from the one in the middle.)
   useEffect(() => {
     if (!isDesktop) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActive(Number((entry.target as HTMLElement).dataset.index));
-          }
-        }
-      },
-      { rootMargin: "-40% 0px -40% 0px" },
-    );
-    for (const element of stepRefs.current) {
-      if (element) observer.observe(element);
-    }
-    return () => observer.disconnect();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const middle = window.innerHeight / 2;
+      const index = stepRefs.current.findIndex((element) => {
+        if (!element) return false;
+        const { top, bottom } = element.getBoundingClientRect();
+        return top <= middle && bottom > middle;
+      });
+      // Above the first step or below the last, keep the one showing.
+      if (index >= 0) setActive(index);
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
   }, [isDesktop]);
 
   return (
@@ -60,7 +73,6 @@ export function FeatureTour({ steps }: { steps: TourStep[] }) {
             ref={(element) => {
               stepRefs.current[index] = element;
             }}
-            data-index={index}
             className="nav:flex nav:min-h-110 nav:flex-col nav:justify-center nav:py-6"
           >
             <div className="mb-4.5 nav:hidden">

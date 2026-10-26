@@ -12,7 +12,7 @@ type ZoomableImageProps = {
 };
 
 const CONTROL_CLASSES =
-  "inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-pill bg-bg px-4.5 text-sm font-semibold text-ink shadow-neu-out-sm transition-[box-shadow,color] duration-300 hover:text-primary hover:shadow-neu-in-sm";
+  "inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-pill bg-bg px-4.5 text-sm font-semibold text-ink transition-colors duration-300 hover:text-primary";
 
 // Wraps a thumbnail in a button that opens the full picture in a native
 // <dialog>: the browser handles Escape, focus and the inert page behind it.
@@ -50,7 +50,7 @@ export function ZoomableImage({ children, src, alt }: ZoomableImageProps) {
         {children}
         <span
           aria-hidden="true"
-          className="absolute right-2.5 bottom-2.5 flex size-9 items-center justify-center rounded-full bg-bg text-ink shadow-neu-out-sm transition-colors group-hover:text-primary"
+          className="absolute right-2.5 bottom-2.5 flex size-9 items-center justify-center rounded-full bg-bg text-ink transition-colors group-hover:text-primary"
         >
           <Maximize2 className="size-4" />
         </span>

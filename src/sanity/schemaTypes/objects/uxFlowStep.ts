@@ -26,7 +26,7 @@ export const uxFlowStep = defineType({
       name: "screenshot",
       title: "Screenshot",
       description:
-        "The screen for this feature. Use the same proportions for every feature, so the frame doesn't jump. Without screenshots on every feature, the case study shows a plain list instead of the tour.",
+        "The screen for this feature. Shown in a 16:9 frame that the image fills. If yours has another shape, use the crop and hotspot tools to choose what stays in view. Without screenshots on every feature, the case study shows a plain list instead of the tour.",
       type: "image",
       options: { hotspot: true },
     }),

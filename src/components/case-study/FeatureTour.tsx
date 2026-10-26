@@ -2,10 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import {
-  FRAME_IMAGE_CLASSES,
-  ProductFrame,
-} from "@/components/case-study/ProductFrame";
+import { ProductFrame } from "@/components/case-study/ProductFrame";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export type TourStep = {
@@ -13,10 +10,16 @@ export type TourStep = {
   label: string;
   description: string;
   src: string;
-  width: number;
-  height: number;
+  /** CSS `object-position`, from the image's hotspot in the Studio. */
+  focus: string;
   alt: string;
 };
+
+// Every screenshot is shown in the same 16:9 frame and fills it. What stays in
+// view when a screenshot has another shape comes from its crop and hotspot in
+// the Studio.
+const SCREEN_CLASSES =
+  "relative aspect-video overflow-hidden rounded-[12px] lg:rounded-[18px]";
 
 // Must match --breakpoint-nav in globals.css.
 const DESKTOP_QUERY = "(width >= 47.5rem)";
@@ -62,14 +65,16 @@ export function FeatureTour({ steps }: { steps: TourStep[] }) {
           >
             <div className="mb-4.5 nav:hidden">
               <ProductFrame>
-                <Image
-                  src={step.src}
-                  width={step.width}
-                  height={step.height}
-                  alt={step.alt}
-                  sizes="90vw"
-                  className={FRAME_IMAGE_CLASSES}
-                />
+                <div className={SCREEN_CLASSES}>
+                  <Image
+                    src={step.src}
+                    fill
+                    alt={step.alt}
+                    sizes="90vw"
+                    className="object-cover"
+                    style={{ objectPosition: step.focus }}
+                  />
+                </div>
               </ProductFrame>
             </div>
             <h3 className="mb-2 font-serif text-[28px] leading-[1.1] font-normal nav:mb-4 nav:text-[40px]">
@@ -84,9 +89,7 @@ export function FeatureTour({ steps }: { steps: TourStep[] }) {
 
       <div className="hidden min-w-0 nav:sticky nav:top-28 nav:block nav:flex-[1.3_1_520px]">
         <ProductFrame>
-          {/* The frame is as tall as the tallest screenshot; shorter ones sit
-              in the middle of it instead of leaving a gap below. */}
-          <div className="grid items-center">
+          <div className="grid">
             {steps.map((step, index) => (
               <div
                 key={step.id}
@@ -95,14 +98,16 @@ export function FeatureTour({ steps }: { steps: TourStep[] }) {
                   index === active ? "opacity-100" : "opacity-0"
                 }`}
               >
-                <Image
-                  src={step.src}
-                  width={step.width}
-                  height={step.height}
-                  alt={step.alt}
-                  sizes="(min-width: 1240px) 700px, 56vw"
-                  className={FRAME_IMAGE_CLASSES}
-                />
+                <div className={SCREEN_CLASSES}>
+                  <Image
+                    src={step.src}
+                    fill
+                    alt={step.alt}
+                    sizes="(min-width: 1240px) 700px, 56vw"
+                    className="object-cover"
+                    style={{ objectPosition: step.focus }}
+                  />
+                </div>
               </div>
             ))}
           </div>

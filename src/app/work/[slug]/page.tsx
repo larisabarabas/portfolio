@@ -14,7 +14,7 @@ import { MetaRow } from "@/components/case-study/MetaRow";
 import { UXFlowSteps } from "@/components/case-study/UXFlowSteps";
 import { CASE_STUDY } from "@/lib/constants";
 import { sanityFetch } from "@/lib/sanity/fetch";
-import { imageProps, urlFor } from "@/lib/sanity/image";
+import { urlFor } from "@/lib/sanity/image";
 import { projectBySlugQuery, projectSlugsQuery } from "@/lib/sanity/queries";
 import type {
   ProjectBySlugQueryResult,
@@ -44,7 +44,10 @@ function toTourStep(feature: Feature): TourStep | null {
     label: feature.label.trim(),
     description: feature.description.trim(),
     alt: feature.screenshotAlt?.trim() || feature.label.trim(),
-    ...imageProps(feature.screenshot, feature.screenshot.aspectRatio, 1600),
+    src: urlFor(feature.screenshot).width(1600).url(),
+    focus: feature.screenshot.hotspot
+      ? `${feature.screenshot.hotspot.x * 100}% ${feature.screenshot.hotspot.y * 100}%`
+      : "50% 50%",
   };
 }
 

@@ -128,10 +128,10 @@ export const ABOUT = {
 export const SERVICES = {
   eyebrow: "Services",
   heading: "How I can help",
-  lead: "I work on digital products from the first prototype to the fixes after launch. I find where people drop off, make slow or hard-to-use pages fast and accessible, build features properly without a long ramp-up, and turn AI demos and ideas into products that hold up with real users.",
+  lead: "I work on digital products from the first prototype to the fixes after launch. I find where people drop off, make slow pages fast, build features properly, and turn AI demos into products that hold up with real users.",
   workedAcrossLabel: "Worked across",
   workedAcross:
-    "Enterprise pricing and promotion software · fintech · translation software · large-scale web apps · real estate and property management software · booking platforms · microlearning and training software · community products",
+    "Enterprise pricing and promotion software, fintech, translation software, large-scale web apps, real estate and property management software, booking platforms, microlearning and training software, community products.",
   problemHeading: "The problem",
   whatIDoHeading: "What I do",
   proofHeading: "Where I've done it",
@@ -147,7 +147,7 @@ export const SERVICES = {
       whatIDo:
         "I go through your site and product the way a new user would, on desktop and on a phone. Depending on what you need, that includes screenshots of where each issue happens and a comparison with two or three competitors. Every audit ends with a walkthrough of what matters most, in plain language, and what I'd change. Then I design and build the fixes.",
       proof: [
-        "At Code of Talent I worked on conversion: I simplified user flows, prototyped a new onboarding, and built a guided product tour. I also built my own audit tooling that measures performance, accessibility and mobile issues in a real browser, so the findings start with real data.",
+        "At Code of Talent I simplified user flows, prototyped a new onboarding and built a guided product tour. I also built my own audit tooling that measures performance, accessibility and mobile issues in a real browser, so the findings start with real data.",
       ],
       proofAsList: false,
       start:
@@ -157,18 +157,18 @@ export const SERVICES = {
     {
       id: "s2",
       number: "02",
-      title: "Performance & mobile fixes",
+      title: "Performance & reliability fixes",
       problem:
-        "The site looks fine on your laptop, but it's slow on a phone, the layout breaks on small screens, or parts of it can't be used with a keyboard or screen reader. Most visitors won't tell you. They just leave.",
+        "The site looks fine on your laptop, but it's slow on a phone, the layout breaks on small screens, or parts of it can't be used with a keyboard or screen reader. Or it slows down as the data grows, because of an API that needs restructuring or contract issues between frontend and backend that are hard to detect.",
       whatIDo:
-        "I measure the site with Lighthouse, plus real-user data where there's enough traffic. Then I fix what slows it down or shuts people out, and check the result on real devices. If you don't have monitoring yet, I can set it up, so you can see where things break for users.",
+        "I measure the site with Lighthouse, plus real-user data where there's enough traffic. Then I fix what slows it down or shuts people out, on the frontend or in the API behind it, and check the result on real devices. If you don't have monitoring yet, I can set it up, so you can see where things break for users.",
       proof: [
         "At RELEX I was on the on-call rotation, where I tracked down and fixed performance issues caused by large amounts of data, on both the client and the server.",
       ],
       proofAsList: false,
       start:
         "One page, usually the one that brings in the most sign-ups, measured before and after.",
-      subject: "Performance & accessibility",
+      subject: "Performance & reliability fixes",
     },
     {
       id: "s3",
@@ -179,11 +179,9 @@ export const SERVICES = {
       whatIDo:
         "I own frontend work end to end: architecture, implementation, testing, reviews, and the follow-through on performance after launch. I learn your business domain first, so the code fits your product.",
       proof: [
-        "At RELEX I led two frontend epics end to end, from planning and technical requirements to delivery, working with backend, product and design.",
-        "At Cognizant I designed a micro-frontend architecture and set up a Lerna monorepo for a team of 50+ engineers.",
-        "On that app I also integrated payments, analytics and error tracking. I use Sentry and Datadog to see what breaks and for whom.",
+        "At RELEX I led two frontend epics end to end, from planning and technical requirements to delivery.",
       ],
-      proofAsList: true,
+      proofAsList: false,
       start:
         "One well-scoped feature or epic on a fixed timeline, so we can both see how we work together before committing further.",
       subject: "Frontend delivery",
@@ -197,7 +195,6 @@ export const SERVICES = {
       whatIDo:
         "I map the flow, design the key screens and build a working prototype, using AI tools to move quickly. Then I decide what stays, what gets rewritten, and what it takes to run it in production.",
       proof: [
-        "At RELEX I turned a vibe-coded concept into a production-ready feature, working closely with design. I checked the AI-generated code against the product requirements and our architecture, and reworked what wouldn't hold up long term.",
         "Fika for Substack, Retrobox and Huecode each started as an idea that I designed and built myself, with AI coding agents.",
       ],
       proofAsList: false,

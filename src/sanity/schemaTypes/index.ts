@@ -2,6 +2,8 @@ import { articleLink } from "./articleLink";
 import { experienceEntry } from "./experienceEntry";
 import { decisionCard } from "./objects/decisionCard";
 import { metaLink } from "./objects/metaLink";
+import { outcomeNote } from "./objects/outcomeNote";
+import { outcomeStat } from "./objects/outcomeStat";
 import { summaryPoint } from "./objects/summaryPoint";
 import { uxFlowStep } from "./objects/uxFlowStep";
 import { openSourceProject } from "./openSourceProject";
@@ -20,4 +22,6 @@ export const schemaTypes = [
   metaLink,
   uxFlowStep,
   decisionCard,
+  outcomeStat,
+  outcomeNote,
 ];

@@ -75,7 +75,10 @@ export function FeatureTour({ steps }: { steps: TourStep[] }) {
             }}
             className="nav:flex nav:min-h-110 nav:flex-col nav:justify-center nav:py-6"
           >
-            <div className="mb-4.5 nav:hidden">
+            <h3 className="mb-3.5 font-serif text-[28px] leading-[1.1] font-normal nav:mb-4 nav:text-[40px]">
+              {step.label}
+            </h3>
+            <div className="mb-4 nav:hidden">
               <ProductFrame>
                 <div className={SCREEN_CLASSES}>
                   <Image
@@ -89,9 +92,6 @@ export function FeatureTour({ steps }: { steps: TourStep[] }) {
                 </div>
               </ProductFrame>
             </div>
-            <h3 className="mb-2 font-serif text-[28px] leading-[1.1] font-normal nav:mb-4 nav:text-[40px]">
-              {step.label}
-            </h3>
             <p className="text-[16px] leading-[1.65] nav:text-[17px] nav:leading-[1.7]">
               {step.description}
             </p>

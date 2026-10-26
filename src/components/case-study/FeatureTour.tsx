@@ -15,11 +15,11 @@ export type TourStep = {
   alt: string;
 };
 
-// Every screenshot is shown in the same 16:9 frame and fills it. What stays in
+// Every screenshot is shown in the same 5:4 frame and fills it. What stays in
 // view when a screenshot has another shape comes from its crop and hotspot in
 // the Studio.
 const SCREEN_CLASSES =
-  "relative aspect-video overflow-hidden rounded-[12px] lg:rounded-[18px]";
+  "relative aspect-5/4 overflow-hidden rounded-[12px] lg:rounded-[18px]";
 
 // Must match --breakpoint-nav in globals.css.
 const DESKTOP_QUERY = "(width >= 47.5rem)";

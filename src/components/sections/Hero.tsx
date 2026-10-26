@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useIsActiveSlide } from "@/components/layout/SlideDeck";
+import { HeroHeadline } from "@/components/sections/HeroHeadline";
 import { PillLink } from "@/components/ui/PillLink";
 import { SaturationFocusImage } from "@/components/ui/SaturationFocusImage";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -33,20 +34,7 @@ export function Hero() {
         <SectionLabel variant="inset" className="mb-4 lg:mb-6.5">
           {HERO.eyebrow}
         </SectionLabel>
-        <h1
-          id="hero-title"
-          className="mb-5 font-serif text-[clamp(38px,6.4vw,96px)] leading-[1.02] font-normal text-balance lg:mb-6.5"
-        >
-          {HERO.headingLine1}
-          <br />
-          <span className="text-tertiary italic">{HERO.headingLine2}</span>
-        </h1>
-        <p className="mb-2 max-w-140 text-[17px] leading-[1.6] opacity-85 lg:text-[19px]">
-          {HERO.body}
-        </p>
-        <p className="mb-7 max-w-140 text-[17px] leading-[1.6] opacity-85 lg:mb-10 lg:text-[19px]">
-          {HERO.status}
-        </p>
+        <HeroHeadline />
         <div className="flex flex-wrap gap-3 lg:gap-5">
           <PillLink href="#services" variant="cta" size="lg">
             {HERO.primaryCtaLabel}

@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { HERO, JOB_TITLE } from "@/lib/constants";
+import { HERO, HERO_HEADLINE, JOB_TITLE } from "@/lib/constants";
 
 export const alt = `stefania. — ${JOB_TITLE}`;
 export const size = { width: 1200, height: 630 };
@@ -85,19 +85,9 @@ export default async function Image() {
         >
           <span>{HERO.headingLine1}</span>
           <span style={{ fontStyle: "italic", color: TERTIARY }}>
-            {HERO.headingLine2}
+            {HERO_HEADLINE}
           </span>
         </div>
-        <p
-          style={{
-            fontSize: 23,
-            lineHeight: 1.5,
-            opacity: 0.85,
-            margin: "26px 0 0",
-          }}
-        >
-          {HERO.status}
-        </p>
         <p
           style={{
             fontSize: 18,

@@ -74,13 +74,37 @@ export const NAV = {
 export const HERO = {
   eyebrow: JOB_TITLE,
   headingLine1: "Hi, I'm Stefania.",
-  headingLine2: "I turn ideas into shipped software and fix what's broken.",
-  body: "I work across product, design, and AI.",
-  status:
-    "I find where users stall or give up, then design the fix and build it myself.",
+  // Rendered as: lead + one button per word + tail. Each word reveals its
+  // idea in the line under the heading.
+  headingLead: "I am an engineer who",
+  headingTail: "products.",
+  words: [
+    {
+      id: "designs",
+      label: "designs",
+      idea: "I take a simple idea, explore what it could become, and turn it into something people can experience for themselves.",
+    },
+    {
+      id: "builds",
+      label: "builds",
+      idea: "I build it myself, starting early with a prototype. I shape the structure and architecture, try different directions, and keep what earns its place.",
+    },
+    {
+      id: "improves",
+      label: "improves",
+      idea: "I measure how the product behaves with real users, catch problems early, and keep fixing until it does what people need and what it promised.",
+    },
+  ],
+  wordHint: "Hover or tap a word to see what I mean.",
   primaryCtaLabel: "How I can help",
   imageHint: "Hover to see it in color",
 };
+
+// The headline as plain text, for surfaces without the hover words (OG image).
+export const HERO_HEADLINE = `${HERO.headingLead} ${HERO.words
+  .map((word) => word.label)
+  .join(", ")
+  .replace(/, ([^,]*)$/, " and $1")} ${HERO.headingTail}`;
 
 export const ABOUT = {
   eyebrow: "About",

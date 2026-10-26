@@ -55,7 +55,7 @@ Light and dark share the same structure; only `--neu-dk` / `--neu-lt` and the co
 Unchanged from before: **Instrument Serif** (headings, italic accent, logo) and **Space Grotesk** (400–700, body/UI).
 
 - Eyebrow: 13px / 600 / uppercase / 0.16em tracking / `primary`. `variant="inset"` puts it in a pressed-in pill (hero, contact).
-- Hero H1: `clamp(38px, 6.4vw, 96px)`, line-height 1.02, second line italic `tertiary`.
+- Hero H1: `clamp(34px, 5.4vw, 80px)`, line-height 1.18 (room for the word pills), second line italic `tertiary`. "designs", "builds" and "improves" are buttons, each with its own underline (curve, level line, rising steps). At rest it is an engraved groove (`--neu-dk` / `--neu-lt` edges); the active word's fills with `primary`, revealed left to right. Pointing at, focusing or tapping a word swaps the line under the heading.
 - Case-study H1: `clamp(40px, 6vw, 68px)`. Section H2: `clamp(30px, 3.4vw, 40px)`. Contact H2: `clamp(40px, 6vw, 76px)`.
 - Body 17px (19px on desktop hero), line-height 1.6, `opacity-85`. Card body 14.5px.
 - Logo: serif, italic, bold, 28px, `tertiary`, with a `primary` full stop.

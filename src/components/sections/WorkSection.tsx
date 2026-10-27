@@ -7,6 +7,9 @@ type WorkSectionProps = {
   projects: ProjectsQueryResult;
 };
 
+// One column on phones, two from `nav`, three once each card has about 300px.
+// A lone third card spans the two-column row (see WorkCard) so the row
+// never ends half empty.
 export function WorkSection({ projects }: WorkSectionProps) {
   return (
     <section
@@ -22,7 +25,7 @@ export function WorkSection({ projects }: WorkSectionProps) {
         {WORK.heading}
       </h2>
       {projects.length > 0 ? (
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-9">
+        <div className="grid grid-cols-1 gap-9 nav:grid-cols-2 min-[75rem]:grid-cols-3">
           {projects.map((project) => (
             <WorkCard key={project._id} project={project} />
           ))}

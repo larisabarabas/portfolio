@@ -10,9 +10,11 @@ type WorkCardProps = {
 };
 
 export function WorkCard({ project }: WorkCardProps) {
+  // In the two-column range an odd last card fills the row on its own: image
+  // on the left, text on the right.
   return (
-    <article className="flex min-w-0 flex-col gap-3.5 rounded-[32px] bg-bg px-4 pt-4 pb-6.5 shadow-neu-out">
-      <div className="rounded-[22px] p-2 shadow-neu-in">
+    <article className="flex min-w-0 flex-col gap-3.5 rounded-[32px] bg-bg px-4 pt-4 pb-6.5 shadow-neu-out nav:max-[75rem]:[&:last-child:nth-child(odd)]:col-span-2 nav:max-[75rem]:[&:last-child:nth-child(odd)]:flex-row nav:max-[75rem]:[&:last-child:nth-child(odd)]:gap-6">
+      <div className="rounded-[22px] p-2 shadow-neu-in nav:max-[75rem]:[article:last-child:nth-child(odd)_&]:w-5/12 nav:max-[75rem]:[article:last-child:nth-child(odd)_&]:shrink-0 nav:max-[75rem]:[article:last-child:nth-child(odd)_&]:self-start">
         {project.mainImage?.asset ? (
           <Image
             src={urlFor(project.mainImage).width(1600).url()}

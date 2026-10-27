@@ -197,7 +197,7 @@ export const SERVICES = {
 
 export const WORK = {
   eyebrow: "Selected Work",
-  heading: "Things I've shipped in public, and things I'm still figuring out",
+  heading: "Things I’ve shipped in public, and things I’m still figuring out",
   emptyState: "Project case studies coming soon.",
   caseStudyLinkLabel: "Read case study",
   liveLinkLabelDefault: "Visit the site",
@@ -286,15 +286,15 @@ export const EXPERIMENTS = {
 
 export const DEV_NOTES = {
   eyebrow: "Technical and Content Writing",
-  heading: "Stef's Dev Notes",
+  heading: "Stef’s Dev Notes",
   featureHeading:
     "A newsletter about engineering judgment in an industry obsessed with speed",
   featureBody:
-    "This is where I think out loud about frontend engineering and engineering in general. The code I'm writing, the career lessons I'm learning, and all the invisible work that actually matters, shared one small note at a time.",
-  featureCtaLabel: "Read Stef's Dev Notes",
+    "This is where I think out loud about frontend engineering and engineering in general. The code I’m writing, the career lessons I’m learning, and all the invisible work that actually matters, shared one small note at a time.",
+  featureCtaLabel: "Read Stef’s Dev Notes",
   featureUrl: "https://stefsdevnotes.substack.com",
   collaborationsLabel: "Article collaborations",
-  logoAlt: "Stef's Dev Notes logo",
+  logoAlt: "Stef’s Dev Notes logo",
   logoPlaceholder: "Drop the Dev Notes logo",
 };
 

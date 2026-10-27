@@ -2,11 +2,11 @@ export const LOGO_TEXT = "stefania";
 
 export const EMAIL = "stef@stefaniabarabas.com";
 
-// 20-minute intro call. A plain link (opens Calendly in a new tab) rather
+// 30-minute intro call. A plain link (opens Calendly in a new tab) rather
 // than their embed widget, which would load Calendly's script and cookies on
 // every visit.
-export const CALENDLY_URL = "https://calendly.com/stef-stefaniabarabas/20min";
-export const BOOK_CALL_LABEL = "Book a 20-min call";
+export const CALENDLY_URL = "https://calendly.com/stef-stefaniabarabas/30min";
+export const BOOK_CALL_LABEL = "Book a 30-min call";
 
 // One title everywhere (page title, meta, OG image, hero) so every surface
 // describes the same person.

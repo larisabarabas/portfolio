@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Space_Grotesk } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { ConsentManager } from "@/components/consent/ConsentManager";
@@ -67,24 +66,19 @@ export default function RootLayout(props: LayoutProps<"/">) {
       className={`${instrumentSerif.variable} ${spaceGrotesk.variable}`}
       suppressHydrationWarning
     >
-      <body className="bg-bg font-sans text-ink antialiased">
-        {/* beforeInteractive puts these inline scripts in the server HTML
-            ahead of hydration. A plain <script> in a component makes React 19
-            warn that it never runs on the client. */}
-        <Script
-          id="theme-init"
-          strategy="beforeInteractive"
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: static, first-party script with no interpolated user input
-          dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }}
-        />
+      <head>
+        {/* Plain inline scripts: they block, so the theme and the consent
+            defaults are set before first paint and before GTM. next/script
+            with beforeInteractive only queues them until Next's JavaScript
+            has loaded, which lets dark-mode visitors see a light flash. */}
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: static, first-party script with no interpolated user input */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         {GTM_ID ? (
-          <Script
-            id="consent-defaults"
-            strategy="beforeInteractive"
-            // biome-ignore lint/security/noDangerouslySetInnerHtml: static, first-party script with no interpolated user input
-            dangerouslySetInnerHTML={{ __html: CONSENT_SCRIPT }}
-          />
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: static, first-party script with no interpolated user input
+          <script dangerouslySetInnerHTML={{ __html: CONSENT_SCRIPT }} />
         ) : null}
+      </head>
+      <body className="bg-bg font-sans text-ink antialiased">
         {props.children}
         <Analytics />
         {GTM_ID ? <ConsentManager gtmId={GTM_ID} /> : null}

@@ -36,14 +36,20 @@ export function WorkCard({ project }: WorkCardProps) {
           </Chip>
         </div>
         <h3 className="font-serif text-[28px] font-normal">{project.title}</h3>
-        {project.summaryPoints?.map((point) => (
-          <p
-            key={point._key}
-            className="text-[14.5px] leading-[1.6] opacity-85"
-          >
-            <strong>{point.label}:</strong> {point.text}
+        {project.cardSummary ? (
+          <p className="text-[15px] leading-[1.65] opacity-90">
+            {project.cardSummary}
           </p>
-        ))}
+        ) : (
+          project.summaryPoints?.map((point) => (
+            <p
+              key={point._key}
+              className="text-[14.5px] leading-[1.6] opacity-85"
+            >
+              <strong>{point.label}:</strong> {point.text}
+            </p>
+          ))
+        )}
         {project.techTags && project.techTags.length > 0 ? (
           <ul className="flex flex-wrap gap-2">
             {project.techTags.map((tag) => (

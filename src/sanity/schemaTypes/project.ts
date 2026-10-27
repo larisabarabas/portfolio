@@ -81,13 +81,24 @@ export const project = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "cardSummary",
+      title: "Card description",
+      description:
+        "What the project is, in two or three sentences (about 200 characters). Shown on the homepage card. Until it's filled in, the card falls back to the older summary points.",
+      type: "text",
+      rows: 3,
+      group: "card",
+      validation: (rule) => rule.max(280),
+    }),
+    defineField({
       name: "summaryPoints",
-      title: "Summary points",
-      description: "Homepage card copy, e.g. Problem / What I built / Result.",
+      title: "Summary points (older format)",
+      description:
+        "Problem / What I built / Result lines. Only used while the card description is empty.",
       type: "array",
       group: "card",
       of: [defineArrayMember({ type: "summaryPoint" })],
-      validation: (rule) => rule.min(2).max(4),
+      validation: (rule) => rule.max(4),
     }),
     defineField({
       name: "techTags",

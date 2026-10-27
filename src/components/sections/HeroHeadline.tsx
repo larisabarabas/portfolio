@@ -105,8 +105,10 @@ function Hint() {
 }
 
 // The hero headline plus the line under it. The three verbs are buttons; the
-// line shows the idea behind the last one pointed at, focused or tapped. The
-// state lives here, not in Hero, so hovering doesn't re-render the photo.
+// line shows the idea behind the last one pointed at or pressed. Focus alone
+// doesn't change it, so tabbing past the words doesn't swap the text; Enter or
+// Space does. The state lives here, not in Hero, so hovering doesn't
+// re-render the photo.
 export function HeroHeadline() {
   const [active, setActive] = useState<WordId | null>(null);
   // True while the intro demo runs, so screen readers aren't read the
@@ -173,9 +175,8 @@ export function HeroHeadline() {
                 <span className="whitespace-nowrap">
                   <button
                     type="button"
-                    aria-pressed={isActive}
+                    aria-controls="hero-idea"
                     onPointerEnter={() => choose(word.id)}
-                    onFocus={() => choose(word.id)}
                     onClick={() => choose(word.id)}
                     className={`relative inline-block cursor-pointer pb-[0.22em] italic transition-colors duration-300 ${
                       isActive ? "text-primary" : ""
@@ -209,6 +210,7 @@ export function HeroHeadline() {
           </span>
         ))}
         <p
+          id="hero-idea"
           aria-live={demoPlaying ? "off" : "polite"}
           className="col-start-1 row-start-1 opacity-85"
         >

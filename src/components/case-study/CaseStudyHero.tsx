@@ -56,7 +56,7 @@ export function CaseStudyHero({ project }: { project: Project }) {
           ))}
         </div>
       </div>
-      {image.asset && (
+      {image?.asset && (
         <div className="min-w-0 lg:flex-[1.1_1_480px]">
           <ProductFrame>
             <ZoomableImage

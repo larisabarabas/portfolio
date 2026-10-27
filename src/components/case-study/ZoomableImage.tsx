@@ -71,7 +71,12 @@ export function ZoomableImage({ children, src, alt }: ZoomableImageProps) {
         <div
           className="h-full w-full overflow-auto"
           onClick={(event) => {
-            if (event.target === event.currentTarget) {
+            // Anything that isn't the picture or a button counts as the
+            // dark area, including the wrapper around the picture.
+            if (
+              event.target instanceof Element &&
+              !event.target.closest("img, button")
+            ) {
               dialogRef.current?.close();
             }
           }}

@@ -211,11 +211,11 @@ export const project = defineType({
       name: "uxFlowSteps",
       title: "Features (How it works)",
       description:
-        "Up to four features in the order a user meets them. With a screenshot on each, they become the product tour.",
+        "Up to six features in the order a user meets them. With a screenshot on each, they become the product tour.",
       type: "array",
       group: "caseStudy",
       of: [defineArrayMember({ type: "uxFlowStep" })],
-      validation: (rule) => rule.max(4),
+      validation: (rule) => rule.max(6),
     }),
     defineField({
       name: "decisions",
@@ -223,7 +223,7 @@ export const project = defineType({
       type: "array",
       group: "caseStudy",
       of: [defineArrayMember({ type: "decisionCard" })],
-      validation: (rule) => rule.max(3),
+      validation: (rule) => rule.max(5),
     }),
     defineField({
       name: "outcomeHeading",
@@ -253,11 +253,11 @@ export const project = defineType({
       name: "outcomeNotes",
       title: "Outcome notes",
       description:
-        'Two notes shown side by side, e.g. "What worked" and "What it cost". Aim for similar lengths so the columns end together.',
+        'Up to three notes in two columns: the first on the left, the others stacked on the right, e.g. "What worked", "What it cost" and "What\'s next". Aim for the columns to end together.',
       type: "array",
       group: "caseStudy",
       of: [defineArrayMember({ type: "outcomeNote" })],
-      validation: (rule) => rule.max(2),
+      validation: (rule) => rule.max(3),
     }),
     defineField({
       name: "outcomeBody",

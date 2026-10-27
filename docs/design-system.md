@@ -124,7 +124,7 @@ Page order, each section present only when the project has it: top → How it wo
 - `FeatureTour` (client) — the product, feature by feature. Phones: each step is its own screenshot above its text, no script. From `nav`: a sticky `ProductFrame` beside the text swaps as each step reaches the middle of the screen (`IntersectionObserver`, only on desktop). Every screenshot fills the same 5:4 frame (`object-cover`, screenshots exported at 1600 × 1280), so frames never differ in size; the Studio crop and hotspot choose what stays in view. Needs a screenshot on every feature; otherwise the features show as `UXFlowSteps`, the plain numbered list.
 - The problem — heading left, paragraph set in 28px serif to fill the column beside it.
 - `DecisionCard` — raised 28px card; from `lg` one row of three columns (title, decision, trade-off, sized 1 : 1.1 : 1.8). Labels are sentence case.
-- `CaseStudyOutcome` — an intro line, up to four stat cards on one row (2×2 on phones; an odd last one spans both columns), then up to two notes side by side (first wider, 1.7 : 1, so the columns end together). The older single-text outcome shows only when there are no stats or notes.
+- `CaseStudyOutcome` — an intro line, up to four stat cards on one row (2×2 on phones; an odd last one spans both columns), then up to three notes in two columns (the first wider, 1.7 : 1; the others stack in the second so the columns end together). The older single-text outcome shows only when there are no stats or notes.
 - UX flow — the Figma diagram in a raised frame → inset well.
 - `CaseStudyClosing` — an inset bar: one line left, the one `cta` right.
 - `UXFlowSteps` — the numbered flat list; now only the fallback for the tour.

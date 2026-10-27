@@ -21,9 +21,11 @@ function splitParagraphs(text: string | null | undefined) {
 
 const TEXT_CLASSES = "text-[16px] leading-[1.75] opacity-90 lg:text-[16.5px]";
 
-// Numbers first (they carry the scan), then the notes that explain them. Two
-// notes sit side by side, the first wider because it is usually the longer,
-// so both columns end together; one note flows through two columns instead.
+// Numbers first (they carry the scan), then the notes that explain them. The
+// first note is the left column and the rest stack on the right, so both
+// columns end together (wider on the left for two notes, a little narrower for three,
+// where the right column carries two headings); one note flows through two
+// columns instead.
 export function CaseStudyOutcome({
   id,
   heading,
@@ -82,29 +84,41 @@ export function CaseStudyOutcome({
                 : "lg:columns-2 lg:gap-14"
             }
           >
-            {notes.map((note, index) => (
-              <div
-                key={note._key}
-                className={`min-w-0 ${
-                  notes.length > 1
-                    ? index === 0
-                      ? "lg:flex-[1.7_1_420px]"
-                      : "lg:flex-[1_1_300px]"
-                    : ""
-                }`}
-              >
-                <h3 className="mb-4 font-serif text-[25px] leading-[1.15] font-normal lg:text-[30px]">
-                  {note.heading}
-                </h3>
-                <div className="flex flex-col gap-4">
-                  {splitParagraphs(note.body).map((paragraph) => (
-                    <p key={paragraph} className={TEXT_CLASSES}>
-                      {paragraph}
-                    </p>
+            {/* The first note is the wide column; any others stack in the
+                narrow one so a short second note doesn't leave it half empty. */}
+            {[notes.slice(0, 1), notes.slice(1)]
+              .filter((column) => column.length > 0)
+              .map((column, index) => (
+                <div
+                  key={column[0]._key}
+                  className={`flex min-w-0 flex-col gap-10 ${
+                    notes.length > 2
+                      ? index === 0
+                        ? "lg:flex-[0.9_1_0%]"
+                        : "lg:flex-[1_1_0%]"
+                      : notes.length > 1
+                        ? index === 0
+                          ? "lg:flex-[1.7_1_420px]"
+                          : "lg:flex-[1_1_300px]"
+                        : ""
+                  }`}
+                >
+                  {column.map((note) => (
+                    <div key={note._key}>
+                      <h3 className="mb-4 font-serif text-[25px] leading-[1.15] font-normal lg:text-[30px]">
+                        {note.heading}
+                      </h3>
+                      <div className="flex flex-col gap-4">
+                        {splitParagraphs(note.body).map((paragraph) => (
+                          <p key={paragraph} className={TEXT_CLASSES}>
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         )}
 

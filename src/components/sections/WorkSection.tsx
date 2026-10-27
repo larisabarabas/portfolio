@@ -25,7 +25,7 @@ export function WorkSection({ projects }: WorkSectionProps) {
         {WORK.heading}
       </h2>
       {projects.length > 0 ? (
-        <div className="grid grid-cols-1 gap-9 nav:grid-cols-2 min-[75rem]:grid-cols-3">
+        <div className="grid grid-cols-1 gap-9 nav:grid-cols-2 wide:grid-cols-3">
           {projects.map((project) => (
             <WorkCard key={project._id} project={project} />
           ))}

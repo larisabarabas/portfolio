@@ -95,7 +95,7 @@ export const HERO = {
       idea: "I measure how the product behaves with real users, catch problems early, and keep fixing until it does what people need and what it promised.",
     },
   ],
-  wordHint: "Hover or tap a word to see what I mean.",
+  wordHint: "Hover or tap a highlighted word to see what I mean.",
   primaryCtaLabel: "How I can help",
   imageHint: "Hover to see it in color",
 };

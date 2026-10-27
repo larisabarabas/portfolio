@@ -95,9 +95,9 @@ export default function PrivacyPage() {
             {PRIVACY.title}
           </h1>
           <p className="mb-4 text-[19px] leading-[1.6] opacity-85">
-            This is a personal site. There are no accounts, no forms and nothing for
-            sale here, so it collects very little. This page explains what that
-            little is, why, and what you can do about it.
+            This is a personal site. There are no accounts, no forms and nothing
+            for sale here, so it collects very little. This page explains what
+            that little is, why, and what you can do about it.
           </p>
           <p className="text-[13px] opacity-60">
             Last updated {PRIVACY.lastUpdated}

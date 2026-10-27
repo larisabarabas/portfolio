@@ -1,12 +1,18 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { CaseStudyClosing } from "@/components/case-study/CaseStudyClosing";
 import { CaseStudyHeader } from "@/components/case-study/CaseStudyHeader";
+import { CaseStudyHero } from "@/components/case-study/CaseStudyHero";
 import { CaseStudyNav } from "@/components/case-study/CaseStudyNav";
 import { CaseStudyOutcome } from "@/components/case-study/CaseStudyOutcome";
 import { DecisionCard } from "@/components/case-study/DecisionCard";
+import {
+  FeatureTour,
+  type TourStep,
+} from "@/components/case-study/FeatureTour";
 import { MetaRow } from "@/components/case-study/MetaRow";
 import { UXFlowSteps } from "@/components/case-study/UXFlowSteps";
-import { Chip } from "@/components/ui/Chip";
+import { ZoomableImage } from "@/components/case-study/ZoomableImage";
 import { CASE_STUDY } from "@/lib/constants";
 import { sanityFetch } from "@/lib/sanity/fetch";
 import { urlFor } from "@/lib/sanity/image";
@@ -15,6 +21,9 @@ import type {
   ProjectBySlugQueryResult,
   ProjectSlugsQueryResult,
 } from "@/lib/sanity/sanity.types";
+
+type Project = NonNullable<ProjectBySlugQueryResult>;
+type Feature = NonNullable<Project["uxFlowSteps"]>[number];
 
 // Every section: 8vw gutters around a 1240px column, headings clear of the
 // sticky header when jumped to.
@@ -27,6 +36,21 @@ export async function generateStaticParams() {
     fallback: [],
   });
   return slugs.map(({ slug }) => ({ slug }));
+}
+
+function toTourStep(feature: Feature): TourStep | null {
+  if (!feature.screenshot?.asset) return null;
+  return {
+    id: feature._key,
+    label: feature.label.trim(),
+    description: feature.description.trim(),
+    alt: feature.screenshotAlt?.trim() || feature.label.trim(),
+    src: urlFor(feature.screenshot).width(1600).url(),
+    fullSrc: urlFor(feature.screenshot).width(2400).url(),
+    focus: feature.screenshot.hotspot
+      ? `${feature.screenshot.hotspot.x * 100}% ${feature.screenshot.hotspot.y * 100}%`
+      : "50% 50%",
+  };
 }
 
 export default async function CaseStudyPage({
@@ -43,115 +67,92 @@ export default async function CaseStudyPage({
     notFound();
   }
 
-  const hasFlow =
-    project.uxFlowImage?.asset != null ||
-    project.uxFlowPlaceholderLabel != null ||
-    (project.uxFlowSteps?.length ?? 0) > 0;
+  // Which sections exist. The page, its pager and its order all follow from
+  // these, so a new section is added in one place.
+  const features = project.uxFlowSteps ?? [];
+  const tourSteps = features.map(toTourStep);
+  // The tour needs a screenshot on every feature; until then the features
+  // show as the plain list they used to be.
+  const tour = tourSteps.length > 0 && tourSteps.every((step) => step !== null);
+  const hasFeatures = features.length > 0;
+  const hasProblem = Boolean(project.problemBody);
   const hasDecisions = (project.decisions?.length ?? 0) > 0;
+  const hasFlowDiagram =
+    project.uxFlowImage?.asset != null ||
+    project.uxFlowPlaceholderLabel != null;
   const outcomeHeading =
     project.outcomeHeading ?? CASE_STUDY.outcomeHeadingDefault;
 
-  // The pager lists only the sections this project actually has.
+  // The pager lists only the sections this project actually has, in page order.
   const navItems = [
-    project.problemBody
-      ? { id: "problem", label: CASE_STUDY.problemHeading }
-      : null,
-    hasFlow ? { id: "flow", label: CASE_STUDY.uxFlowHeading } : null,
+    hasFeatures ? { id: "tour", label: CASE_STUDY.tourHeading } : null,
+    hasProblem ? { id: "problem", label: CASE_STUDY.problemHeading } : null,
     hasDecisions
       ? { id: "decisions", label: CASE_STUDY.decisionsNavLabel }
       : null,
     { id: "outcome", label: outcomeHeading },
+    hasFlowDiagram ? { id: "flow", label: CASE_STUDY.uxFlowHeading } : null,
   ].filter((item) => item !== null);
 
   return (
     <>
       <CaseStudyHeader />
 
-      <main id="main">
-        <section className="animate-fade-up px-[8vw] pt-32 pb-12 nav:pt-36">
+      <main id="main" className="pb-35">
+        <section className="animate-fade-up px-[8vw] pt-32 pb-4 nav:pt-36">
           <div className="mx-auto max-w-310">
-            <div className="mb-6">
-              <Chip
-                variant="accent"
-                color={project.statusPillColor}
-                size="status"
-              >
-                {project.statusLabel}
-              </Chip>
+            <CaseStudyHero project={project} />
+            <div className="mt-10">
+              <MetaRow
+                role={project.role}
+                timelineLabel={project.timelineLabel}
+                timelineValue={project.timelineValue}
+                stackText={project.stackText}
+              />
             </div>
-            <h1 className="mb-5 font-serif text-[clamp(40px,6vw,68px)] leading-[1.05] font-normal text-balance">
-              {project.title}
-            </h1>
-            {project.subtitle && (
-              <p className="mb-8 max-w-165 text-[19px] leading-[1.6] opacity-85">
-                {project.subtitle}
-              </p>
-            )}
-            <MetaRow
-              role={project.role}
-              timelineLabel={project.timelineLabel}
-              timelineValue={project.timelineValue}
-              stackText={project.stackText}
-              metaLinks={project.metaLinks}
-            />
           </div>
         </section>
 
-        {project.problemBody && (
+        {hasFeatures && (
           <section
-            id="problem"
-            aria-labelledby="problem-title"
-            className="scroll-mt-24 px-[8vw] pt-14"
+            id="tour"
+            aria-labelledby="tour-title"
+            className={SECTION_CLASSES}
           >
             <div className="mx-auto max-w-310">
-              <h2 id="problem-title" className={`mb-4 ${H2_CLASSES}`}>
-                {CASE_STUDY.problemHeading}
+              <h2 id="tour-title" className={`mb-7 ${H2_CLASSES}`}>
+                {CASE_STUDY.tourHeading}
               </h2>
-              <p className="max-w-190 text-[17px] leading-[1.75] opacity-85">
-                {project.problemBody}
-              </p>
+              {tour ? (
+                <FeatureTour steps={tourSteps} />
+              ) : (
+                <UXFlowSteps
+                  steps={features}
+                  accentColor={project.accentColor}
+                />
+              )}
             </div>
           </section>
         )}
 
-        {hasFlow && (
+        {hasProblem && (
           <section
-            id="flow"
-            aria-labelledby="flow-title"
+            id="problem"
+            aria-labelledby="problem-title"
             className={SECTION_CLASSES}
           >
-            <div className="mx-auto max-w-310">
-              <h2 id="flow-title" className={`mb-7 ${H2_CLASSES}`}>
-                {CASE_STUDY.uxFlowHeading}
+            <div className="mx-auto flex max-w-310 flex-col gap-6 lg:flex-row lg:items-start lg:gap-16">
+              <h2
+                id="problem-title"
+                className={`${H2_CLASSES} lg:w-65 lg:flex-none`}
+              >
+                {CASE_STUDY.problemHeading}
               </h2>
-              {/* Raised frame → inset well → the diagram. */}
-              <div className="rounded-[32px] p-3 shadow-neu-out">
-                <div className="rounded-card-lg p-2.5 shadow-neu-in">
-                  {project.uxFlowImage?.asset ? (
-                    <Image
-                      src={urlFor(project.uxFlowImage).width(1840).url()}
-                      alt={`${project.title} UX flow`}
-                      width={1840}
-                      height={Math.round(
-                        1840 / (project.uxFlowImage.aspectRatio ?? 1840 / 1190),
-                      )}
-                      sizes="(min-width: 1240px) 1200px, 90vw"
-                      className="block h-auto w-full rounded-2xl bg-paper"
-                    />
-                  ) : (
-                    <div className="flex aspect-10/3 items-center justify-center rounded-2xl px-4 text-center text-sm opacity-60">
-                      {project.uxFlowPlaceholderLabel ??
-                        CASE_STUDY.uxFlowPlaceholderDefault}
-                    </div>
-                  )}
-                </div>
-              </div>
-              {project.uxFlowSteps && project.uxFlowSteps.length > 0 && (
-                <UXFlowSteps
-                  steps={project.uxFlowSteps}
-                  accentColor={project.accentColor}
-                />
-              )}
+              {/* Set large so the paragraph fills the column beside its
+                  heading instead of leaving the row half empty. */}
+              <p className="min-w-0 font-serif text-[clamp(21px,2.3vw,28px)] leading-[1.4] lg:flex-[3_1_560px]">
+                {project.problemBody}
+              </p>
             </div>
           </section>
         )}
@@ -166,7 +167,7 @@ export default async function CaseStudyPage({
               <h2 id="decisions-title" className={`mb-7 ${H2_CLASSES}`}>
                 {CASE_STUDY.decisionsHeading}
               </h2>
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-5 lg:gap-6">
                 {project.decisions?.map((decision) => (
                   <DecisionCard
                     key={decision._key}
@@ -183,7 +184,56 @@ export default async function CaseStudyPage({
         <CaseStudyOutcome
           id="outcome"
           heading={outcomeHeading}
+          intro={project.outcomeIntro}
+          stats={project.outcomeStats}
+          notes={project.outcomeNotes}
           body={project.outcomeBody}
+        />
+
+        {hasFlowDiagram && (
+          <section
+            id="flow"
+            aria-labelledby="flow-title"
+            className={SECTION_CLASSES}
+          >
+            <div className="mx-auto max-w-310">
+              <h2 id="flow-title" className={`mb-7 ${H2_CLASSES}`}>
+                {CASE_STUDY.uxFlowHeading}
+              </h2>
+              {/* Raised frame → inset well → the diagram. */}
+              <div className="rounded-[32px] p-3 shadow-neu-out">
+                <div className="rounded-card-lg p-2.5 shadow-neu-in">
+                  {project.uxFlowImage?.asset ? (
+                    <ZoomableImage
+                      src={urlFor(project.uxFlowImage).width(3200).url()}
+                      alt={`${project.title} UX flow`}
+                    >
+                      <Image
+                        src={urlFor(project.uxFlowImage).width(1840).url()}
+                        alt=""
+                        width={1840}
+                        height={Math.round(
+                          1840 /
+                            (project.uxFlowImage.aspectRatio ?? 1840 / 1190),
+                        )}
+                        sizes="(min-width: 1240px) 1200px, 90vw"
+                        className="block h-auto w-full rounded-2xl bg-paper"
+                      />
+                    </ZoomableImage>
+                  ) : (
+                    <div className="flex aspect-10/3 items-center justify-center rounded-2xl px-4 text-center text-sm opacity-60">
+                      {project.uxFlowPlaceholderLabel ??
+                        CASE_STUDY.uxFlowPlaceholderDefault}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        <CaseStudyClosing
+          note={project.closingNote}
           ctaLabel={project.outcomeCtaLabel}
           ctaUrl={project.outcomeCtaUrl}
         />

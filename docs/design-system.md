@@ -55,7 +55,7 @@ Light and dark share the same structure; only `--neu-dk` / `--neu-lt` and the co
 Unchanged from before: **Instrument Serif** (headings, italic accent, logo) and **Space Grotesk** (400–700, body/UI).
 
 - Eyebrow: 13px / 600 / uppercase / 0.16em tracking / `primary`. `variant="inset"` puts it in a pressed-in pill (hero, contact).
-- Hero H1: `clamp(38px, 6.4vw, 96px)`, line-height 1.02, second line italic `tertiary`.
+- Hero H1: `clamp(34px, 5.4vw, 80px)`, line-height 1.18 (room for the word pills), second line italic `tertiary`. "designs", "builds" and "improves" are buttons, each with its own underline (curve, level line, rising steps). At rest it is an engraved groove (`--neu-dk` / `--neu-lt` edges); the active word's fills with `primary`, revealed left to right. Pointing at, focusing or tapping a word swaps the line under the heading.
 - Case-study H1: `clamp(40px, 6vw, 68px)`. Section H2: `clamp(30px, 3.4vw, 40px)`. Contact H2: `clamp(40px, 6vw, 76px)`.
 - Body 17px (19px on desktop hero), line-height 1.6, `opacity-85`. Card body 14.5px.
 - Logo: serif, italic, bold, 28px, `tertiary`, with a `primary` full stop.
@@ -108,19 +108,29 @@ Icons are **Lucide** (`ArrowLeft`, arrows in links). Text arrows (`→ ↓`) and
 Order: Hero → Services → Work → About → Skills → Experience → Experiments (Sanity toggle) → Dev Notes → Contact.
 
 - **Hero** — text left, photo right. Photo is a nested frame: raised frame → inset well → floating image. When stacked (`< lg`) the photo becomes a 5:2 banner above the text, and is **hidden entirely on screens under 820px tall** so the headline and both buttons stay above the pager. Actions: coloured `PillLink` to `#services` + raised "Book a call" (Calendly, external).
-- **Services** — desktop: a tab list of numbered inset/raised rows beside a raised panel (`role=tablist/tabpanel`); active row is inset with a `primary` numbered circle. Below `nav`: an accordion of the same items.
-- **Work / `WorkCard`** — equal-height raised cards (32px): inset image well, `accent` status chip, serif title, summary points, tech `Chip`s, `TextLink`s pinned to the bottom.
+- **Services** — desktop: a tab list beside a raised panel (`role=tablist/tabpanel`), with a "Worked across" inset well under the tabs. Each tab is a title, the hero words it covers in italic serif, and a dot that fills `primary` when open (no numbers, since the offers aren't a sequence). The panel runs title → the client's problem as a large italic `tertiary` serif line → what I do → one line of proof → an inset "How we start" block with the slide's one coloured `PillLink`. Below `nav`: an accordion of the same items, with "Worked across" last.
+- **Work / `WorkCard`** — equal-height raised cards (32px): inset image well, `accent` status chip, serif title, one short description (`cardSummary`; falls back to the older Problem / What I built / Result lines while it is empty), tech `Chip`s, `TextLink`s pinned to the bottom.
 - **Experience** — an inset well (32px) holding a vertical list of raised cards (22px). Each card: inset date/location chip, 17px semibold role, industry at 75% opacity. No timeline line or dots any more.
 - **Contact** — one big raised panel (44px), inset eyebrow, coloured "Book a call" + raised email pill showing the address, then quiet ink `TextLink`s (LinkedIn, GitHub, résumé, Dev Notes), then the footer with privacy link and cookie-settings button.
 
 ### Case studies (`src/components/case-study/`, `src/app/work/[slug]`)
 
-Same neumorphic language as home, native scrolling, no slide deck. `SiteHeader` + `BackLink` on top; `CaseStudyNav` reuses `SectionPager` at the bottom, following scroll via `useActiveSection`, with an exit link back to `/#work`.
+Same neumorphic language as home, native scrolling, no slide deck. `SiteHeader` + `BackLink` on top; `CaseStudyNav` reuses `SectionPager` at the bottom, following scroll via `useActiveSection`, with an exit link back to `/#work`. Built to be scanned: the product is in the first screen, features come before the reasoning, and every row fills its width (rule 8).
 
-- `MetaRow` — inset well (24px) holding Role / Timeline-or-Status / Stack / Links as small uppercase labels over 14.5px semibold values.
-- `DecisionCard` — raised 28px card; "Decision:" and "Tradeoff:" lead-ins in `tertiary`.
-- `UXFlowSteps`, `CaseStudyOutcome` — restyled to match (raised/inset surfaces, no borders).
-- Sections use an outer `px-[8vw]` wrapper with an inner `max-w-310` element (padding must not eat the content width).
+Page order, each section present only when the project has it: top → How it works → The problem → Key decisions → Outcome → UX flow → closing bar. The page decides which sections exist in one place, and the pager follows.
+
+- `CaseStudyHero` — status chip, title, subtitle, the italic one-line "why" in `tertiary`, the live link as the one `cta` plus the other links as `raised` pills, and the product in a `ProductFrame`. Split from `lg`; stacked below. The product image falls back from `heroImage` to the home card's screenshot.
+- `MetaRow` — one inset strip (24px) holding Role / Timeline / Stack, sentence-case labels, items share the row.
+- `FeatureTour` (client) — the product, feature by feature. Phones: each step is its own screenshot above its text, no script. From `nav`: a sticky `ProductFrame` beside the text swaps as each step reaches the middle of the screen (`IntersectionObserver`, only on desktop). Every screenshot fills the same 5:4 frame (`object-cover`, screenshots exported at 1600 × 1280), so frames never differ in size; the Studio crop and hotspot choose what stays in view. Needs a screenshot on every feature; otherwise the features show as `UXFlowSteps`, the plain numbered list.
+- The problem — heading left, paragraph set in 28px serif to fill the column beside it.
+- `DecisionCard` — raised 28px card; from `lg` one row of three columns (title, decision, trade-off, sized 1 : 1.1 : 1.8). Labels are sentence case.
+- `CaseStudyOutcome` — an intro line, up to four stat cards on one row (2×2 on phones; an odd last one spans both columns), then up to three notes in two columns (the first wider, 1.7 : 1; the others stack in the second so the columns end together). The older single-text outcome shows only when there are no stats or notes.
+- UX flow — the Figma diagram in a raised frame → inset well.
+- `CaseStudyClosing` — an inset bar: one line left, the one `cta` right.
+- `UXFlowSteps` — the numbered flat list; now only the fallback for the tour.
+- `ZoomableImage` (client) — wraps a thumbnail (hero image, tour screenshots, UX flow diagram) in a button with a raised expand badge in its corner. It opens the large file in a native `<dialog>`: fits the screen first, a click or the "Zoom in" button shows it at full size to scroll around, Escape or "Close" shuts it and returns focus. The large file isn't requested until it opens. Controls are flat `bg` pills with no shadow.
+
+Content lives in Sanity (`project` document). New optional fields: `whyLine`, `heroImage`, a `screenshot` and `screenshotAlt` on each feature, `outcomeIntro`, `outcomeStats`, `outcomeNotes`, `closingNote`.
 
 ### Consent and privacy
 
@@ -140,3 +150,4 @@ Same neumorphic language as home, native scrolling, no slide deck. `SiteHeader` 
 5. Anything that must be readable in dark mode uses tokens, never raw hex. The exceptions are the accent shadow tints and the hero float shadow, which are fixed RGB.
 6. Anything animated must respect reduced motion (the global reset handles CSS; JS-driven effects must check the media query themselves).
 7. Phone first for the hero and pager: check 375×667 and 390×844 before shipping changes.
+8. No dead space from capped text. A text block with a `max-width` inside a full-width container must not leave the rest of the row empty: let it fill a column sized to a readable measure, pair it with something in the same row (image, aside, stats, CTA), or split the content into side-by-side columns. Stretch a shorter column into a panel so row ends align. Check every section at desktop width before shipping.

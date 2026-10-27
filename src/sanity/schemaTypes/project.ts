@@ -81,13 +81,24 @@ export const project = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "cardSummary",
+      title: "Card description",
+      description:
+        "What the project is, in two or three sentences (about 200 characters). Shown on the homepage card. Until it's filled in, the card falls back to the older summary points.",
+      type: "text",
+      rows: 3,
+      group: "card",
+      validation: (rule) => rule.max(280),
+    }),
+    defineField({
       name: "summaryPoints",
-      title: "Summary points",
-      description: "Homepage card copy, e.g. Problem / What I built / Result.",
+      title: "Summary points (older format)",
+      description:
+        "Problem / What I built / Result lines. Only used while the card description is empty.",
       type: "array",
       group: "card",
       of: [defineArrayMember({ type: "summaryPoint" })],
-      validation: (rule) => rule.min(2).max(4),
+      validation: (rule) => rule.max(4),
     }),
     defineField({
       name: "techTags",
@@ -134,6 +145,23 @@ export const project = defineType({
       type: "text",
       rows: 2,
       group: "caseStudy",
+    }),
+    defineField({
+      name: "whyLine",
+      title: "Why I built it (one line)",
+      description:
+        "One sentence, shown large under the subtitle. Say what was missing.",
+      type: "string",
+      group: "caseStudy",
+    }),
+    defineField({
+      name: "heroImage",
+      title: "Hero image",
+      description:
+        "Product image beside the title. Falls back to the homepage Screenshot. Crop it so it doesn't repeat the product's own headline.",
+      type: "image",
+      group: "caseStudy",
+      options: { hotspot: true },
     }),
     defineField({
       name: "role",
@@ -192,11 +220,13 @@ export const project = defineType({
     }),
     defineField({
       name: "uxFlowSteps",
-      title: "UX flow steps",
+      title: "Features (How it works)",
+      description:
+        "Up to six features in the order a user meets them. With a screenshot on each, they become the product tour.",
       type: "array",
       group: "caseStudy",
       of: [defineArrayMember({ type: "uxFlowStep" })],
-      validation: (rule) => rule.max(4),
+      validation: (rule) => rule.max(6),
     }),
     defineField({
       name: "decisions",
@@ -204,7 +234,7 @@ export const project = defineType({
       type: "array",
       group: "caseStudy",
       of: [defineArrayMember({ type: "decisionCard" })],
-      validation: (rule) => rule.max(3),
+      validation: (rule) => rule.max(5),
     }),
     defineField({
       name: "outcomeHeading",
@@ -216,8 +246,35 @@ export const project = defineType({
       initialValue: "Outcome",
     }),
     defineField({
+      name: "outcomeIntro",
+      title: "Outcome intro",
+      description: 'One line above the numbers, e.g. "Shipped and live."',
+      type: "string",
+      group: "caseStudy",
+    }),
+    defineField({
+      name: "outcomeStats",
+      title: "Outcome numbers",
+      type: "array",
+      group: "caseStudy",
+      of: [defineArrayMember({ type: "outcomeStat" })],
+      validation: (rule) => rule.max(4),
+    }),
+    defineField({
+      name: "outcomeNotes",
+      title: "Outcome notes",
+      description:
+        'Up to three notes in two columns: the first on the left, the others stacked on the right, e.g. "What worked", "What it cost" and "What\'s next". Aim for the columns to end together.',
+      type: "array",
+      group: "caseStudy",
+      of: [defineArrayMember({ type: "outcomeNote" })],
+      validation: (rule) => rule.max(3),
+    }),
+    defineField({
       name: "outcomeBody",
-      title: "Outcome body",
+      title: "Outcome body (older layout)",
+      description:
+        "Only shown when there are no outcome numbers or notes above.",
       type: "text",
       rows: 4,
       group: "caseStudy",
@@ -232,6 +289,13 @@ export const project = defineType({
       name: "outcomeCtaUrl",
       title: "Outcome CTA URL",
       type: "url",
+      group: "caseStudy",
+    }),
+    defineField({
+      name: "closingNote",
+      title: "Closing line",
+      description: "Shown beside the button at the end of the page.",
+      type: "string",
       group: "caseStudy",
     }),
   ],

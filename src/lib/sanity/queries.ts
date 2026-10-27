@@ -7,9 +7,24 @@ export const projectsQuery = defineQuery(
 export const projectBySlugQuery = defineQuery(
   `*[_type == "project" && slug.current == $slug][0]{
     ...,
+    mainImage{
+      ...,
+      "aspectRatio": asset->metadata.dimensions.aspectRatio
+    },
+    heroImage{
+      ...,
+      "aspectRatio": asset->metadata.dimensions.aspectRatio
+    },
     uxFlowImage{
       ...,
       "aspectRatio": asset->metadata.dimensions.aspectRatio
+    },
+    uxFlowSteps[]{
+      ...,
+      screenshot{
+        ...,
+        "aspectRatio": asset->metadata.dimensions.aspectRatio
+      }
     }
   }`,
 );

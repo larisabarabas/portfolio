@@ -1,9 +1,8 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
 import { type KeyboardEvent, useEffect, useRef, useState } from "react";
+import { PillLink } from "@/components/ui/PillLink";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { TextLink } from "@/components/ui/TextLink";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { EMAIL, SERVICES } from "@/lib/constants";
 
@@ -12,8 +11,6 @@ type Service = (typeof SERVICES.items)[number];
 // Must match --breakpoint-nav in globals.css.
 const MOBILE_QUERY = "(width < 47.5rem)";
 
-const SUBHEADING_CLASSES =
-  "mb-2 text-xs font-semibold uppercase tracking-widest text-tertiary";
 const BODY_CLASSES = "text-[15.5px] leading-[1.6] text-pretty opacity-88";
 
 function ServiceDetails({ service }: { service: Service }) {
@@ -24,47 +21,25 @@ function ServiceDetails({ service }: { service: Service }) {
       <h3 className="font-serif text-[clamp(28px,3vw,36px)] leading-[1.1] font-normal">
         {service.title}
       </h3>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),1fr))] gap-x-9 gap-y-5">
-        <div>
-          <h4 className={SUBHEADING_CLASSES}>{SERVICES.problemHeading}</h4>
-          <p className={BODY_CLASSES}>{service.problem}</p>
-        </div>
-        <div>
-          <h4 className={SUBHEADING_CLASSES}>{SERVICES.whatIDoHeading}</h4>
-          <p className={BODY_CLASSES}>{service.whatIDo}</p>
-        </div>
-      </div>
-      <div>
-        <h4 className={SUBHEADING_CLASSES}>{SERVICES.proofHeading}</h4>
-        {service.proofAsList ? (
-          <ul
-            className={`flex list-disc flex-col gap-1.5 pl-5 ${BODY_CLASSES}`}
-          >
-            {service.proof.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        ) : (
-          <div className="flex flex-col gap-4">
-            {service.proof.map((item) => (
-              <p key={item} className={BODY_CLASSES}>
-                {item}
-              </p>
-            ))}
-          </div>
-        )}
-      </div>
-      <div className="flex flex-wrap items-start gap-x-5 gap-y-3 rounded-card-lg px-5.5 py-5 shadow-neu-in">
-        <span className="flex-none rounded-pill bg-bg px-3.75 py-1.75 text-xs font-semibold tracking-[0.08em] text-tertiary uppercase shadow-neu-out-sm">
+      {/* The client's situation first, in the hero's italic serif voice. */}
+      <p className="font-serif text-[clamp(20px,2.1vw,26px)] leading-[1.35] text-pretty text-tertiary italic">
+        {service.problem}
+      </p>
+      <p className={BODY_CLASSES}>{service.whatIDo}</p>
+      <p className="text-[14.5px] leading-[1.6] text-pretty opacity-75">
+        {service.proof}
+      </p>
+      <div className="flex flex-wrap items-start gap-x-5 gap-y-4 rounded-card-lg px-5.5 py-5 shadow-neu-in">
+        <span className="flex-none rounded-pill bg-bg px-3.75 py-1.75 text-[13px] font-semibold text-tertiary shadow-neu-out-sm">
           {SERVICES.startLabel}
         </span>
-        <div className="min-w-0 flex-[1_1_260px]">
-          <p className="mb-2.5 text-[15.5px] leading-[1.6] font-medium text-pretty">
+        <div className="flex min-w-0 flex-[1_1_260px] flex-col items-start gap-4">
+          <p className="text-[15.5px] leading-[1.6] font-medium text-pretty">
             {service.start}
           </p>
-          <TextLink href={mailto} icon={ArrowRight}>
+          <PillLink href={mailto} variant="cta" size="sm">
             {SERVICES.ctaLabel}
-          </TextLink>
+          </PillLink>
         </div>
       </div>
     </>
@@ -136,7 +111,7 @@ export function Services() {
       aria-labelledby="services-title"
       className="mx-auto w-full max-w-310"
     >
-      <div className="mb-6">
+      <div className="mb-8">
         <SectionLabel>{SERVICES.eyebrow}</SectionLabel>
         <h2
           id="services-title"
@@ -148,68 +123,82 @@ export function Services() {
           {SERVICES.lead}
         </p>
       </div>
-      <p className="mb-8 rounded-[20px] px-5 py-3 text-[13.5px] leading-[1.6] opacity-75 shadow-neu-in-sm">
-        <span className="mr-2.5 text-xs font-semibold tracking-widest uppercase">
-          {SERVICES.workedAcrossLabel}
-        </span>
-        {SERVICES.workedAcross}
-      </p>
 
-      {/* Desktop: tab list beside one panel. Mobile: the two wrappers turn
-          into `display: contents` and `order` interleaves each tab with its
-          panel, making an accordion. */}
+      {/* Desktop: tab list (with "Worked across" under it) beside one panel.
+          Mobile: the wrappers turn into `display: contents` and `order`
+          interleaves each tab with its panel, making an accordion, with
+          "Worked across" last. */}
       <div className="flex flex-col gap-4 nav:flex-row nav:flex-wrap nav:items-start nav:gap-8">
-        <div
-          {...(isMobile
-            ? {}
-            : {
-                role: "tablist",
-                "aria-label": SERVICES.eyebrow,
-                "aria-orientation": "vertical" as const,
-              })}
-          className="contents nav:flex nav:max-w-85 nav:flex-[1_1_260px] nav:flex-col nav:gap-4"
-        >
-          {SERVICES.items.map((service, i) => {
-            const isActive = i === active;
-            return (
-              <button
-                key={service.id}
-                ref={(el) => {
-                  tabRefs.current[i] = el;
-                }}
-                type="button"
-                id={`${service.id}-tab`}
-                {...(isMobile
-                  ? { "aria-expanded": isActive }
-                  : {
-                      role: "tab",
-                      "aria-selected": isActive,
-                      tabIndex: isActive ? 0 : -1,
-                    })}
-                aria-controls={service.id}
-                onClick={() => select(i)}
-                onKeyDown={(e) => onTabKeyDown(e, i)}
-                style={{ order: i * 2 + 1 }}
-                className={`flex cursor-pointer scroll-mt-20 items-center gap-4 rounded-[22px] bg-bg px-4.5 py-3.5 text-left text-base leading-[1.3] font-semibold transition-[box-shadow,color] duration-350 ${
-                  isActive
-                    ? "text-tertiary shadow-neu-in"
-                    : "text-ink shadow-neu-out-sm"
-                }`}
-              >
-                <span
-                  aria-hidden="true"
-                  className={`flex size-10 flex-none items-center justify-center rounded-full text-[13px] tracking-[0.04em] transition-[background-color,color,box-shadow] duration-300 ${
+        <div className="contents nav:flex nav:max-w-85 nav:flex-[1_1_260px] nav:flex-col nav:gap-6">
+          <div
+            {...(isMobile
+              ? {}
+              : {
+                  role: "tablist",
+                  "aria-label": SERVICES.eyebrow,
+                  "aria-orientation": "vertical" as const,
+                })}
+            className="contents nav:flex nav:flex-col nav:gap-4"
+          >
+            {SERVICES.items.map((service, i) => {
+              const isActive = i === active;
+              return (
+                <button
+                  key={service.id}
+                  ref={(el) => {
+                    tabRefs.current[i] = el;
+                  }}
+                  type="button"
+                  id={`${service.id}-tab`}
+                  {...(isMobile
+                    ? { "aria-expanded": isActive }
+                    : {
+                        role: "tab",
+                        "aria-selected": isActive,
+                        tabIndex: isActive ? 0 : -1,
+                      })}
+                  aria-controls={service.id}
+                  onClick={() => select(i)}
+                  onKeyDown={(e) => onTabKeyDown(e, i)}
+                  style={{ order: i * 2 + 1 }}
+                  className={`flex cursor-pointer scroll-mt-20 items-center gap-4 rounded-[22px] bg-bg px-4.5 py-3.5 text-left text-base leading-[1.3] font-semibold transition-[box-shadow,color] duration-350 ${
                     isActive
-                      ? "bg-primary text-on-accent shadow-accent-primary"
-                      : "text-primary shadow-neu-in-sm"
+                      ? "text-tertiary shadow-neu-in"
+                      : "text-ink shadow-neu-out-sm"
                   }`}
                 >
-                  {service.number}
-                </span>
-                <span>{service.title}</span>
-              </button>
-            );
-          })}
+                  {/* The open service gets the same primary dot as the section
+                    rail; the others show an empty well. */}
+                  <span
+                    aria-hidden="true"
+                    className="flex size-6 flex-none items-center justify-center rounded-full shadow-neu-in-sm"
+                  >
+                    <span
+                      className={`size-2.5 rounded-full transition-colors duration-300 ${
+                        isActive ? "bg-primary" : "bg-transparent"
+                      }`}
+                    />
+                  </span>
+                  <span className="flex flex-col gap-0.5">
+                    {service.title}
+                    {/* Which hero words this offer covers. */}
+                    <span className="font-serif text-[15px] font-normal italic opacity-70">
+                      {service.verbs.join(", ")}
+                    </span>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          <p
+            style={{ order: SERVICES.items.length * 2 + 1 }}
+            className="mt-2 rounded-[22px] px-5 py-4 text-[14.5px] leading-[1.6] shadow-neu-in-sm nav:mt-0"
+          >
+            <span className="mb-1 block text-[13px] font-semibold text-tertiary">
+              {SERVICES.workedAcrossLabel}
+            </span>
+            <span className="opacity-80">{SERVICES.workedAcross}</span>
+          </p>
         </div>
 
         <div className="contents nav:grid nav:min-w-0 nav:flex-[3_1_520px]">

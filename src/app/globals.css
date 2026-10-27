@@ -33,6 +33,7 @@
 
   /* The design's mobile switch (rail hidden, Services becomes an accordion). */
   --breakpoint-nav: 47.5rem;
+  --breakpoint-wide: 75rem;
 
   --radius-pill: 100px;
   --radius-card: 20px;

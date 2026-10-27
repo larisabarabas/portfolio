@@ -23,7 +23,7 @@ export function DevNotes({ articleLinks }: DevNotesProps) {
         {DEV_NOTES.heading}
       </h2>
 
-      <div className="flex flex-wrap items-start gap-x-10 gap-y-15">
+      <div className="flex flex-wrap items-stretch gap-x-10 gap-y-15">
         <div className="flex min-w-0 flex-[1_1_420px] flex-wrap items-center gap-8 rounded-[36px] bg-bg p-[clamp(22px,3vw,36px)] shadow-neu-out">
           <div className="max-w-full flex-[0_1_180px] rounded-[28px] p-2 shadow-neu-in">
             <Image
@@ -54,20 +54,21 @@ export function DevNotes({ articleLinks }: DevNotesProps) {
         </div>
 
         {articleLinks.length > 0 ? (
-          <div className="relative min-w-0 flex-[1_1_380px]">
+          <div className="relative flex min-w-0 flex-[1_1_380px] flex-col">
             {/* Hangs above the list so the first row lines up with the top
-                of the newsletter card beside it. */}
+                of the newsletter card beside it. The list stretches to the
+                card's height so the two bottoms line up. */}
             <h3 className="absolute bottom-full left-0 mb-4.5 text-sm font-semibold text-tertiary">
               {DEV_NOTES.collaborationsLabel}
             </h3>
-            <ul className="flex flex-col gap-4.5">
+            <ul className="flex flex-1 flex-col gap-4.5">
               {articleLinks.map((link) => (
-                <li key={link._id}>
+                <li key={link._id} className="flex flex-auto">
                   <a
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between gap-5 rounded-card-lg bg-bg px-6 py-5 text-ink shadow-neu-out-sm transition-shadow duration-300 hover:text-ink hover:shadow-neu-in"
+                    className="flex w-full items-center justify-between gap-5 rounded-card-lg bg-bg px-6 py-5 text-ink shadow-neu-out-sm transition-shadow duration-300 hover:text-ink hover:shadow-neu-in"
                   >
                     <div>
                       <p className="mb-1.5 text-xs font-semibold tracking-[0.06em] text-primary uppercase">

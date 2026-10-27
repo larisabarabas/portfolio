@@ -67,6 +67,10 @@ export default function RootLayout(props: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <head>
+        {/* Plain inline scripts: they block, so the theme and the consent
+            defaults are set before first paint and before GTM. next/script
+            with beforeInteractive only queues them until Next's JavaScript
+            has loaded, which lets dark-mode visitors see a light flash. */}
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: static, first-party script with no interpolated user input */}
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         {GTM_ID ? (
